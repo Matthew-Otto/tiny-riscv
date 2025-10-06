@@ -7,3 +7,9 @@ A minimum-area RV32i implementation
 [cocotb](https://www.cocotb.org/) \
 [verilator](https://www.veripool.org/verilator/) \
 [surfer](https://surfer-project.org/)
+
+
+### Design assumptions:
+
+* Dual-port memory: one read port for instructions, one read/write port for data
+* Memory operations take 1 cycle

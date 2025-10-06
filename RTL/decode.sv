@@ -1,3 +1,5 @@
+// instruction decode unit
+
 `include "defines.svh"
 
 module decode (
@@ -8,7 +10,13 @@ module decode (
     output logic [4:0]  rs2,
 
     output alu_op_t     alu_op,
-    output logic        is_imm
+    output logic        is_imm,
+
+    output logic [31:0] imm_b,
+    output logic [31:0] imm_i,
+    output logic [31:0] imm_s,
+    output logic [31:0] imm_u,
+    output logic [31:0] imm_j
 );
     
     localparam OP_IMM    = 7'b0010011;
@@ -24,11 +32,6 @@ module decode (
     logic [6:0]  op;
     logic [2:0]  funct3;
     logic [6:0]  funct7;
-    logic [31:0] imm_b;
-    logic [31:0] imm_i;
-    logic [31:0] imm_s;
-    logic [31:0] imm_u;
-    logic [31:0] imm_j;
 
     assign op = instr[6:0];
     assign rd = instr[11:7];

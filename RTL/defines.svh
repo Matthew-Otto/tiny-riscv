@@ -15,4 +15,13 @@ typedef enum logic [4:0] {
     i_AND
 } alu_op_t;
 
+typedef enum {
+    i_LUI,
+    i_LB,
+    i_LH,
+    i_LW,
+    i_LBU,
+    i_LHU,
+} ls_op_t;
+
 `endif

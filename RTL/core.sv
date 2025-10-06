@@ -27,6 +27,12 @@ module core (
     logic [31:0] rs1_data;
     logic [31:0] rs2_data;
 
+    logic [31:0] imm_b;
+    logic [31:0] imm_i;
+    logic [31:0] imm_s;
+    logic [31:0] imm_u;
+    logic [31:0] imm_j;
+
 
     // FE
     always_ff @(posedge clk, posedge rst) begin
@@ -45,9 +51,15 @@ module core (
         .rs1(rs1_addr),
         .rs2(rs2_addr),
         .alu_op,
-        .is_imm
+        .is_imm,
+        .imm_b,
+        .imm_i,
+        .imm_s,
+        .imm_u,
+        .imm_j
     );
 
+    // TODO stage here?
 
     // EX
     alu alu_i (
@@ -61,8 +73,18 @@ module core (
         .rd_data()
     );
 
-    
+
     // LS
+    LS LS_i (
+        .clk,
+        .ls_op,
+        .rs1_data,
+        .imm_u,
+        .imm_i,
+        .d_we,
+        .d_addr,
+        .d_wr_data
+    );
 
 
     regfile regfile_i (
