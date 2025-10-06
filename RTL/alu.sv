@@ -1,11 +1,11 @@
 `include "defines.svh"
 
 module alu (
-    input  logic clk,
-    input  logic rst,
+    input  logic        clk,
+    input  logic        rst,
 
-    input alu_instr_t instr,
-    input logic is_imm,
+    input alu_op_t      alu_op,
+    input logic         is_imm,
 
     input  logic [31:0] rs1_data,
     input  logic [31:0] rs2_data,
@@ -14,7 +14,7 @@ module alu (
 );
 
     always_comb begin
-        case (instr)
+        case (alu_op)
             i_ADD : rd_data = rs1_data + (is_imm ? imm_i : rs2_data);
             i_SUB : rd_data = rs1_data - rs2_data;
             i_SLL : rd_data = rs1_data << rs2_data[4:0];

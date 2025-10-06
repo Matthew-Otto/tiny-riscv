@@ -13,6 +13,6 @@ typedef enum logic [4:0] {
     i_SRA,
     i_OR,
     i_AND
-} alu_instr_t;
+} alu_op_t;
 
 `endif

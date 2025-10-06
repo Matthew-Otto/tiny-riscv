@@ -7,7 +7,7 @@ module decode (
     output logic [4:0]  rs1,
     output logic [4:0]  rs2,
 
-    output alu_instr_t  alu_instr,
+    output alu_op_t     alu_op,
     output logic        is_imm
 );
     
@@ -55,28 +55,28 @@ module decode (
             OP_IMM : begin
                 is_imm = 1'b1;
                 case (funct3)
-                    3'b000  : alu_instr = i_ADD;
-                    3'b010  : alu_instr = i_SLT;
-                    3'b011  : alu_instr = i_SLTU;
-                    3'b100  : alu_instr = i_XOR;
-                    3'b110  : alu_instr = i_OR;
-                    3'b111  : alu_instr = i_AND;
-                    default : alu_instr = i_NOP;
+                    3'b000  : alu_op = i_ADD;
+                    3'b010  : alu_op = i_SLT;
+                    3'b011  : alu_op = i_SLTU;
+                    3'b100  : alu_op = i_XOR;
+                    3'b110  : alu_op = i_OR;
+                    3'b111  : alu_op = i_AND;
+                    default : alu_op = i_NOP;
                 endcase
             end
             OP_REG : begin
                 case ({funct7,funct3})
-                    10'b0000000_000 : alu_instr = i_ADD;
-                    10'b0100000_000 : alu_instr = i_SUB;
-                    10'b0000000_001 : alu_instr = i_SLL;
-                    10'b0000000_010 : alu_instr = i_SLT;
-                    10'b0000000_011 : alu_instr = i_SLTU;
-                    10'b0000000_100 : alu_instr = i_XOR;
-                    10'b0000000_101 : alu_instr = i_SRL;
-                    10'b0100000_101 : alu_instr = i_SRA;
-                    10'b0000000_110 : alu_instr = i_OR;
-                    10'b0000000_111 : alu_instr = i_AND;
-                    default         : alu_instr = i_NOP;
+                    10'b0000000_000 : alu_op = i_ADD;
+                    10'b0100000_000 : alu_op = i_SUB;
+                    10'b0000000_001 : alu_op = i_SLL;
+                    10'b0000000_010 : alu_op = i_SLT;
+                    10'b0000000_011 : alu_op = i_SLTU;
+                    10'b0000000_100 : alu_op = i_XOR;
+                    10'b0000000_101 : alu_op = i_SRL;
+                    10'b0100000_101 : alu_op = i_SRA;
+                    10'b0000000_110 : alu_op = i_OR;
+                    10'b0000000_111 : alu_op = i_AND;
+                    default         : alu_op = i_NOP;
                 endcase
             end
             OP_LOAD : begin

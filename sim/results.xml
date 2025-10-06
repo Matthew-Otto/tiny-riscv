@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1759778949" />
+    <testcase name="test_alu" classname="test_alu" file="/vault/scratch/vlsi_382/project/tiny-riscv/sim/test_alu.py" lineno="8" time="0.0006136894226074219" sim_time_ns="20.0" ratio_time="32589.77466977467" />
+  </testsuite>
+</testsuites>
