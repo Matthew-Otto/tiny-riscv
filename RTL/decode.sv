@@ -1,23 +1,103 @@
+`include "defines.svh"
+
 module decode (
     input  logic [31:0] instr,
-    output logic [19:0] imm20,
-    output logic [11:0] imm12,
-    output logic [11:0] offset,
-    output logic [4:0]  shamt,
+
     output logic [4:0]  rd,
     output logic [4:0]  rs1,
     output logic [4:0]  rs2,
-);
 
+    output alu_instr_t  alu_instr,
+    output logic        is_imm
+);
+    
+    localparam OP_IMM    = 7'b0010011;
+    localparam OP_REG    = 7'b0110011;
+    localparam OP_LOAD   = 7'b0000011;
+    localparam OP_STORE  = 7'b0100011;
+    localparam OP_BRANCH = 7'b1100011;
+    localparam OP_LUI    = 7'b0110111;
+    localparam OP_AUIPC  = 7'b0010111;
+    localparam OP_JAL    = 7'b1101111;
+    localparam OP_JALR   = 7'b1100111;
+
+    logic [6:0]  op;
+    logic [2:0]  funct3;
+    logic [6:0]  funct7;
+    logic [31:0] imm_b;
+    logic [31:0] imm_i;
+    logic [31:0] imm_s;
+    logic [31:0] imm_u;
+    logic [31:0] imm_j;
+
+    assign op = instr[6:0];
     assign rd = instr[11:7];
+    assign funct3 = instr[14:12];
     assign rs1 = instr[19:15];
     assign rs2 = instr[24:20];
-    assign shamt = instr[24:20];
+    assign funct7 = instr[31:25];
+    // B-type: imm[12], imm[10:5], imm[4:1], imm[11] sign extended
+    assign imm_b = {{19{instr[31]}}, instr[31], instr[7], instr[30:25], instr[11:8], 1'b0};
+    // I-type: imm[11:0] sign extended
+    assign imm_i = {{20{instr[31]}}, instr[31:20]};
+    // S-type: imm[15:5] imm[4:0] sign extended
+    assign imm_s = {{20{instr[31]}}, instr[31:25], instr[11:7]};
+    // U-type: imm[31:12] lower 12 bits zero
+    assign imm_u = {instr[31:12], 12'b0};
+    // J-type: imm[20], imm[10:1], imm[11], imm[19:12]
+    assign imm_j = {{11{instr[31]}}, instr[31], instr[19:12], instr[20], instr[30:21], 1'b0};
 
-    assign imm20 = instr[31:12];
-    assign imm12 = instr[31:20];
 
+    always_comb begin
+        is_imm = 1'b0;
 
-    assign offset = instr[31:20] || {instr[31:25],instr[4:0]};
+        case (op)
+            OP_IMM : begin
+                is_imm = 1'b1;
+                case (funct3)
+                    3'b000  : alu_instr = i_ADD;
+                    3'b010  : alu_instr = i_SLT;
+                    3'b011  : alu_instr = i_SLTU;
+                    3'b100  : alu_instr = i_XOR;
+                    3'b110  : alu_instr = i_OR;
+                    3'b111  : alu_instr = i_AND;
+                    default : alu_instr = i_NOP;
+                endcase
+            end
+            OP_REG : begin
+                case ({funct7,funct3})
+                    10'b0000000_000 : alu_instr = i_ADD;
+                    10'b0100000_000 : alu_instr = i_SUB;
+                    10'b0000000_001 : alu_instr = i_SLL;
+                    10'b0000000_010 : alu_instr = i_SLT;
+                    10'b0000000_011 : alu_instr = i_SLTU;
+                    10'b0000000_100 : alu_instr = i_XOR;
+                    10'b0000000_101 : alu_instr = i_SRL;
+                    10'b0100000_101 : alu_instr = i_SRA;
+                    10'b0000000_110 : alu_instr = i_OR;
+                    10'b0000000_111 : alu_instr = i_AND;
+                    default         : alu_instr = i_NOP;
+                endcase
+            end
+            OP_LOAD : begin
+            end
+            OP_STORE : begin
+            end
+            OP_BRANCH : begin
+            end
+            OP_LUI : begin
+            end
+            OP_AUIPC : begin
+            end
+            OP_JAL : begin
+            end
+            OP_JALR : begin
+            end
+
+            default : begin // TODO NOP
+            end
+        endcase
+    end
+
 
 endmodule : decode
