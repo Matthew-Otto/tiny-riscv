@@ -21,7 +21,7 @@ typedef enum {
     i_LH,
     i_LW,
     i_LBU,
-    i_LHU,
+    i_LHU
 } ls_op_t;
 
 `endif
