@@ -24,4 +24,15 @@ typedef enum {
     i_LHU
 } ls_op_t;
 
+// func3 encoding
+typedef enum logic [3:0] {
+    i_BEQ =  {1'b1,3'h0},
+    i_BNE =  {1'b1,3'h1},
+    i_BLT =  {1'b1,3'h4},
+    i_BGE =  {1'b1,3'h5},
+    i_BLTU = {1'b1,3'h6},
+    i_BGEU = {1'b1,3'h7},
+    i_BRNOP = '0
+} br_op_t;
+
 `endif

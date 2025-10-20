@@ -15,9 +15,14 @@ module core (
 
     // control
     logic [31:0] PC, next_PC;
+    logic [31:0] branch_target;
+    logic        branch_taken;
     logic [31:0] instr_f;
+    br_op_t      br_op;
     alu_op_t     alu_op;
+    alu_op_t     ls_op;
     logic        is_imm;
+    logic        reg_we;
 
     // data
     logic [4:0]  rd_addr;
@@ -37,8 +42,17 @@ module core (
     // FE
     always_ff @(posedge clk, posedge rst) begin
         if (rst) PC <= '0;
-        else PC <= next_PC;
+        else     PC <= next_PC;
     end
+
+    always_comb begin
+        if (branch_taken)
+            next_PC = branch_target;
+        else
+            next_PC = PC + 4;
+    end
+
+
 
     assign i_addr = PC;
     assign instr_f = i_rd_data;
@@ -50,8 +64,10 @@ module core (
         .rd(rd_addr),
         .rs1(rs1_addr),
         .rs2(rs2_addr),
+        .br_op,
         .alu_op,
         .is_imm,
+        .reg_we,
         .imm_b,
         .imm_i,
         .imm_s,
@@ -59,24 +75,32 @@ module core (
         .imm_j
     );
 
-    // TODO stage here?
+    // BR target calc
+    BRU BRU_i (
+        .br_op,
+        .rs1_data,
+        .rs2_data,
+        .imm_b,
+        .branch_taken,
+        .PC,
+        .branch_target
+    );
 
     // EX
-    alu alu_i (
-        .clk,
-        .rst,
+    ALU ALU_i (
         .alu_op,
         .is_imm,
         .rs1_data,
         .rs2_data,
-        .imm_i(),
-        .rd_data()
+        .imm_i,
+        .rd_data
     );
 
 
     // LS
-    LS LS_i (
+    LSU LSU_i (
         .clk,
+        .rst,
         .ls_op,
         .rs1_data,
         .imm_u,
@@ -89,7 +113,8 @@ module core (
 
     regfile regfile_i (
         .clk,
-        .we(),
+        .rst,
+        .we(reg_we),
         .rd_addr,
         .rd_data,
         .rs1_addr,

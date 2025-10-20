@@ -1,9 +1,6 @@
 `include "defines.svh"
 
-module alu (
-    input  logic        clk,
-    input  logic        rst,
-
+module ALU (
     input alu_op_t      alu_op,
     input logic         is_imm,
 
@@ -18,15 +15,15 @@ module alu (
             i_ADD : rd_data = rs1_data + (is_imm ? imm_i : rs2_data);
             i_SUB : rd_data = rs1_data - rs2_data;
             i_SLL : rd_data = rs1_data << rs2_data[4:0];
-            i_SLT : rd_data = rs1_data < rs2_data ? 1 : 0;
-            i_SLTU : rd_data = rs1_data < rs2_data ? 1 : 0; // TODO unsigned
+            i_SLT : rd_data = rs1_data < rs2_data ? 1 : 0; // TODO signed
+            i_SLTU : rd_data = rs1_data < rs2_data ? 1 : 0;
             i_XOR : rd_data = rs1_data ^ rs2_data;
             i_SRL : rd_data = rs1_data >> rs2_data[4:0];
-            i_SRA : rd_data = rs1_data >> rs2_data[4:0]; // TODO arithmetic shift
+            i_SRA : rd_data = rs1_data >>> rs2_data[4:0];
             i_OR : rd_data = rs1_data | rs2_data;
             i_AND : rd_data = rs1_data & rs2_data;
             default : rd_data = 'x;
         endcase
     end
 
-endmodule : alu
+endmodule : ALU

@@ -2,8 +2,9 @@
 
 `include "defines.svh"
 
-module LS (
+module LSU (
     input  logic        clk,
+    input  logic        rst,
 
     input  ls_op_t      ls_op,
     input  logic [31:0] rs1_data,
@@ -39,4 +40,4 @@ module LS (
         endcase
     end
 
-endmodule : LS
+endmodule : LSU

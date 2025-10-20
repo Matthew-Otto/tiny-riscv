@@ -9,8 +9,10 @@ module decode (
     output logic [4:0]  rs1,
     output logic [4:0]  rs2,
 
+    output logic [3:0]  br_op,
     output alu_op_t     alu_op,
     output logic        is_imm,
+    output logic        reg_we,
 
     output logic [31:0] imm_b,
     output logic [31:0] imm_i,
@@ -52,11 +54,15 @@ module decode (
 
 
     always_comb begin
+        br_op = '0;
+        alu_op = i_NOP;
         is_imm = 1'b0;
+        reg_we = 1'b0;
 
         case (op)
             OP_IMM : begin
                 is_imm = 1'b1;
+                reg_we = 1'b1;
                 case (funct3)
                     3'b000  : alu_op = i_ADD;
                     3'b010  : alu_op = i_SLT;
@@ -68,6 +74,7 @@ module decode (
                 endcase
             end
             OP_REG : begin
+                reg_we = 1'b1;
                 case ({funct7,funct3})
                     10'b0000000_000 : alu_op = i_ADD;
                     10'b0100000_000 : alu_op = i_SUB;
@@ -87,6 +94,7 @@ module decode (
             OP_STORE : begin
             end
             OP_BRANCH : begin
+                br_op = {1'b1,funct3};
             end
             OP_LUI : begin
             end
