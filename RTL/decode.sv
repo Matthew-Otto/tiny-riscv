@@ -9,7 +9,7 @@ module decode (
     output logic [4:0]  rs1,
     output logic [4:0]  rs2,
 
-    output logic [2:0]  br_op,
+    output logic [3:0]  br_op,
     output logic        is_br_op,
     output alu_op_t     alu_op,
     output logic        is_alu_op,
@@ -111,18 +111,29 @@ module decode (
                 endcase
             end
             OP_STORE : begin
+                is_ls_op = 1'b1;
+                case (funct3)
+                    3'b001 : ls_op = i_SB;
+                    3'b010 : ls_op = i_SH;
+                    3'b011 : ls_op = i_SW;
+                    default;
+                endcase
             end
             OP_BRANCH : begin
                 is_br_op = 1'b1;
-                br_op = funct3;
+                br_op = {1'b0,funct3};
             end
             OP_LUI : begin
             end
             OP_AUIPC : begin
             end
             OP_JAL : begin
+                is_br_op = 1'b1;
+                br_op = i_JAL;
             end
             OP_JALR : begin
+                is_br_op = 1'b1;
+                br_op = i_JALR;
             end
 
             default : begin
