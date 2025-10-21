@@ -23,9 +23,14 @@ A minimum-area RV32i implementation
 * Dual-port memory: one read port for instructions, one read/write port for data
 * Memory operations take 1 cycle
 
+## Architecture notes:
 
+* Single write port on register file, load instructions stall core for 1 cycle
 
 ### Ideas
 
 * No comparison units, just use the adder to subtract
 * use the same for the branch unit
+* use ALU for load/store calculations
+* design dedicated adder for PC+4 computation
+* regfile ?????

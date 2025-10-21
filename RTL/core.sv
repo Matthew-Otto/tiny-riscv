@@ -19,10 +19,15 @@ module core (
     logic        branch_taken;
     logic [31:0] instr_f;
     br_op_t      br_op;
+    logic        is_br_op;
     alu_op_t     alu_op;
-    alu_op_t     ls_op;
+    logic        is_alu_op;
+    ls_op_t      ls_op;
+    logic        is_ls_op;
     logic        is_imm;
     logic        reg_we;
+    logic        ld_ready;
+    logic [4:0]  ld_rd_addr;
 
     // data
     logic [4:0]  rd_addr;
@@ -65,7 +70,11 @@ module core (
         .rs1(rs1_addr),
         .rs2(rs2_addr),
         .br_op,
+        .is_br_op,
         .alu_op,
+        .is_alu_op,
+        .ls_op,
+        .is_ls_op,
         .is_imm,
         .reg_we,
         .imm_b,
@@ -78,6 +87,7 @@ module core (
     // BR target calc
     BRU BRU_i (
         .br_op,
+        .is_br_op,
         .rs1_data,
         .rs2_data,
         .imm_b,
@@ -102,21 +112,23 @@ module core (
         .clk,
         .rst,
         .ls_op,
+        .is_ls_op,
+        .rd_addr,
         .rs1_data,
-        .imm_u,
         .imm_i,
+        .imm_u,
+        .ld_ready,
+        .ld_rd_addr,
         .d_we,
         .d_addr,
         .d_wr_data
     );
 
-
     regfile regfile_i (
         .clk,
-        .rst,
         .we(reg_we),
-        .rd_addr,
-        .rd_data,
+        .rd_addr(ld_ready ? ld_rd_addr : rd_addr),
+        .rd_data(ld_ready ? d_rd_data : rd_data),
         .rs1_addr,
         .rs2_addr,
         .rs1_data,

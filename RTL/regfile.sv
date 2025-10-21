@@ -1,6 +1,5 @@
 module regfile (
     input  logic        clk,
-    input  logic        rst,
     input  logic        we,
     input  logic [4:0]  rd_addr,
     input  logic [31:0] rd_data,
@@ -13,9 +12,7 @@ module regfile (
     logic [31:0] regs [31:1];
 
     always_ff @(posedge clk) begin
-        if (rst)
-            regs[2] <= 32'h80000000; // stack pointer
-        else if (we && |rd_addr)
+        if (we && |rd_addr)
             regs[rd_addr] <= rd_data;
     end
 

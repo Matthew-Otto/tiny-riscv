@@ -9,8 +9,12 @@ module decode (
     output logic [4:0]  rs1,
     output logic [4:0]  rs2,
 
-    output logic [3:0]  br_op,
+    output logic [2:0]  br_op,
+    output logic        is_br_op,
     output alu_op_t     alu_op,
+    output logic        is_alu_op,
+    output ls_op_t      ls_op,
+    output logic        is_ls_op,
     output logic        is_imm,
     output logic        reg_we,
 
@@ -35,6 +39,8 @@ module decode (
     logic [2:0]  funct3;
     logic [6:0]  funct7;
 
+    assign reg_we = is_alu_op | is_ls_op;
+
     assign op = instr[6:0];
     assign rd = instr[11:7];
     assign funct3 = instr[14:12];
@@ -54,47 +60,61 @@ module decode (
 
 
     always_comb begin
+        alu_op = i_ALUNOP;
+        ls_op = i_LSNOP;
         br_op = '0;
-        alu_op = i_NOP;
+        is_br_op = 1'b0;
+        is_alu_op = 1'b0;
+        is_ls_op = 1'b0;
         is_imm = 1'b0;
-        reg_we = 1'b0;
 
         case (op)
             OP_IMM : begin
+                is_alu_op = 1'b1;
                 is_imm = 1'b1;
-                reg_we = 1'b1;
                 case (funct3)
                     3'b000  : alu_op = i_ADD;
-                    3'b010  : alu_op = i_SLT;
-                    3'b011  : alu_op = i_SLTU;
                     3'b100  : alu_op = i_XOR;
                     3'b110  : alu_op = i_OR;
                     3'b111  : alu_op = i_AND;
-                    default : alu_op = i_NOP;
+                    3'b001  : alu_op = i_SLL;
+                    3'b101  : alu_op = i_SRA;
+                    3'b010  : alu_op = i_SLT;
+                    3'b011  : alu_op = i_SLTU;
                 endcase
             end
             OP_REG : begin
-                reg_we = 1'b1;
+                is_alu_op = 1'b1;
                 case ({funct7,funct3})
                     10'b0000000_000 : alu_op = i_ADD;
                     10'b0100000_000 : alu_op = i_SUB;
-                    10'b0000000_001 : alu_op = i_SLL;
-                    10'b0000000_010 : alu_op = i_SLT;
-                    10'b0000000_011 : alu_op = i_SLTU;
                     10'b0000000_100 : alu_op = i_XOR;
-                    10'b0000000_101 : alu_op = i_SRL;
-                    10'b0100000_101 : alu_op = i_SRA;
                     10'b0000000_110 : alu_op = i_OR;
                     10'b0000000_111 : alu_op = i_AND;
-                    default         : alu_op = i_NOP;
+                    10'b0000000_001 : alu_op = i_SLL;
+                    10'b0000000_101 : alu_op = i_SRL;
+                    10'b0100000_101 : alu_op = i_SRA;
+                    10'b0000000_010 : alu_op = i_SLT;
+                    10'b0000000_011 : alu_op = i_SLTU;
+                    default;
                 endcase
             end
             OP_LOAD : begin
+                is_ls_op = 1'b1;
+                case (funct3)
+                    3'b000 : ls_op = i_LB;
+                    3'b001 : ls_op = i_LH;
+                    3'b010 : ls_op = i_LW;
+                    3'b100 : ls_op = i_LBU;
+                    3'b101 : ls_op = i_LHU;
+                    default;
+                endcase
             end
             OP_STORE : begin
             end
             OP_BRANCH : begin
-                br_op = {1'b1,funct3};
+                is_br_op = 1'b1;
+                br_op = funct3;
             end
             OP_LUI : begin
             end
@@ -105,7 +125,7 @@ module decode (
             OP_JALR : begin
             end
 
-            default : begin // TODO NOP
+            default : begin
             end
         endcase
     end

@@ -25,8 +25,6 @@ async def sim_instr_mem(dut, binary_file):
             instr = int.from_bytes(word, byteorder='little')
             I_MEM.append(instr)
 
-    print("dumping IMEM:")
-    print([hex(b) for b in I_MEM])
     # drive i_mem
     while True:
         await FallingEdge(dut.clk)
