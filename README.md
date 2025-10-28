@@ -15,6 +15,11 @@ A minimum-area RV32i implementation
     - riscv32-unknown-elf-objdump
 #### Functional verification:
 * SPIKE ?
+#### Area/Timing modeling:
+* [Yosys](https://github.com/YosysHQ/yosys)
+* [OpenROAD](https://github.com/The-OpenROAD-Project/OpenROAD)
+* [OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA)
+* [FreePDK45 StdCells](https://vlsiarch.ecen.okstate.edu/flows/FreePDK_SRC/osu_freepdk_1.0/lib/files/)
 
 
 
@@ -34,3 +39,13 @@ A minimum-area RV32i implementation
 * use ALU for load/store calculations
 * design dedicated adder for PC+4 computation
 * regfile ?????
+
+
+
+
+## Verification Procedure
+
+## Synthesis
+
+
+## PnR

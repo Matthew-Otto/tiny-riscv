@@ -1,0 +1,19 @@
+# Load the cell library
+read_liberty -lib gscl45nm.lib
+
+# Read all SystemVerilog source files in RTL/
+read_verilog -sv ../RTL/*.sv
+
+# Synthesis flow
+hierarchy -check -top core
+synth -top core
+
+# Map D flip-flops
+dfflibmap -liberty lib/gscl45nm.lib
+
+# Technology map combinational logic using ABC
+abc -liberty lib/gscl45nm.lib
+
+# Clean and write out the synthesized netlist
+clean
+write_verilog -noattr output/top_synth.v

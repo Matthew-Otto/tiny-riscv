@@ -4,3 +4,13 @@ __pycache__
 sim_build
 *.fst
 *.xml
+
+FreePDK45
+*.sp
+*.map
+*.m
+*.db
+*.lef
+*.lib
+*.tlf
+gscl45nm*
