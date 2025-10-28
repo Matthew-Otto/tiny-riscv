@@ -6,11 +6,4 @@ sim_build
 *.xml
 
 FreePDK45
-*.sp
-*.map
-*.m
-*.db
-*.lef
-*.lib
-*.tlf
-gscl45nm*
+synthesis/lib/*

@@ -46,6 +46,12 @@ A minimum-area RV32i implementation
 ## Verification Procedure
 
 ## Synthesis
-
+1. Install Yosys
+2. Downlod `gscl45nm.lib` from https://vlsiarch.ecen.okstate.edu/flows/FreePDK_SRC/osu_freepdk_1.0/lib/files/ and place it in synthesis/lib
+3. Run Yosys in the synethesis directory:
+    - ``` 
+      $ cd synthesis
+      $ yosis synth.ys
+      ```
 
 ## PnR

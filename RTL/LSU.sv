@@ -69,6 +69,7 @@ module LSU (
     end
 
     always_comb begin
+        ld_data = 'x;
         case (ld_op)
             i_LB  : ld_data = {{24{d_rd_data[7]}},d_rd_data[7:0]};
             i_LH  : ld_data = {{16{d_rd_data[15]}},d_rd_data[15:0]};

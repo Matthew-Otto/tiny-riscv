@@ -1,5 +1,5 @@
 # Load the cell library
-read_liberty -lib gscl45nm.lib
+read_liberty -lib lib/gscl45nm.lib
 
 # Read all SystemVerilog source files in RTL/
 read_verilog -sv ../RTL/*.sv
@@ -17,3 +17,6 @@ abc -liberty lib/gscl45nm.lib
 # Clean and write out the synthesized netlist
 clean
 write_verilog -noattr output/top_synth.v
+
+# Print synthesis statistics and cell counts
+stat -liberty lib/gscl45nm.lib
