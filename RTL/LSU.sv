@@ -1,9 +1,10 @@
 // load/store unit
 
-// Loads stall core for one cycle
+// Loads take one cycle
 // LS unit drives address to data mem d_addr,
-// the requested data appears on d_wr_data in the next cycle.
-// the data is written to the reg file on the next cycle
+// The requested data appears on d_wr_data in the next cycle.
+// The data is written to the reg file on the next cycle.
+// Data hazard calculation occurs in control.sv.
 
 `include "defines.svh"
 
@@ -11,21 +12,21 @@ module LSU (
     input  logic        clk,
     input  logic        rst,
 
+    input  logic        lsu_en,
     input  ls_op_t      ls_op,
-    input  logic        is_ls_op,
-    input  logic [4:0]  rd_addr,
+    input  logic [3:0]  rd,
     input  logic [31:0] rs1_data,
     input  logic [31:0] rs2_data,
 
     input  logic [31:0] imm_i,
     input  logic [31:0] imm_s,
 
-    output logic        is_ld_op2,
-    output logic [4:0]  ld_rd_addr,
-    output logic [31:0] ld_data,
+    output logic        ls_load_ready,
+    output logic [3:0]  ld_rd,
+    output logic [31:0] rd_data,
 
-    output logic [1:0]  d_we,
     output logic [31:0] d_addr,
+    output logic [1:0]  d_we,
     output logic [31:0] d_wr_data,
     input  logic [31:0] d_rd_data
 );
@@ -50,32 +51,32 @@ module LSU (
             i_LW,
             i_LBU,
             i_LHU : begin
-                is_load_op = is_ls_op;
+                is_load_op = lsu_en;
             end
-            i_SB : d_we = is_ls_op ? 2'b01 : '0;
-            i_SH : d_we = is_ls_op ? 2'b10 : '0;
-            i_SW : d_we = is_ls_op ? 2'b11 : '0;
+            i_SB : d_we = lsu_en ? 2'b01 : '0;
+            i_SH : d_we = lsu_en ? 2'b10 : '0;
+            i_SW : d_we = lsu_en ? 2'b11 : '0;
         endcase
     end
 
     always_ff @(posedge clk, posedge rst) begin
         if (rst) begin
-            is_ld_op2 <= '0;
+            ls_load_ready <= '0;
         end else begin
-            is_ld_op2 <= is_load_op;
-            ld_rd_addr <= rd_addr;
+            ls_load_ready <= is_load_op;
+            ld_rd <= rd;
             ld_op <= ls_op;
         end
     end
 
     always_comb begin
-        ld_data = 'x;
+        rd_data = 'x;
         case (ld_op)
-            i_LB  : ld_data = {{24{d_rd_data[7]}},d_rd_data[7:0]};
-            i_LH  : ld_data = {{16{d_rd_data[15]}},d_rd_data[15:0]};
-            i_LW  : ld_data = d_rd_data;
-            i_LBU : ld_data = {24'b0,d_rd_data[7:0]};
-            i_LHU : ld_data = {16'b0,d_rd_data[15:0]};
+            i_LB  : rd_data = {{24{d_rd_data[7]}},d_rd_data[7:0]};
+            i_LH  : rd_data = {{16{d_rd_data[15]}},d_rd_data[15:0]};
+            i_LW  : rd_data = d_rd_data;
+            i_LBU : rd_data = {24'b0,d_rd_data[7:0]};
+            i_LHU : rd_data = {16'b0,d_rd_data[15:0]};
         endcase
     end
 

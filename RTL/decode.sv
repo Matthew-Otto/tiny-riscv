@@ -5,18 +5,21 @@
 module decode (
     input  logic [31:0] instr,
 
-    output logic [4:0]  rd,
-    output logic [4:0]  rs1,
-    output logic [4:0]  rs2,
+    output logic [3:0]  rd,
+    output logic [3:0]  rs1,
+    output logic [3:0]  rs2,
 
-    output logic [3:0]  br_op,
-    output logic        is_br_op,
     output alu_op_t     alu_op,
     output logic        is_alu_op,
+    output logic        is_imm,
+    
     output ls_op_t      ls_op,
     output logic        is_ls_op,
-    output logic        is_imm,
-    output logic        reg_we,
+
+    output logic        is_br_op,
+    output br_op_t      br_op,
+    output logic        is_br_type,
+    output br_type_t    br_type,
 
     output logic [31:0] imm_b,
     output logic [31:0] imm_i,
@@ -39,13 +42,11 @@ module decode (
     logic [2:0]  funct3;
     logic [6:0]  funct7;
 
-    assign reg_we = is_alu_op | is_ls_op;
-
     assign op = instr[6:0];
-    assign rd = instr[11:7];
+    assign rd = instr[10:7];
     assign funct3 = instr[14:12];
-    assign rs1 = instr[19:15];
-    assign rs2 = instr[24:20];
+    assign rs1 = instr[18:15];
+    assign rs2 = instr[23:20];
     assign funct7 = instr[31:25];
     // B-type: imm[12], imm[10:5], imm[4:1], imm[11] sign extended
     assign imm_b = {{19{instr[31]}}, instr[31], instr[7], instr[30:25], instr[11:8], 1'b0};
@@ -58,11 +59,14 @@ module decode (
     // J-type: imm[20], imm[10:1], imm[11], imm[19:12]
     assign imm_j = {{11{instr[31]}}, instr[31], instr[19:12], instr[20], instr[30:21], 1'b0};
 
+    // branch decode
+    assign br_op = br_op_t'(funct3);
+    assign is_br_type = ({op[6:4],op[1:0]} == 5'b11011);
+    assign br_type = br_type_t'(op[3:2]);
 
     always_comb begin
         alu_op = i_ALUNOP;
-        ls_op = i_LSNOP;
-        br_op = '0;
+        ls_op = ls_op_t'('x);
         is_br_op = 1'b0;
         is_alu_op = 1'b0;
         is_ls_op = 1'b0;
@@ -121,21 +125,11 @@ module decode (
             end
             OP_BRANCH : begin
                 is_br_op = 1'b1;
-                br_op = {1'b0,funct3};
             end
             OP_LUI : begin
             end
             OP_AUIPC : begin
             end
-            OP_JAL : begin
-                is_br_op = 1'b1;
-                br_op = i_JAL;
-            end
-            OP_JALR : begin
-                is_br_op = 1'b1;
-                br_op = i_JALR;
-            end
-
             default : begin
             end
         endcase
