@@ -73,7 +73,7 @@ module core (
         .rd_mux
     );
 
-    // PC calc
+    // PC calc / front-end
     fetch fetch_i (
         .clk,
         .rst,
@@ -132,20 +132,6 @@ module core (
         .d_addr,
         .d_wr_data,
         .d_rd_data
-    );
-
-    // branch / jump
-    BRU BRU_i (
-        .clk,
-        .rst,
-        .br_op,
-        .rs1_data,
-        .rs2_data,
-        .imm_i,
-        .imm_b,
-        .imm_j,
-        .rd_data(bru_rd_data),
-        .PC(i_addr)
     );
 
     // TODO: one-hot MUX

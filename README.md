@@ -1,6 +1,20 @@
 # tiny-riscv
 A minimum-area RV32E implementation
 
+
+# TODO:
+
+* branch instructions need to be implemented in ALU
+* hook up alu_rd_data to fetch unit (bit[0] for branch taken)
+* rework most of alu (compares can be implemented with subtract)
+* optimize decode?
+* get better benchmarks
+* verify functionality
+* draw diagram
+* write report
+* any additional opts
+
+
 ## Results:
 
 Compare to:
@@ -25,18 +39,6 @@ Compare to:
 * [OpenROAD](https://github.com/The-OpenROAD-Project/OpenROAD)
 * [OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA)
 * [FreePDK45 StdCells](https://vlsiarch.ecen.okstate.edu/flows/FreePDK_SRC/osu_freepdk_1.0/lib/files/)
-
-
-
-### Ideas
-
-* No comparison units, just use the adder to subtract
-* use the same for the branch unit
-* use ALU for load/store calculations
-* design dedicated adder for PC+4 computation
-* regfile ?????
-
-
 
 
 ## Verification Procedure
