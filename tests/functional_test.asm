@@ -11,6 +11,8 @@ _start:
     la x2, test_pattern
     lw x2, 0(x2)
 
+    bgt x1, x2, fail
+
     sb x2, 0(x1)         # store EF @ 0x1000000
     sh x2, 4(x1)         # store BEEF @ 0x1000004
     sw x2, 8(x1)         # store DEADBEEF @ 0x1000008

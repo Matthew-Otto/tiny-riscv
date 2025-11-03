@@ -11,7 +11,8 @@
 module LSU (
     input  logic        clk,
     input  logic        rst,
-    input  logic        lsu_en,
+    input  logic        st_en,
+    input  logic        ld_en,
 
     input  logic [3:0]  rd,
     input  logic [31:0] addr,
@@ -39,7 +40,7 @@ module LSU (
     logic we;
     logic [3:0] we_mask;
 
-    assign we = lsu_en & is_store_op;
+    assign we = st_en & is_store_op;
     assign d_we = {4{we}} & we_mask;
 
     always_comb begin
@@ -55,8 +56,8 @@ module LSU (
     load_op_t load_op_v;
 
     always_ff @(posedge clk, posedge rst) begin
-        if (rst)         ld_valid <= 1'b0;
-        else if (lsu_en) ld_valid <= is_load_op;
+        if (rst)        ld_valid <= 1'b0;
+        else if (ld_en) ld_valid <= is_load_op;
     end
     always_ff @(posedge clk) begin
         ld_rd <= rd;

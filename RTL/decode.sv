@@ -8,8 +8,8 @@ module decode (
     output logic [3:0]  rd,
     output logic [3:0]  rs1,
     output logic [3:0]  rs2,
+    output logic        is_writeback,
 
-    output logic        is_alu_op,
     output alu_op_t     alu_op,
     output comp_t       comp_op,
     output logic        subtract,
@@ -47,6 +47,8 @@ module decode (
     assign rs1 = instr[15+:4];
     assign rs2 = instr[20+:4];
 
+    assign is_writeback = ({op[4],op[2:1]} == 3'b010) | ({op[4:2],op[0]} == 4'b1101);
+
     // alu decode
     always_comb begin
         casez ({op,funct3})
@@ -64,8 +66,6 @@ module decode (
             default      : alu_op = ADDER_OP;
         endcase
     end
-
-    assign is_alu_op = ({op[4],op[2:0]} == 4'b0100);
 
     // subtract enable
     always_comb begin

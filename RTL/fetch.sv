@@ -34,8 +34,8 @@ module fetch (
         else if (~fetch_stall) PC_e <= PC_f;
     end
     always_ff @(posedge clk, posedge rst) begin
-        if (rst) flush <= 1'b1;
-        else     flush <= branch;
+        if (rst)               flush <= 1'b1;
+        else if (~fetch_stall) flush <= branch;
     end
 
     always_comb begin

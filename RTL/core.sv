@@ -18,7 +18,8 @@ module core (
     logic [31:0] PC_p4;  // next PC
     logic        flush;
     logic        fetch_stall;
-    logic        lsu_en;
+    logic        st_en;
+    logic        ld_en;
     logic        reg_we;
 
     logic [3:0]  rs1;
@@ -26,8 +27,8 @@ module core (
     logic [3:0]  rd;
     logic [3:0]  ld_rd;
     logic [3:0]  rd_mux;
+    logic        is_writeback;
     
-    logic        is_alu_op;
     alu_op_t     alu_op;
     comp_t       comp_op;
     logic        subtract;
@@ -65,11 +66,15 @@ module core (
 
     control control_i (
         .flush,
-        .is_alu_op,
+        .is_writeback,
         .ld_valid,
+        .rs1,
+        .rs2,
+        .ld_rd,
         .fetch_stall,
         .reg_we,
-        .lsu_en
+        .st_en,
+        .ld_en
     );
 
     // PC calc / front-end
@@ -96,7 +101,7 @@ module core (
         .rd,
         .rs1,
         .rs2,
-        .is_alu_op,
+        .is_writeback,
         .alu_op,
         .comp_op,
         .subtract,
@@ -141,7 +146,8 @@ module core (
     LSU LSU_i (
         .clk,
         .rst,
-        .lsu_en,
+        .st_en,
+        .ld_en,
         .rd,
         .addr(alu_rd_data),
         .is_load_op,
