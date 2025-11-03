@@ -1,0 +1,35 @@
+
+21. Printing statistics.
+
+=== core ===
+
+   Number of wires:               3360
+   Number of wire bits:           4050
+   Number of public wires:          31
+   Number of public wire bits:     721
+   Number of ports:                  8
+   Number of port bits:            166
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               3981
+     AND2X1                        115
+     AOI21X1                       165
+     AOI22X1                        94
+     BUFX2                           2
+     DFFPOSX1                      487
+     DFFSR                          66
+     INVX1                         198
+     MUX2X1                        933
+     NAND2X1                       824
+     NAND3X1                        83
+     NOR2X1                         52
+     NOR3X1                         31
+     OAI21X1                       722
+     OR2X1                         112
+     XNOR2X1                        47
+     XOR2X1                         50
+
+   Chip area for module '\core': 14098.241300
+     of which used for sequential elements: 4566.758300 (32.39%)
+
