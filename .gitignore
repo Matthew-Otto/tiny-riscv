@@ -7,4 +7,4 @@ sim_build
 *.xml
 
 FreePDK45
-synthesis/lib/*
+#synthesis/lib/*

@@ -1,8 +1,4 @@
-# Load the cell library
-read_liberty -lib lib/gscl45nm.lib
-
 # Read all SystemVerilog source files in RTL/
-
 read_verilog -sv ../RTL/*.sv
 read_verilog -sv ../RTL/alu_blocks/*.sv
 
@@ -15,6 +11,9 @@ opt -fast -full
 
 # Flatten hierarchy to allow global optimization
 flatten
+
+# Load the cell library
+read_liberty -lib lib/gscl45nm.lib
 
 # Map D flip-flops
 dfflibmap -liberty lib/gscl45nm.lib
@@ -31,4 +30,4 @@ write_verilog -noattr output/core_synth.v
 # Print synthesis statistics and cell counts
 tee -o stats.txt stat -liberty lib/gscl45nm.lib
 
-exec -- awk "BEGIN {printf \"\n   NAND2 equivalent gate count: %.2f GE\n\", $(grep 'Chip area' stats.txt | grep -o '[0-9]\+\.[0-9]\+') / $(grep -A5 'cell (NAND2X1)' lib/gscl45nm.lib | grep area | grep -o '[0-9.]\+')}"
+exec -- awk "BEGIN {printf \"\n   NAND2 area equivalent: %.2f GE\n\", $(grep 'Chip area' stats.txt | grep -o '[0-9]\+\.[0-9]\+') / $(grep -A5 'cell (NAND2X1)' lib/gscl45nm.lib | grep area | grep -o '[0-9.]\+')}"
