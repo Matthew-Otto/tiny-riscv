@@ -1,3 +1,5 @@
+from itertools import batched
+
 import cocotb
 from cocotb.triggers import Timer, ReadOnly, ReadWrite, ClockCycles, RisingEdge, FallingEdge
 from cocotb.clock import Clock
@@ -34,28 +36,32 @@ async def reset(dut):
 async def sim_instr_mem(dut, memory):
     # drive i_mem
     while True:
-        await FallingEdge(dut.clk)
+        await RisingEdge(dut.clk)
         addr = int(dut.i_addr.value)
         #dut._log.debug(f"Fetching instruction @ address {addr}")
         dut.i_rd_data.value = memory[addr]
-        dut._log.debug(f"Fetched 0x{memory[addr]:08X} from address 0x{addr:08X}")
+        if not dut.fetch_stall.value:
+            dut._log.debug(f"Fetched 0x{memory[addr]:08X} from address 0x{addr:08X}")
 
 
 async def sim_data_mem(dut, memory):
     # drive memory
     while True:
-        await FallingEdge(dut.clk)
+        await RisingEdge(dut.clk)
         addr = int(dut.d_addr.value)
-        if dut.d_we.value: # write
-            if int(dut.d_we.value) > 2:
-                memory[addr+3] = int(dut.d_wr_data.value[31:24])
-                memory[addr+2] = int(dut.d_wr_data.value[23:16])
-            if int(dut.d_we.value) > 1:
-                memory[addr+1] = int(dut.d_wr_data.value[15:8])
+        # write
+        if dut.d_we.value[3]:
+            memory[addr+3] = int(dut.d_wr_data.value[31:24])
+        if dut.d_we.value[2]:
+            memory[addr+2] = int(dut.d_wr_data.value[23:16])
+        if dut.d_we.value[1]:
+            memory[addr+1] = int(dut.d_wr_data.value[15:8])
+        if dut.d_we.value[0]:
             memory[addr] = int(dut.d_wr_data.value[7:0])
-
-            width = 8 << 2**(int(dut.d_we.value)-1)
-            data = int(dut.d_wr_data.value[width-1:0])
-            dut._log.info(f"Mem write {width} bits: addr=0x{addr:08X} data=0x{data:08X}")
-        else:
+        if dut.d_we.value:
+            data = int(dut.d_wr_data.value)
+            dut._log.info(f"WRITE mem: {0} bits: addr=0x{addr:08X} data=0x{data:08X}")
+        elif dut.LSU_i.ld_valid.value:
             dut.d_rd_data.value = memory.get(addr, 0)
+            data = memory.get(addr, 0)
+            dut._log.info(f"READ mem: addr=0x{addr:08X} data=0x{data:08X}")

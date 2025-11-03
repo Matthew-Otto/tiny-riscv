@@ -30,8 +30,8 @@ module fetch (
         else if (~fetch_stall) PC_f <= next_PC;
     end        
     always_ff @(posedge clk, posedge rst) begin
-        if (rst) PC_e <= '0;
-        else     PC_e <= PC_f;
+        if (rst)               PC_e <= '0;
+        else if (~fetch_stall) PC_e <= PC_f;
     end
     always_ff @(posedge clk, posedge rst) begin
         if (rst) flush <= 1'b1;
@@ -64,6 +64,6 @@ module fetch (
     end
 
     assign next_PC = PC_addend1 + PC_addend2;
-    assign i_addr = PC_f;
+    assign i_addr = fetch_stall ? PC_e : PC_f;
 
 endmodule : fetch

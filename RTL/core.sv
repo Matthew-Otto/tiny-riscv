@@ -148,7 +148,7 @@ module core (
         .is_store_op,
         .load_op,
         .store_op,
-        .rs2_data,
+        .write_data(rs2_data),
         .ld_valid,
         .ld_rd,
         .ld_rd_data,

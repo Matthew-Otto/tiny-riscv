@@ -20,7 +20,7 @@ module LSU (
     input  load_op_t    load_op,
     input  store_op_t   store_op,
 
-    input  logic [31:0] rs2_data,
+    input  logic [31:0] write_data,
 
     output logic        ld_valid,
     output logic [3:0]  ld_rd,
@@ -33,7 +33,7 @@ module LSU (
 );
 
     assign d_addr = addr;
-    assign d_wr_data = rs2_data;
+    assign d_wr_data = write_data;
 
     // Store
     logic we;

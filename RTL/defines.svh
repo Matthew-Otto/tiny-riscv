@@ -2,7 +2,6 @@
 `define DEFINES
 
 typedef enum {
-    NOP,
     ADDER_OP,
     COMP_OP,
     XOR_OP,

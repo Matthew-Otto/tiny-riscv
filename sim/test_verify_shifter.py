@@ -2,7 +2,6 @@ from common import *
 
 import os
 import random
-from itertools import batched
 from pathlib import Path
 
 import cocotb

@@ -13,7 +13,7 @@ EXTRA_ARGS += -I../RTL
 COMPILE_ARGS += -Wno-SELRANGE -Wno-WIDTH
 # waveforms
 EXTRA_ARGS += --trace --trace-fst --trace-threads 2 --trace-structs
-EXTRA_ARGS += --threads 6
+EXTRA_ARGS += --threads 2
 
 include $(shell cocotb-config --makefiles)/Makefile.sim
 

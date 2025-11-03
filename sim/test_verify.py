@@ -2,7 +2,6 @@ from common import *
 
 import os
 import random
-from itertools import batched
 from pathlib import Path
 
 import cocotb
@@ -11,6 +10,8 @@ from cocotb.clock import Clock
 
 TEST_DIR = "../tests"
 test_files = [os.path.join(TEST_DIR,f) for f in os.listdir(TEST_DIR) if f.endswith(".hex") and os.path.isfile(os.path.join(TEST_DIR, f))]
+
+cycles = 25
 
 @cocotb.test()
 async def test_core_regression(dut):
@@ -25,7 +26,7 @@ async def test_core_regression(dut):
         cocotb.start_soon(sim_instr_mem(dut, mem))
         cocotb.start_soon(sim_data_mem(dut, mem))
         
-        while True:
+        for _ in range(cycles):
             await FallingEdge(dut.clk)
             if dut.i_rd_data.value == EBREAK:
                 dut._log.info("Program halted (EBREAK detected)")

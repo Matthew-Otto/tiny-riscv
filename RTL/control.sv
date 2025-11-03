@@ -14,6 +14,6 @@ module control (
 
     assign lsu_en = ~flush;
 
-    assign fetch_stall = ld_valid;
+    assign fetch_stall = ld_valid & is_alu_op;
 
 endmodule : control

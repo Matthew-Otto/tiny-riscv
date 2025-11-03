@@ -61,11 +61,11 @@ module decode (
             8'b0?100_111 : alu_op = AND_OP;
             8'b0?100_001,
             8'b0?100_101 : alu_op = SHIFTER_OP;
-            default      : alu_op = NOP;
+            default      : alu_op = ADDER_OP;
         endcase
     end
 
-    assign is_alu_op = (alu_op != NOP);
+    assign is_alu_op = ({op[4],op[2:0]} == 4'b0100);
 
     // subtract enable
     always_comb begin
