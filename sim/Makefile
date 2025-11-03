@@ -24,6 +24,13 @@ benchmark:
 	$(MAKE) DUT=alu COCOTB_TEST_MODULES=test_benchmark -j10
 	surfer dump.fst
 
+
+verify_adder:
+	$(MAKE) DUT=ripple_carry_adder COCOTB_TEST_MODULES=test_verify_adder -j10
+
+verify_shifter:
+	$(MAKE) DUT=shifter COCOTB_TEST_MODULES=test_verify_shifter -j10
+
 waves:
 	@test -f dump.fst || (echo "Error: dump.fst not found. Simulate a target first." && exit 1)
 	surfer -s state.surf.ron dump.fst

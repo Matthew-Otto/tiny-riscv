@@ -9,18 +9,24 @@ module decode (
     output logic [3:0]  rs1,
     output logic [3:0]  rs2,
 
+    output logic        is_alu_op, // TODO drive this
     output alu_op_t     alu_op,
-    output logic        is_alu_op,
-    output logic        is_imm,
+    output comp_t       comp_op,
+    output logic        subtract,
+    output logic        shift_right,
+    output logic        shift_arith,
+    output logic        is_auipc,
     
-    output ls_op_t      ls_op,
-    output logic        is_ls_op,
+    output logic        is_load_op,
+    output load_op_t    load_op,
+    output logic        is_store_op,
+    output store_op_t   store_op,
 
-    output logic        is_br_op,
-    output br_op_t      br_op,
     output logic        is_br_type,
     output br_type_t    br_type,
+    output logic        is_jump_op,
 
+    output logic        is_imm,
     output logic [31:0] imm_b,
     output logic [31:0] imm_i,
     output logic [31:0] imm_s,
@@ -28,26 +34,68 @@ module decode (
     output logic [31:0] imm_j
 );
     
-    localparam OP_IMM    = 7'b0010011;
-    localparam OP_REG    = 7'b0110011;
-    localparam OP_LOAD   = 7'b0000011;
-    localparam OP_STORE  = 7'b0100011;
-    localparam OP_BRANCH = 7'b1100011;
-    localparam OP_LUI    = 7'b0110111;
-    localparam OP_AUIPC  = 7'b0010111;
-    localparam OP_JAL    = 7'b1101111;
-    localparam OP_JALR   = 7'b1100111;
-
-    logic [6:0]  op;
+    logic [4:0]  op;
     logic [2:0]  funct3;
     logic [6:0]  funct7;
 
-    assign op = instr[6:0];
-    assign rd = instr[10:7];
+    assign op = instr[6:2];
+    assign is_imm = ~op[3];
     assign funct3 = instr[14:12];
-    assign rs1 = instr[18:15];
-    assign rs2 = instr[23:20];
     assign funct7 = instr[31:25];
+
+    assign rd = instr[7+:4];
+    assign rs1 = instr[15+:4];
+    assign rs2 = instr[20+:4];
+
+    // alu decode
+    always_comb begin
+        casez ({op,funct3})
+            8'b00101_???,
+            8'b0?000_???,
+            8'b0?100_000 : alu_op = ADDER_OP;
+            8'b0?100_010,
+            8'b0?100_011,
+            8'b11000_??? : alu_op = COMP_OP;
+            8'b0?100_100 : alu_op = XOR_OP;
+            8'b0?100_110 : alu_op = OR_OP;
+            8'b0?100_111 : alu_op = AND_OP;
+            8'b0?100_001,
+            8'b0?100_101 : alu_op = SHIFTER_OP;
+            default      : alu_op = ADDER_OP;
+        endcase
+    end
+
+    // subtract enable
+    always_comb begin
+        casez ({op,funct3,funct7[5]})
+            9'b01100_000_1,
+            9'b0?100_010_?,
+            9'b0?100_011_?,
+            9'b11000_???_? : subtract = 1'b1;
+            default        : subtract = 1'b0;
+        endcase
+    end
+
+    assign is_auipc = (op == 5'b00101);
+
+    // compare type decode
+    assign comp_op = comp_t'(funct3);
+
+    // shift type decode
+    assign shift_right = funct3[2];
+    assign shift_arith = funct7[5];
+
+    // branch decode
+    assign is_br_type = ({op[4:2]} == 3'b110);
+    assign br_type = br_type_t'(op[3:2]);
+    assign is_jump_op = is_br_type & op[0];
+
+    // load/store decode
+    assign is_load_op = (op == 5'b00000);
+    assign load_op = load_op_t'(funct3);
+    assign is_store_op = (op == 5'b01000);
+    assign store_op = store_op_t'(funct3);
+
     // B-type: imm[12], imm[10:5], imm[4:1], imm[11] sign extended
     assign imm_b = {{19{instr[31]}}, instr[31], instr[7], instr[30:25], instr[11:8], 1'b0};
     // I-type: imm[11:0] sign extended
@@ -58,82 +106,5 @@ module decode (
     assign imm_u = {instr[31:12], 12'b0};
     // J-type: imm[20], imm[10:1], imm[11], imm[19:12]
     assign imm_j = {{11{instr[31]}}, instr[31], instr[19:12], instr[20], instr[30:21], 1'b0};
-
-    // branch decode
-    assign br_op = br_op_t'(funct3);
-    assign is_br_type = ({op[6:4],op[1:0]} == 5'b11011);
-    assign br_type = br_type_t'(op[3:2]);
-
-    always_comb begin
-        alu_op = i_ALUNOP;
-        ls_op = ls_op_t'('x);
-        is_br_op = 1'b0;
-        is_alu_op = 1'b0;
-        is_ls_op = 1'b0;
-        is_imm = 1'b0;
-
-        case (op)
-            OP_IMM : begin
-                is_alu_op = 1'b1;
-                is_imm = 1'b1;
-                case (funct3)
-                    3'b000  : alu_op = i_ADD;
-                    3'b100  : alu_op = i_XOR;
-                    3'b110  : alu_op = i_OR;
-                    3'b111  : alu_op = i_AND;
-                    3'b001  : alu_op = i_SLL;
-                    3'b101  : alu_op = i_SRA;
-                    3'b010  : alu_op = i_SLT;
-                    3'b011  : alu_op = i_SLTU;
-                endcase
-            end
-            OP_REG : begin
-                is_alu_op = 1'b1;
-                case ({funct7,funct3})
-                    10'b0000000_000 : alu_op = i_ADD;
-                    10'b0100000_000 : alu_op = i_SUB;
-                    10'b0000000_100 : alu_op = i_XOR;
-                    10'b0000000_110 : alu_op = i_OR;
-                    10'b0000000_111 : alu_op = i_AND;
-                    10'b0000000_001 : alu_op = i_SLL;
-                    10'b0000000_101 : alu_op = i_SRL;
-                    10'b0100000_101 : alu_op = i_SRA;
-                    10'b0000000_010 : alu_op = i_SLT;
-                    10'b0000000_011 : alu_op = i_SLTU;
-                    default;
-                endcase
-            end
-            OP_LOAD : begin
-                is_ls_op = 1'b1;
-                case (funct3)
-                    3'b000 : ls_op = i_LB;
-                    3'b001 : ls_op = i_LH;
-                    3'b010 : ls_op = i_LW;
-                    3'b100 : ls_op = i_LBU;
-                    3'b101 : ls_op = i_LHU;
-                    default;
-                endcase
-            end
-            OP_STORE : begin
-                is_ls_op = 1'b1;
-                case (funct3)
-                    3'b001 : ls_op = i_SB;
-                    3'b010 : ls_op = i_SH;
-                    3'b011 : ls_op = i_SW;
-                    default;
-                endcase
-            end
-            OP_BRANCH : begin
-                is_br_op = 1'b1;
-            end
-            OP_LUI : begin
-            end
-            OP_AUIPC : begin
-            end
-            default : begin
-            end
-        endcase
-    end
-
 
 endmodule : decode

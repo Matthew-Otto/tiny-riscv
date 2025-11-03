@@ -8,7 +8,7 @@ module core (
     input  logic [31:0] i_rd_data,
     // data port
     output logic [31:0] d_addr,
-    output logic [1:0]  d_we,
+    output logic [3:0]  d_we,
     output logic [31:0] d_wr_data,
     input  logic [31:0] d_rd_data
 );
@@ -16,38 +16,44 @@ module core (
     // control
     logic [31:0] PC;     // current PC
     logic [31:0] PC_p4;  // next PC
-
-    logic        is_alu_op;
-    logic        is_br_op;
-    logic        is_ls_op;
-    logic        ls_load_ready;
+    logic        flush;
+    logic        fetch_stall;
     logic        lsu_en;
-    logic        rs1_ld_bypass;
-    logic        rs2_ld_bypass;
     logic        reg_we;
-    logic        alu_rd_sel;
-    logic        lsu_rd_sel;
-    logic        bru_rd_sel;
 
-    br_op_t      br_op;
-    alu_op_t     alu_op;
-    ls_op_t      ls_op;
-    logic        is_imm;
-
+    logic [3:0]  rs1;
+    logic [3:0]  rs2;
     logic [3:0]  rd;
     logic [3:0]  ld_rd;
     logic [3:0]  rd_mux;
     
+    logic        is_alu_op;
+    alu_op_t     alu_op;
+    comp_t       comp_op;
+    logic        subtract;
+    logic        shift_right;
+    logic        shift_arith;
+    logic        is_imm;
+    logic        is_auipc;
+    
+    logic        is_load_op;
+    load_op_t    load_op;
+    logic        is_store_op;
+    store_op_t   store_op;
+    logic        ld_valid;
+    
+    logic        is_br_type;
+    br_type_t    br_type;
+    logic        is_jump_op;
+    
+    
     // data
-    logic [3:0]  rs1;
-    logic [3:0]  rs2;
     logic [31:0] rs1_data;
     logic [31:0] rs2_data;
-
+    
     logic [31:0] rd_data;
     logic [31:0] alu_rd_data;
-    logic [31:0] lsu_rd_data;
-    logic [31:0] bru_rd_data;
+    logic [31:0] ld_rd_data;
 
     logic [31:0] imm_b;
     logic [31:0] imm_i;
@@ -58,42 +64,52 @@ module core (
 
 
     control control_i (
-        .is_br_op,
+        .flush,
         .is_alu_op,
-        .is_ls_op,
-        .ls_load_ready,
-        .rs1,
-        .rs2,
-        .rd,
-        .ld_rd,
-        .lsu_en,
-        .rs1_ld_bypass,
-        .rs2_ld_bypass,
+        .ld_valid,
+        .fetch_stall,
         .reg_we,
-        .rd_mux
+        .lsu_en
     );
 
     // PC calc / front-end
     fetch fetch_i (
         .clk,
         .rst,
+        .fetch_stall,
+        .is_br_type,
+        .br_type,
+        .take_branch(alu_rd_data[0]),
+        .rs1_data,
+        .imm_b,
+        .imm_i,
+        .imm_j,
         .i_addr,
         .PC_f(PC_p4),
-        .PC_e(PC)
+        .PC_e(PC),
+        .flush
     );
 
-    // DE
+    // Decode
     decode decode_i (
         .instr(i_rd_data),
         .rd,
         .rs1,
         .rs2,
-        .br_op,
-        .is_br_op,
-        .alu_op,
         .is_alu_op,
-        .ls_op,
-        .is_ls_op,
+        .alu_op,
+        .comp_op,
+        .subtract,
+        .shift_right,
+        .shift_arith,
+        .is_auipc,
+        .is_load_op,
+        .load_op,
+        .is_store_op,
+        .store_op,
+        .is_br_type,
+        .br_type,
+        .is_jump_op,
         .is_imm,
         .imm_b,
         .imm_i,
@@ -102,14 +118,21 @@ module core (
         .imm_j
     );
 
-    // execution
+    // execution unit
     ALU ALU_i (
         .alu_op,
         .is_imm,
+        .is_store_op,
+        .is_auipc,
+        .comp_op,
+        .subtract,
+        .shift_right,
+        .shift_arith,
         .rs1_data,
         .rs2_data,
         .imm_i,
         .imm_u,
+        .imm_s,
         .PC,
         .rd_data(alu_rd_data)
     );
@@ -119,31 +142,27 @@ module core (
         .clk,
         .rst,
         .lsu_en,
-        .ls_op,
         .rd,
-        .rs1_data,
+        .addr(alu_rd_data),
+        .is_load_op,
+        .is_store_op,
+        .load_op,
+        .store_op,
         .rs2_data,
-        .imm_i,
-        .imm_s,
-        .ls_load_ready,
+        .ld_valid,
         .ld_rd,
-        .rd_data(lsu_rd_data),
-        .d_we,
+        .ld_rd_data,
         .d_addr,
+        .d_we,
         .d_wr_data,
         .d_rd_data
     );
 
-    // TODO: one-hot MUX
-    always_comb begin
-        if (ls_load_ready)
-            rd_data = lsu_rd_data;
-        else if (is_alu_op)
-            rd_data = alu_rd_data;
-        else
-            rd_data = bru_rd_data;
-    end
-    
+    assign rd_mux = ld_valid ? ld_rd : rd;
+
+    assign rd_data = is_jump_op ? PC_p4
+                   : ld_valid ? ld_rd_data 
+                   : alu_rd_data;
 
     regfile regfile_i (
         .clk,

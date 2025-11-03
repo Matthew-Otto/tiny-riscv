@@ -2,7 +2,9 @@
 read_liberty -lib lib/gscl45nm.lib
 
 # Read all SystemVerilog source files in RTL/
+
 read_verilog -sv ../RTL/*.sv
+read_verilog -sv ../RTL/alu_blocks/*.sv
 
 # Synthesis flow
 hierarchy -check -top core
@@ -10,6 +12,9 @@ synth -top core
 
 # Technology-independent optimization
 opt -fast -full
+
+# Flatten hierarchy to allow global optimization
+flatten
 
 # Map D flip-flops
 dfflibmap -liberty lib/gscl45nm.lib
