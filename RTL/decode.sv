@@ -9,7 +9,7 @@ module decode (
     output logic [3:0]  rs1,
     output logic [3:0]  rs2,
 
-    output logic        is_alu_op, // TODO drive this
+    output logic        is_alu_op,
     output alu_op_t     alu_op,
     output comp_t       comp_op,
     output logic        subtract,
@@ -61,9 +61,11 @@ module decode (
             8'b0?100_111 : alu_op = AND_OP;
             8'b0?100_001,
             8'b0?100_101 : alu_op = SHIFTER_OP;
-            default      : alu_op = ADDER_OP;
+            default      : alu_op = NOP;
         endcase
     end
+
+    assign is_alu_op = (alu_op != NOP);
 
     // subtract enable
     always_comb begin
