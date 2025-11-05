@@ -33,3 +33,5 @@
    Chip area for module '\core': 14098.241300
      of which used for sequential elements: 4566.758300 (32.39%)
 
+
+   NAND2 area equivalent: 7510.25 GE

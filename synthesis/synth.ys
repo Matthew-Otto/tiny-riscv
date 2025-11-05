@@ -19,15 +19,15 @@ read_liberty -lib lib/gscl45nm.lib
 dfflibmap -liberty lib/gscl45nm.lib
 
 # Technology map combinational logic using ABC
-abc -liberty lib/gscl45nm.lib
+abc -liberty lib/gscl45nm.lib -D 1
 
 # Remove all nonfunctional cells
 opt_clean -purge
 
 # Write out the synthesized netlist
-write_verilog -noattr output/core_synth.v 
+write_verilog -noattr output/synth_netlist.v 
 
 # Print synthesis statistics and cell counts
 tee -o stats.txt stat -liberty lib/gscl45nm.lib
 
-exec -- awk "BEGIN {printf \"\n   NAND2 area equivalent: %.2f GE\n\", $(grep 'Chip area' stats.txt | grep -o '[0-9]\+\.[0-9]\+') / $(grep -A5 'cell (NAND2X1)' lib/gscl45nm.lib | grep area | grep -o '[0-9.]\+')}"
+exec -- awk "BEGIN {printf \"\n   NAND2 area equivalent: %.2f GE\n\", $(grep 'Chip area' stats.txt | grep -o '[0-9]\+\.[0-9]\+') / $(grep -A5 'cell (NAND2X1)' lib/gscl45nm.lib | grep area | grep -o '[0-9.]\+')}" >> stats.txt

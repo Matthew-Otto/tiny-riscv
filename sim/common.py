@@ -61,17 +61,26 @@ async def sim_data_mem(dut, memory):
         
         # write
         wr_addr = int(dut.d_addr.value)
-        if dut.d_we.value[3]:
-            memory[wr_addr+3] = int(dut.d_wr_data.value[31:24])
-        if dut.d_we.value[2]:
-            memory[wr_addr+2] = int(dut.d_wr_data.value[23:16])
-        if dut.d_we.value[1]:
-            memory[wr_addr+1] = int(dut.d_wr_data.value[15:8])
+        data = 0
+        width = 0
         if dut.d_we.value[0]:
             memory[wr_addr] = int(dut.d_wr_data.value[7:0])
+            data |= int(dut.d_wr_data.value[7:0])
+            width = 8
+        if dut.d_we.value[1]:
+            memory[wr_addr+1] = int(dut.d_wr_data.value[15:8])
+            data |= int(dut.d_wr_data.value[15:8]) << 8
+            width = 16
+        if dut.d_we.value[2]:
+            memory[wr_addr+2] = int(dut.d_wr_data.value[23:16])
+            data |= int(dut.d_wr_data.value[23:16]) << 16
+            width = 24
+        if dut.d_we.value[3]:
+            memory[wr_addr+3] = int(dut.d_wr_data.value[31:24])
+            data |= int(dut.d_wr_data.value[31:24]) << 24
+            width = 32
         if dut.d_we.value:
-            data = int(dut.d_wr_data.value)
-            dut._log.info(f"WRITE mem: {0} bits: addr=0x{wr_addr:08X} data=0x{data:08X}")
+            dut._log.info(f"WRITE mem: {width} bits: addr=0x{wr_addr:08X} data=0x{data:08X}")
         
         # read
         if dut.LSU_i.is_load_op.value:
