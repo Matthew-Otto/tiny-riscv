@@ -21,8 +21,8 @@ verify:
 	$(MAKE) DUT=core COCOTB_TEST_MODULES=test_verify -j10
 
 benchmark:
-	$(MAKE) DUT=alu COCOTB_TEST_MODULES=test_benchmark -j10
-	surfer dump.fst
+	$(MAKE) DUT=core COCOTB_TEST_MODULES=test_benchmark -j10
+	surfer -s state.surf.ron dump.fst
 
 
 verify_adder:
