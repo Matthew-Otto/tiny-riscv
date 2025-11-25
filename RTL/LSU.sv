@@ -14,7 +14,7 @@ module LSU (
     input  logic        st_en,
     input  logic        ld_en,
 
-    input  logic [3:0]  rd,
+    input  logic [4:0]  rd,
     input  logic [31:0] addr,
     input  logic        is_load_op,
     input  logic        is_store_op,
@@ -24,7 +24,7 @@ module LSU (
     input  logic [31:0] write_data,
 
     output logic        ld_valid,
-    output logic [3:0]  ld_rd,
+    output logic [4:0]  ld_rd,
     output logic [31:0] ld_rd_data,
 
     output logic [31:0] d_addr,

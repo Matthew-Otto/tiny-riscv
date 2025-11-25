@@ -6,8 +6,8 @@ LD      = $(RISCV_PREFIX)ld
 OBJCOPY = $(RISCV_PREFIX)objcopy
 OBJDUMP = $(RISCV_PREFIX)objdump
 
-ARCH = rv32e
-ABI  = ilp32e
+ARCH = rv32i
+ABI  = ilp32
 
 SRC_DIR = .
 BIN_DIR = bin
@@ -30,7 +30,7 @@ LST = $(C_SRCS:$(SRC_DIR)/%.c=$(BIN_DIR)/%.lst)
 
 
 # Default target
-all: $(HEX) $(LST)
+all: $(ELFS) $(HEX) $(LST)
 
 # Create build directory if not present
 $(BIN_DIR):

@@ -9,6 +9,8 @@ EBREAK = 0x00100073  # EBREAK encoding
 def parse_verilog_hex(filename):
     memory = {}
     address = 0
+    section_idx = 0
+    tohost = 0
 
     with open(filename, 'r') as f:
         for line in f:
@@ -16,14 +18,17 @@ def parse_verilog_hex(filename):
             if not line or line.startswith('//'):
                 continue
             if line.startswith('@'):
+                section_idx += 1
                 address = int(line[1:], 16)
+                if section_idx == 2:
+                    tohost = address
             else:
                 line_bytes = bytes.fromhex(line)
                 for byte in line_bytes:
                     memory[address] = int(byte)
                     address += 1
 
-    return memory
+    return (memory,tohost)
 
 
 async def reset(dut):
@@ -49,7 +54,7 @@ async def sim_instr_mem(dut, memory):
         #dut._log.debug(f"Fetching instruction @ address {addr}")
         data = read_word(memory,addr)
         dut.i_rd_data.value = data
-        if not dut.fetch_stall.value:
+        if not dut.core.fetch_stall.value:
             dut._log.debug(f"Fetched 0x{data:08X} from address 0x{addr:08X}")
 
 
@@ -83,7 +88,7 @@ async def sim_data_mem(dut, memory):
             dut._log.info(f"WRITE mem: {width} bits: addr=0x{wr_addr:08X} data=0x{data:08X}")
         
         # read
-        if dut.LSU_i.is_load_op.value:
+        if dut.core.LSU_i.is_load_op.value:
             rd_addr = int(dut.d_addr.value)
             data = read_word(memory, rd_addr)
             dut.d_rd_data.value = data

@@ -2,7 +2,7 @@ SIM ?= verilator
 TOPLEVEL_LANG = verilog
 
 # TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file
-TOPLEVEL = $(DUT)
+TOPLEVEL = top
 # MODULE is the basename of the Python test file
 COCOTB_TEST_MODULES = test_$(DUT)
 VERILOG_SOURCES += $(shell find ../RTL -name "*.svh")
@@ -18,10 +18,10 @@ EXTRA_ARGS += --threads 2
 include $(shell cocotb-config --makefiles)/Makefile.sim
 
 verify:
-	$(MAKE) DUT=core COCOTB_TEST_MODULES=test_verify -j10
+	$(MAKE) COCOTB_TEST_MODULES=test_verify -j10
 
 benchmark:
-	$(MAKE) DUT=core COCOTB_TEST_MODULES=test_benchmark -j10
+	$(MAKE) COCOTB_TEST_MODULES=test_benchmark -j10
 	surfer -s state.surf.ron dump.fst
 
 

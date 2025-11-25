@@ -5,9 +5,9 @@
 module decode (
     input  logic [31:0] instr,
 
-    output logic [3:0]  rd,
-    output logic [3:0]  rs1,
-    output logic [3:0]  rs2,
+    output logic [4:0]  rd,
+    output logic [4:0]  rs1,
+    output logic [4:0]  rs2,
     output logic        is_writeback,
 
     output alu_op_t     alu_op,
@@ -43,9 +43,9 @@ module decode (
     assign funct3 = instr[14:12];
     assign funct7 = instr[31:25];
 
-    assign rd = instr[7+:4];
-    assign rs1 = instr[15+:4];
-    assign rs2 = instr[20+:4];
+    assign rd = instr[7+:5];
+    assign rs1 = instr[15+:5];
+    assign rs2 = instr[20+:5];
 
     assign is_writeback = ({op[4],op[2:1]} == 3'b010) | ({op[4:2],op[0]} == 4'b1101);
 
@@ -89,7 +89,7 @@ module decode (
 
     // branch decode
     assign is_br_type = ({op[4:2]} == 3'b110);
-    assign br_type = br_type_t'(op[3:2]);
+    assign br_type = br_type_t'(op[1:0]);
     assign is_jump_op = is_br_type & op[0];
 
     // load/store decode

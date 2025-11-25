@@ -4,9 +4,9 @@ module control (
     input  logic        flush,
     input  logic        is_writeback,
     input  logic        ld_valid,
-    input  logic [3:0]  rs1,
-    input  logic [3:0]  rs2,
-    input  logic [3:0]  ld_rd,
+    input  logic [4:0]  rs1,
+    input  logic [4:0]  rs2,
+    input  logic [4:0]  ld_rd,
 
     output logic        fetch_stall,
     output logic        reg_we,

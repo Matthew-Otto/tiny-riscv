@@ -16,7 +16,8 @@ module ALU (
     input  logic [31:0] imm_u,
     input  logic [31:0] imm_s,
     input  logic [31:0] PC,
-    output logic [31:0] rd_data
+    output logic [31:0] rd_data,
+    output logic        branch
 );
 
     logic n;
@@ -81,11 +82,12 @@ module ALU (
     assign or_out  = rs1_data | b_mux;
     assign and_out = rs1_data & b_mux;
 
+    assign branch = comp_out;
 
     always_comb begin : out_mux
         case (alu_op)
             ADDER_OP   : rd_data = adder_out;
-            COMP_OP    : rd_data = {31'b0,comp_out};
+            //COMP_OP    : rd_data = {31'b0,comp_out};
             SHIFTER_OP : rd_data = shifter_out;
             XOR_OP     : rd_data = xor_out;
             OR_OP      : rd_data = or_out;

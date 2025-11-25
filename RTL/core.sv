@@ -10,8 +10,18 @@ module core (
     output logic [31:0] d_addr,
     output logic [3:0]  d_we,
     output logic [31:0] d_wr_data,
-    input  logic [31:0] d_rd_data
+    input  logic [31:0] d_rd_data,
+    // regfile port
+    output logic        we,
+    output logic [4:0]  rd,
+    output logic [31:0] rd_data,
+    output logic [4:0]  rs1,
+    output logic [4:0]  rs2,
+    input  logic [31:0] rs1_data,
+    input  logic [31:0] rs2_data
 );
+
+    logic [3:0] rd_mux;
 
     // control
     logic [31:0] PC;     // current PC
@@ -20,13 +30,9 @@ module core (
     logic        fetch_stall;
     logic        st_en;
     logic        ld_en;
-    logic        reg_we;
 
-    logic [3:0]  rs1;
-    logic [3:0]  rs2;
-    logic [3:0]  rd;
-    logic [3:0]  ld_rd;
-    logic [3:0]  rd_mux;
+    logic [4:0]  ld_rd;
+    logic [4:0]  dec_rd;
     logic        is_writeback;
     
     alu_op_t     alu_op;
@@ -46,13 +52,10 @@ module core (
     logic        is_br_type;
     br_type_t    br_type;
     logic        is_jump_op;
+    logic        take_branch;
     
     
     // data
-    logic [31:0] rs1_data;
-    logic [31:0] rs2_data;
-    
-    logic [31:0] rd_data;
     logic [31:0] alu_rd_data;
     logic [31:0] ld_rd_data;
 
@@ -72,7 +75,7 @@ module core (
         .rs2,
         .ld_rd,
         .fetch_stall,
-        .reg_we,
+        .reg_we(we),
         .st_en,
         .ld_en
     );
@@ -84,7 +87,7 @@ module core (
         .fetch_stall,
         .is_br_type,
         .br_type,
-        .take_branch(alu_rd_data[0]),
+        .take_branch,
         .rs1_data,
         .imm_b,
         .imm_i,
@@ -98,7 +101,7 @@ module core (
     // Decode
     decode decode_i (
         .instr(i_rd_data),
-        .rd,
+        .rd(dec_rd),
         .rs1,
         .rs2,
         .is_writeback,
@@ -139,7 +142,8 @@ module core (
         .imm_u,
         .imm_s,
         .PC,
-        .rd_data(alu_rd_data)
+        .rd_data(alu_rd_data),
+        .branch(take_branch)
     );
 
     // load / store
@@ -164,21 +168,10 @@ module core (
         .d_rd_data
     );
 
-    assign rd_mux = ld_valid ? ld_rd : rd;
+    assign rd = ld_valid ? ld_rd : dec_rd;
 
     assign rd_data = is_jump_op ? PC_p4
                    : ld_valid ? ld_rd_data 
                    : alu_rd_data;
-
-    regfile regfile_i (
-        .clk,
-        .we(reg_we),
-        .rd(rd_mux),
-        .rd_data,
-        .rs1,
-        .rs2,
-        .rs1_data,
-        .rs2_data
-    );
 
 endmodule : core

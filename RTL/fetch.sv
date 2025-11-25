@@ -24,9 +24,10 @@ module fetch (
     logic [31:0] next_PC;
     logic        branch;
     logic [31:0] PC_addend1, PC_addend2;
+    logic [32:0] carry;
 
     always_ff @(posedge clk, posedge rst) begin
-        if (rst)               PC_f <= 32'h80000000;
+        if (rst)               PC_f <= 32'h8000080c;
         else if (~fetch_stall) PC_f <= next_PC;
     end        
     always_ff @(posedge clk, posedge rst) begin
@@ -39,18 +40,18 @@ module fetch (
     end
 
     always_comb begin
-        casez ({is_br_type,br_type,take_branch})
-            4'b1001 : begin // Branch (taken)
+        casez ({flush,is_br_type,br_type,take_branch})
+            5'b01001 : begin // Branch (taken)
                 branch = 1'b1;
                 PC_addend1 = PC_e;
                 PC_addend2 = imm_b;
             end
-            4'b111? : begin // Jump
+            5'b0111? : begin // Jump
                 branch = 1'b1;
                 PC_addend1 = PC_e;
                 PC_addend2 = imm_j;
             end
-            4'b101? : begin // Jump reg
+            5'b0101? : begin // Jump reg
                 branch = 1'b1;
                 PC_addend1 = rs1_data;
                 PC_addend2 = imm_i;
@@ -63,7 +64,22 @@ module fetch (
         endcase
     end
 
-    assign next_PC = PC_addend1 + PC_addend2;
+    
+
+    assign carry[0] = 1'b0;
+    genvar i;
+    generate
+    for (i = 0; i < 32; i++) begin : rca
+        full_adder full_adder_i (
+            .a(PC_addend1[i]),
+            .b(PC_addend2[i]),
+            .cin(carry[i]),
+            .sum(next_PC[i]),
+            .cout(carry[i+1])
+        );
+    end
+    endgenerate
+
     assign i_addr = fetch_stall ? PC_e : PC_f;
 
 endmodule : fetch
