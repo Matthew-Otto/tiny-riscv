@@ -170,8 +170,8 @@ module core (
 
     assign rd = ld_valid ? ld_rd : dec_rd;
 
-    assign rd_data = is_jump_op ? PC_p4
-                   : ld_valid ? ld_rd_data 
+    assign rd_data = ld_valid ? ld_rd_data
+                   : is_jump_op ? PC_p4
                    : alu_rd_data;
 
 endmodule : core

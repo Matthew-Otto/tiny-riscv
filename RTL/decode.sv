@@ -47,11 +47,13 @@ module decode (
     assign rs1 = instr[15+:5];
     assign rs2 = instr[20+:5];
 
+    // instructions that write to the register file
     assign is_writeback = ({op[4],op[2:1]} == 3'b010) | ({op[4:2],op[0]} == 4'b1101);
 
     // alu decode
     always_comb begin
         casez ({op,funct3})
+            8'b01101_??? : alu_op = LUI_OP;
             8'b00101_???,
             8'b0?000_???,
             8'b0?100_000 : alu_op = ADDER_OP;

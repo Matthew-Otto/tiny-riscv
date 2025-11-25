@@ -56,8 +56,8 @@ module LSU (
     load_op_t load_op_v;
 
     always_ff @(posedge clk, posedge rst) begin
-        if (rst)        ld_valid <= 1'b0;
-        else if (ld_en) ld_valid <= is_load_op;
+        if (rst)  ld_valid <= 1'b0;
+        else      ld_valid <= ld_en & is_load_op;
     end
     always_ff @(posedge clk) begin
         ld_rd <= rd;

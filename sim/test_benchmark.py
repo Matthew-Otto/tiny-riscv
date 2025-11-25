@@ -11,7 +11,7 @@ from cocotb.clock import Clock
 TEST_DIR = "../benchmarks/bin"
 test_files = [os.path.join(TEST_DIR,f) for f in os.listdir(TEST_DIR) if f.endswith(".hex") and os.path.isfile(os.path.join(TEST_DIR, f))]
 
-max_run_cycles = 1000
+max_run_cycles = 2000
 
 @cocotb.test()
 async def test_core_regression(dut):

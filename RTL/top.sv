@@ -13,6 +13,25 @@ module top (
     input  logic [31:0] d_rd_data
 );
 
+    // performance counters
+    logic stall_execution;
+    logic [31:0] cycle_count;
+    logic [31:0] exec_count;
+
+    assign stall_execution = core.control_i.flush | core.fetch_stall;
+
+    always_ff @(posedge clk, posedge rst) begin
+        if (rst)
+            cycle_count <= 0;
+        else
+            cycle_count <= cycle_count + 1;
+        
+        if (rst)
+            exec_count <= 6; // For spike alignment
+        else if (~stall_execution) 
+            exec_count <= exec_count + 1;
+    end
+
     logic        we;
     logic [4:0]  rd;
     logic [31:0] rd_data;
