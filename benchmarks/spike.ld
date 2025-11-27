@@ -9,6 +9,7 @@ MEMORY {
 
 SECTIONS {
   .text : {
+    KEEP(*(.text.start))
     *(.text*)
   } > RAM
 
@@ -23,11 +24,5 @@ SECTIONS {
   .bss : {
     *(.bss*)
     *(COMMON)
-  } > RAM
-
-  .signature : {
-    __begin_signature = .;    /* Symbol for Spike */
-    KEEP(*(.signature*))      /* Keep all .signature sections from input files */
-    __end_signature = .;      /* Symbol for Spike */
   } > RAM
 }

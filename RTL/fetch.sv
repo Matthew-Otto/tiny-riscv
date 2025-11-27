@@ -27,7 +27,7 @@ module fetch (
     logic [32:0] carry;
 
     always_ff @(posedge clk, posedge rst) begin
-        if (rst)               PC_f <= 32'h8000080c;
+        if (rst)               PC_f <= 32'h80000000;
         else if (~fetch_stall) PC_f <= next_PC;
     end        
     always_ff @(posedge clk, posedge rst) begin

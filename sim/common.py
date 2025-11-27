@@ -55,7 +55,7 @@ async def sim_instr_mem(dut, memory):
         data = read_word(memory,addr)
         dut.i_rd_data.value = data
         if not dut.core.fetch_stall.value:
-            dut._log.debug(f"{int(dut.cycle_count)}: Fetched 0x{data:08X} from address 0x{addr:08X}")
+            dut._log.debug(f"{int(dut.cycle_count.value)}: Fetched 0x{data:08X} from address 0x{addr:08X}")
 
 
 async def sim_data_mem(dut, memory):
@@ -85,12 +85,12 @@ async def sim_data_mem(dut, memory):
             data |= int(dut.d_wr_data.value[31:24]) << 24
             width = 32
         if dut.d_we.value:
-            dut._log.info(f"{int(dut.cycle_count)}: WRITE mem: {width} bits: addr=0x{wr_addr:08X} data=0x{data:08X}")
+            dut._log.info(f"{int(dut.cycle_count.value)}: WRITE mem: {width} bits: addr=0x{wr_addr:08X} data=0x{data:08X}")
         
         # read
         if dut.core.LSU_i.is_load_op.value:
             rd_addr = int(dut.d_addr.value)
             data = read_word(memory, rd_addr)
             dut.d_rd_data.value = data
-            dut._log.info(f"{int(dut.cycle_count)}: READ mem: addr=0x{rd_addr:08X} data=0x{data:08X}")
+            dut._log.info(f"{int(dut.cycle_count.value)}: READ mem: addr=0x{rd_addr:08X} data=0x{data:08X}")
         

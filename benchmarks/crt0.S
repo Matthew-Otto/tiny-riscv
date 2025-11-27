@@ -13,7 +13,7 @@ fromhost:
     .dword 0
 
 
-.section .text
+.section .text.start
 .global _start
 .global _exit
 

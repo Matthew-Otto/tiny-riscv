@@ -152,7 +152,7 @@ module core (
         .rst,
         .st_en,
         .ld_en,
-        .rd,
+        .rd(dec_rd),
         .addr(alu_rd_data),
         .is_load_op,
         .is_store_op,

@@ -14,7 +14,7 @@ test_files = [os.path.join(TEST_DIR,f) for f in os.listdir(TEST_DIR) if f.endswi
 max_run_cycles = 2000
 
 @cocotb.test()
-async def test_core_regression(dut):
+async def benchmark_core(dut):
     dut._log.setLevel("DEBUG")
 
     assert test_files, "Error: compile a test program before running simulation"
