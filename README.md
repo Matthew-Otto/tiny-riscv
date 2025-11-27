@@ -61,6 +61,8 @@ To run simulation, cd to the `sim` directory and run `make verify`
 
 https://github.com/ucb-bar/riscv-benchmarks
 
+TODO: make a plot of results for all apps
+
 
 ## Synthesis
 1. Install Yosys
