@@ -1,0 +1,95 @@
+Loading verilog file '/home/ecelrc/students/ai6875/tiny-riscv/synthesis/output/apr/apr_run2/core'
+Warning: Design 'core' (file '/home/ecelrc/students/ai6875/tiny-riscv/synthesis/output/apr/apr_run2/core') is already registered. Remove the design before rereading. (DBR-003)
+Error: Design is already linked. (DES-067)
+Warning: Creating virtual clock named 'vclk' with no sources. (UITE-121)
+Information: Invalidating logical update. (PTE-139)
+Information: Derived library resistance unit is 1.000000 Kohm (Time unit is 1 ns, and Capacitance unit is 1.000000 pF). (DES-028)
+
+****************************************
+Report : read_parasitics /home/ecelrc/students/ai6875/tiny-riscv/synthesis/output/apr/apr_run2/core.dspf
+Design : core
+Version: T-2022.03-SP5
+Date   : Thu Nov 27 00:20:22 2025
+****************************************
+
+        0 error(s)
+        Format is DSPF
+        Annotated nets                   :         1923
+        Annotated capacitances           :        44272
+        Annotated resistances            :        42349
+        Reduced coupling capacitances    :            0
+
+Information: Abandoning fast timing updates. Change limit exceeded. (PTE-018)
+Information: Building multi voltage information for entire design. (MV-022)
+****************************************
+Report : timing
+	-path_type full
+	-delay_type max
+	-max_paths 1
+	-sort_by slack
+Design : core
+Version: T-2022.03-SP5
+Date   : Thu Nov 27 00:20:23 2025
+****************************************
+
+
+  Startpoint: i_rd_data[14]
+               (input port clocked by vclk)
+  Endpoint: rd_data[31]
+               (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Point                                    Incr       Path
+  ---------------------------------------------------------------
+  input external delay                   1.0000     1.0000 f
+  i_rd_data[14] (in)                     0.0000 &   1.0000 f
+  _1656_/Y (INVX1)                       0.2899 &   1.2899 r
+  _1717_/Y (AND2X1)                      0.0042 &   1.2941 r
+  _1718_/Y (AOI22X1)                     0.0274 &   1.3215 f
+  _1720_/Y (AOI21X1)                     0.3568 &   1.6784 r
+  _2008_/Y (AOI22X1)                     0.1606 &   1.8389 f
+  _2015_/Y (NAND2X1)                     0.1307 &   1.9696 r
+  _2019_/Y (AOI21X1)                     0.0334 &   2.0030 f
+  _2021_/Y (OAI21X1)                     0.0508 &   2.0538 r
+  _2023_/Y (AOI21X1)                     0.0393 &   2.0931 f
+  _2025_/Y (OAI21X1)                     0.0510 &   2.1441 r
+  _2027_/Y (AOI21X1)                     0.0394 &   2.1835 f
+  _2029_/Y (OAI21X1)                     0.0508 &   2.2342 r
+  _2031_/Y (AOI21X1)                     0.0394 &   2.2736 f
+  _2033_/Y (OAI21X1)                     0.0508 &   2.3244 r
+  _2035_/Y (AOI21X1)                     0.0391 &   2.3636 f
+  _2037_/Y (OAI21X1)                     0.0514 &   2.4150 r
+  _2039_/Y (AOI21X1)                     0.0394 &   2.4544 f
+  _2041_/Y (OAI21X1)                     0.0508 &   2.5052 r
+  _2043_/Y (AOI21X1)                     0.0393 &   2.5445 f
+  _2045_/Y (OAI21X1)                     0.0584 &   2.6029 r
+  _2048_/Y (AOI21X1)                     0.0420 &   2.6449 f
+  _2050_/Y (OAI21X1)                     0.0507 &   2.6956 r
+  _2052_/Y (AOI21X1)                     0.0393 &   2.7349 f
+  _2054_/Y (OAI21X1)                     0.0518 &   2.7867 r
+  _2056_/Y (AOI21X1)                     0.0397 &   2.8263 f
+  _2058_/Y (OAI21X1)                     0.0507 &   2.8771 r
+  _2060_/Y (AOI21X1)                     0.0394 &   2.9165 f
+  _2062_/Y (OAI21X1)                     0.0431 &   2.9596 r
+  _2063_/Y (AND2X1)                      0.0589 &   3.0185 r
+  _2064_/Y (OAI21X1)                     0.0351 &   3.0536 f
+  _2065_/Y (AOI21X1)                     0.0519 &   3.1055 r
+  _2066_/Y (OAI21X1)                     0.0352 &   3.1406 f
+  _2067_/Y (AOI21X1)                     0.0522 &   3.1928 r
+  _2068_/Y (OAI21X1)                     0.0352 &   3.2280 f
+  _2069_/Y (AOI21X1)                     0.0516 &   3.2796 r
+  _2070_/Y (OAI21X1)                     0.0390 &   3.3186 f
+  _2078_/Y (XNOR2X1)                     0.0330 &   3.3517 f
+  _2525_/Y (OR2X1)                       0.0412 &   3.3929 f
+  _2613_/Y (NAND3X1)                     0.0374 &   3.4302 r
+  _3268_/Y (OAI21X1)                     0.0213 &   3.4515 f
+  _3269_/Y (OAI21X1)                     0.0582 &   3.5097 r
+  rd_data[31] (out)                      0.0000 &   3.5097 r
+  data arrival time                                 3.5097
+  ---------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1
+1

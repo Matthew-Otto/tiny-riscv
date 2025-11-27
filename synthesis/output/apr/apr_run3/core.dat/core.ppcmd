@@ -1,0 +1,72 @@
+# PPCMD 1 
+# addRing -nets {1'b0 1'b1} -type core_rings -follow core -layer {top metal1 bottom metal1 left metal2 right metal2} -width {top 0.5 bottom 0.5 left 0.5 right 0.5} -spacing {top 0.3 bottom 0.3 left 0.3 right 0.3} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 1 -extend_corner {} -threshold 0 -jog_distance 0 -snap_wire_center_to_grid None
+# 4 
+# 32 
+# 1 
+# 0 
+# 0 
+# 0 
+# BOX_LIST 
+# END_BOX_LIST 
+# NET_INFO_LIST 
+# 1'b1 1000 1 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 205200 9270 205200 385550 
+# END_RING_PT_INFO_LIST 
+# 1'b1 1000 2 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 9270 197410 401130 197410 
+# END_RING_PT_INFO_LIST 
+# 1'b0 1000 1 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 205200 10870 205200 383950 
+# END_RING_PT_INFO_LIST 
+# 1'b0 1000 2 1 0 0 0 0 0 
+# RING_PT_INFO_LIST 
+# 10870 197410 399530 197410 
+# END_RING_PT_INFO_LIST 
+# END_NET_INFO_LIST 
+# END_PPCMD 1 
+
+# PPCMD 2 
+# setAddRingMode -ring_target default -extend_over_row 0 -ignore_rows 0 -avoid_short 0 -skip_crossing_trunks none -stacked_via_top_layer metal10 -stacked_via_bottom_layer metal1 -via_using_exact_crossover_size 1 -orthogonal_only true -skip_via_on_pin {  standardcell } -skip_via_on_wire_shape {  noshape }
+# 3 
+# 0 
+# 0 
+# 0 
+# 0 
+# 0 
+# BOX_LIST 
+# END_BOX_LIST 
+# NET_INFO_LIST 
+# END_NET_INFO_LIST 
+# END_PPCMD 2 
+
+# PPCMD 3 
+# addRing -nets {} -type core_rings -follow core -layer {top metal1 bottom metal1 left metal2 right metal2} -width {top 0.5 bottom 0.5 left 0.5 right 0.5} -spacing {top 0.3 bottom 0.3 left 0.3 right 0.3} -offset {top 1.8 bottom 1.8 left 1.8 right 1.8} -center 1 -extend_corner {} -threshold 0 -jog_distance 0 -snap_wire_center_to_grid None
+# 2 
+# 32 
+# 0 
+# 0 
+# 0 
+# 0 
+# BOX_LIST 
+# END_BOX_LIST 
+# NET_INFO_LIST 
+# END_NET_INFO_LIST 
+# END_PPCMD 3 
+
+# PPCMD 4 
+# setAddRingMode -ring_target default -extend_over_row 0 -ignore_rows 0 -avoid_short 0 -skip_crossing_trunks none -stacked_via_top_layer metal10 -stacked_via_bottom_layer metal1 -via_using_exact_crossover_size 1 -orthogonal_only true -skip_via_on_pin {  standardcell } -skip_via_on_wire_shape {  noshape }
+# 1 
+# 0 
+# 0 
+# 0 
+# 0 
+# 0 
+# BOX_LIST 
+# END_BOX_LIST 
+# NET_INFO_LIST 
+# END_NET_INFO_LIST 
+# END_PPCMD 4 
+

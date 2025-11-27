@@ -1,0 +1,429 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+        -sort_by group
+Design : core
+Version: T-2022.03-SP2
+Date   : Wed Nov 26 23:58:36 2025
+****************************************
+
+Operating Conditions: typical   Library: gscl45nm
+Wire Load Model Mode: top
+
+  Startpoint: fetch_i/PC_e_reg[0]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch_i/PC_f_reg[31]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  fetch_i/PC_e_reg[0]/CLK (DFFSR)                         0.00       0.00 r
+  fetch_i/PC_e_reg[0]/Q (DFFSR)                           0.11       0.11 r
+  fetch_i/U501/Y (BUFX2)                                  0.04       0.15 r
+  fetch_i/PC_e[0] (fetch)                                 0.00       0.15 r
+  ALU_i/PC[0] (ALU)                                       0.00       0.15 r
+  ALU_i/U394/Y (AND2X1)                                   0.03       0.18 r
+  ALU_i/U403/Y (INVX1)                                    0.02       0.19 f
+  ALU_i/U622/Y (OAI21X1)                                  0.03       0.23 r
+  ALU_i/adder_i/a[0] (ripple_carry_adder)                 0.00       0.23 r
+  ALU_i/adder_i/genblk1[0].full_adder_i/a (full_adder_32)
+                                                          0.00       0.23 r
+  ALU_i/adder_i/genblk1[0].full_adder_i/U5/Y (XNOR2X1)
+                                                          0.04       0.27 f
+  ALU_i/adder_i/genblk1[0].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       0.32 r
+  ALU_i/adder_i/genblk1[0].full_adder_i/cout (full_adder_32)
+                                                          0.00       0.32 r
+  ALU_i/adder_i/genblk1[1].full_adder_i/cin (full_adder_31)
+                                                          0.00       0.32 r
+  ALU_i/adder_i/genblk1[1].full_adder_i/U6/Y (INVX1)      0.03       0.35 f
+  ALU_i/adder_i/genblk1[1].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       0.39 r
+  ALU_i/adder_i/genblk1[1].full_adder_i/cout (full_adder_31)
+                                                          0.00       0.39 r
+  ALU_i/adder_i/genblk1[2].full_adder_i/cin (full_adder_30)
+                                                          0.00       0.39 r
+  ALU_i/adder_i/genblk1[2].full_adder_i/U6/Y (INVX1)      0.03       0.43 f
+  ALU_i/adder_i/genblk1[2].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       0.47 r
+  ALU_i/adder_i/genblk1[2].full_adder_i/cout (full_adder_30)
+                                                          0.00       0.47 r
+  ALU_i/adder_i/genblk1[3].full_adder_i/cin (full_adder_29)
+                                                          0.00       0.47 r
+  ALU_i/adder_i/genblk1[3].full_adder_i/U6/Y (INVX1)      0.03       0.50 f
+  ALU_i/adder_i/genblk1[3].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       0.54 r
+  ALU_i/adder_i/genblk1[3].full_adder_i/cout (full_adder_29)
+                                                          0.00       0.54 r
+  ALU_i/adder_i/genblk1[4].full_adder_i/cin (full_adder_28)
+                                                          0.00       0.54 r
+  ALU_i/adder_i/genblk1[4].full_adder_i/U6/Y (INVX1)      0.03       0.58 f
+  ALU_i/adder_i/genblk1[4].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       0.62 r
+  ALU_i/adder_i/genblk1[4].full_adder_i/cout (full_adder_28)
+                                                          0.00       0.62 r
+  ALU_i/adder_i/genblk1[5].full_adder_i/cin (full_adder_27)
+                                                          0.00       0.62 r
+  ALU_i/adder_i/genblk1[5].full_adder_i/U6/Y (INVX1)      0.03       0.65 f
+  ALU_i/adder_i/genblk1[5].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       0.69 r
+  ALU_i/adder_i/genblk1[5].full_adder_i/cout (full_adder_27)
+                                                          0.00       0.69 r
+  ALU_i/adder_i/genblk1[6].full_adder_i/cin (full_adder_26)
+                                                          0.00       0.69 r
+  ALU_i/adder_i/genblk1[6].full_adder_i/U6/Y (INVX1)      0.03       0.73 f
+  ALU_i/adder_i/genblk1[6].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       0.77 r
+  ALU_i/adder_i/genblk1[6].full_adder_i/cout (full_adder_26)
+                                                          0.00       0.77 r
+  ALU_i/adder_i/genblk1[7].full_adder_i/cin (full_adder_25)
+                                                          0.00       0.77 r
+  ALU_i/adder_i/genblk1[7].full_adder_i/U6/Y (INVX1)      0.03       0.80 f
+  ALU_i/adder_i/genblk1[7].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       0.85 r
+  ALU_i/adder_i/genblk1[7].full_adder_i/cout (full_adder_25)
+                                                          0.00       0.85 r
+  ALU_i/adder_i/genblk1[8].full_adder_i/cin (full_adder_24)
+                                                          0.00       0.85 r
+  ALU_i/adder_i/genblk1[8].full_adder_i/U6/Y (INVX1)      0.03       0.88 f
+  ALU_i/adder_i/genblk1[8].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       0.92 r
+  ALU_i/adder_i/genblk1[8].full_adder_i/cout (full_adder_24)
+                                                          0.00       0.92 r
+  ALU_i/adder_i/genblk1[9].full_adder_i/cin (full_adder_23)
+                                                          0.00       0.92 r
+  ALU_i/adder_i/genblk1[9].full_adder_i/U6/Y (INVX1)      0.03       0.96 f
+  ALU_i/adder_i/genblk1[9].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       1.00 r
+  ALU_i/adder_i/genblk1[9].full_adder_i/cout (full_adder_23)
+                                                          0.00       1.00 r
+  ALU_i/adder_i/genblk1[10].full_adder_i/cin (full_adder_22)
+                                                          0.00       1.00 r
+  ALU_i/adder_i/genblk1[10].full_adder_i/U6/Y (INVX1)     0.03       1.03 f
+  ALU_i/adder_i/genblk1[10].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       1.07 r
+  ALU_i/adder_i/genblk1[10].full_adder_i/cout (full_adder_22)
+                                                          0.00       1.07 r
+  ALU_i/adder_i/genblk1[11].full_adder_i/cin (full_adder_21)
+                                                          0.00       1.07 r
+  ALU_i/adder_i/genblk1[11].full_adder_i/U6/Y (INVX1)     0.03       1.11 f
+  ALU_i/adder_i/genblk1[11].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       1.15 r
+  ALU_i/adder_i/genblk1[11].full_adder_i/cout (full_adder_21)
+                                                          0.00       1.15 r
+  ALU_i/adder_i/genblk1[12].full_adder_i/cin (full_adder_20)
+                                                          0.00       1.15 r
+  ALU_i/adder_i/genblk1[12].full_adder_i/U6/Y (INVX1)     0.03       1.18 f
+  ALU_i/adder_i/genblk1[12].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       1.22 r
+  ALU_i/adder_i/genblk1[12].full_adder_i/cout (full_adder_20)
+                                                          0.00       1.22 r
+  ALU_i/adder_i/genblk1[13].full_adder_i/cin (full_adder_19)
+                                                          0.00       1.22 r
+  ALU_i/adder_i/genblk1[13].full_adder_i/U6/Y (INVX1)     0.03       1.26 f
+  ALU_i/adder_i/genblk1[13].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       1.30 r
+  ALU_i/adder_i/genblk1[13].full_adder_i/cout (full_adder_19)
+                                                          0.00       1.30 r
+  ALU_i/adder_i/genblk1[14].full_adder_i/cin (full_adder_18)
+                                                          0.00       1.30 r
+  ALU_i/adder_i/genblk1[14].full_adder_i/U6/Y (INVX1)     0.03       1.33 f
+  ALU_i/adder_i/genblk1[14].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       1.37 r
+  ALU_i/adder_i/genblk1[14].full_adder_i/cout (full_adder_18)
+                                                          0.00       1.37 r
+  ALU_i/adder_i/genblk1[15].full_adder_i/cin (full_adder_17)
+                                                          0.00       1.37 r
+  ALU_i/adder_i/genblk1[15].full_adder_i/U6/Y (INVX1)     0.03       1.41 f
+  ALU_i/adder_i/genblk1[15].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       1.45 r
+  ALU_i/adder_i/genblk1[15].full_adder_i/cout (full_adder_17)
+                                                          0.00       1.45 r
+  ALU_i/adder_i/genblk1[16].full_adder_i/cin (full_adder_16)
+                                                          0.00       1.45 r
+  ALU_i/adder_i/genblk1[16].full_adder_i/U6/Y (INVX1)     0.03       1.48 f
+  ALU_i/adder_i/genblk1[16].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       1.52 r
+  ALU_i/adder_i/genblk1[16].full_adder_i/cout (full_adder_16)
+                                                          0.00       1.52 r
+  ALU_i/adder_i/genblk1[17].full_adder_i/cin (full_adder_15)
+                                                          0.00       1.52 r
+  ALU_i/adder_i/genblk1[17].full_adder_i/U6/Y (INVX1)     0.03       1.56 f
+  ALU_i/adder_i/genblk1[17].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       1.60 r
+  ALU_i/adder_i/genblk1[17].full_adder_i/cout (full_adder_15)
+                                                          0.00       1.60 r
+  ALU_i/adder_i/genblk1[18].full_adder_i/cin (full_adder_14)
+                                                          0.00       1.60 r
+  ALU_i/adder_i/genblk1[18].full_adder_i/U6/Y (INVX1)     0.03       1.63 f
+  ALU_i/adder_i/genblk1[18].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       1.68 r
+  ALU_i/adder_i/genblk1[18].full_adder_i/cout (full_adder_14)
+                                                          0.00       1.68 r
+  ALU_i/adder_i/genblk1[19].full_adder_i/cin (full_adder_13)
+                                                          0.00       1.68 r
+  ALU_i/adder_i/genblk1[19].full_adder_i/U6/Y (INVX1)     0.03       1.71 f
+  ALU_i/adder_i/genblk1[19].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       1.75 r
+  ALU_i/adder_i/genblk1[19].full_adder_i/cout (full_adder_13)
+                                                          0.00       1.75 r
+  ALU_i/adder_i/genblk1[20].full_adder_i/cin (full_adder_12)
+                                                          0.00       1.75 r
+  ALU_i/adder_i/genblk1[20].full_adder_i/U6/Y (INVX1)     0.03       1.78 f
+  ALU_i/adder_i/genblk1[20].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       1.83 r
+  ALU_i/adder_i/genblk1[20].full_adder_i/cout (full_adder_12)
+                                                          0.00       1.83 r
+  ALU_i/adder_i/genblk1[21].full_adder_i/cin (full_adder_11)
+                                                          0.00       1.83 r
+  ALU_i/adder_i/genblk1[21].full_adder_i/U6/Y (INVX1)     0.03       1.86 f
+  ALU_i/adder_i/genblk1[21].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       1.90 r
+  ALU_i/adder_i/genblk1[21].full_adder_i/cout (full_adder_11)
+                                                          0.00       1.90 r
+  ALU_i/adder_i/genblk1[22].full_adder_i/cin (full_adder_10)
+                                                          0.00       1.90 r
+  ALU_i/adder_i/genblk1[22].full_adder_i/U6/Y (INVX1)     0.03       1.94 f
+  ALU_i/adder_i/genblk1[22].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       1.98 r
+  ALU_i/adder_i/genblk1[22].full_adder_i/cout (full_adder_10)
+                                                          0.00       1.98 r
+  ALU_i/adder_i/genblk1[23].full_adder_i/cin (full_adder_9)
+                                                          0.00       1.98 r
+  ALU_i/adder_i/genblk1[23].full_adder_i/U6/Y (INVX1)     0.03       2.01 f
+  ALU_i/adder_i/genblk1[23].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       2.05 r
+  ALU_i/adder_i/genblk1[23].full_adder_i/cout (full_adder_9)
+                                                          0.00       2.05 r
+  ALU_i/adder_i/genblk1[24].full_adder_i/cin (full_adder_8)
+                                                          0.00       2.05 r
+  ALU_i/adder_i/genblk1[24].full_adder_i/U6/Y (INVX1)     0.03       2.09 f
+  ALU_i/adder_i/genblk1[24].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       2.13 r
+  ALU_i/adder_i/genblk1[24].full_adder_i/cout (full_adder_8)
+                                                          0.00       2.13 r
+  ALU_i/adder_i/genblk1[25].full_adder_i/cin (full_adder_7)
+                                                          0.00       2.13 r
+  ALU_i/adder_i/genblk1[25].full_adder_i/U6/Y (INVX1)     0.03       2.16 f
+  ALU_i/adder_i/genblk1[25].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       2.20 r
+  ALU_i/adder_i/genblk1[25].full_adder_i/cout (full_adder_7)
+                                                          0.00       2.20 r
+  ALU_i/adder_i/genblk1[26].full_adder_i/cin (full_adder_6)
+                                                          0.00       2.20 r
+  ALU_i/adder_i/genblk1[26].full_adder_i/U6/Y (INVX1)     0.03       2.24 f
+  ALU_i/adder_i/genblk1[26].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       2.28 r
+  ALU_i/adder_i/genblk1[26].full_adder_i/cout (full_adder_6)
+                                                          0.00       2.28 r
+  ALU_i/adder_i/genblk1[27].full_adder_i/cin (full_adder_5)
+                                                          0.00       2.28 r
+  ALU_i/adder_i/genblk1[27].full_adder_i/U6/Y (INVX1)     0.03       2.31 f
+  ALU_i/adder_i/genblk1[27].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       2.35 r
+  ALU_i/adder_i/genblk1[27].full_adder_i/cout (full_adder_5)
+                                                          0.00       2.35 r
+  ALU_i/adder_i/genblk1[28].full_adder_i/cin (full_adder_4)
+                                                          0.00       2.35 r
+  ALU_i/adder_i/genblk1[28].full_adder_i/U6/Y (INVX1)     0.03       2.39 f
+  ALU_i/adder_i/genblk1[28].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       2.43 r
+  ALU_i/adder_i/genblk1[28].full_adder_i/cout (full_adder_4)
+                                                          0.00       2.43 r
+  ALU_i/adder_i/genblk1[29].full_adder_i/cin (full_adder_3)
+                                                          0.00       2.43 r
+  ALU_i/adder_i/genblk1[29].full_adder_i/U6/Y (INVX1)     0.03       2.46 f
+  ALU_i/adder_i/genblk1[29].full_adder_i/U3/Y (OAI21X1)
+                                                          0.04       2.50 r
+  ALU_i/adder_i/genblk1[29].full_adder_i/cout (full_adder_3)
+                                                          0.00       2.50 r
+  ALU_i/adder_i/genblk1[30].full_adder_i/cin (full_adder_2)
+                                                          0.00       2.50 r
+  ALU_i/adder_i/genblk1[30].full_adder_i/U6/Y (INVX1)     0.03       2.54 f
+  ALU_i/adder_i/genblk1[30].full_adder_i/U3/Y (OAI21X1)
+                                                          0.06       2.60 r
+  ALU_i/adder_i/genblk1[30].full_adder_i/cout (full_adder_2)
+                                                          0.00       2.60 r
+  ALU_i/adder_i/genblk1[31].full_adder_i/cin (full_adder_1)
+                                                          0.00       2.60 r
+  ALU_i/adder_i/genblk1[31].full_adder_i/U6/Y (INVX1)     0.04       2.64 f
+  ALU_i/adder_i/genblk1[31].full_adder_i/U2/Y (XOR2X1)
+                                                          0.07       2.71 r
+  ALU_i/adder_i/genblk1[31].full_adder_i/sum (full_adder_1)
+                                                          0.00       2.71 r
+  ALU_i/adder_i/U20/Y (NOR3X1)                            0.04       2.75 f
+  ALU_i/adder_i/U6/Y (AND2X1)                             0.04       2.78 f
+  ALU_i/adder_i/U18/Y (NAND3X1)                           0.03       2.81 r
+  ALU_i/adder_i/U5/Y (BUFX2)                              0.04       2.85 r
+  ALU_i/adder_i/U11/Y (NOR3X1)                            0.04       2.89 f
+  ALU_i/adder_i/z (ripple_carry_adder)                    0.00       2.89 f
+  ALU_i/U457/Y (XNOR2X1)                                  0.04       2.93 r
+  ALU_i/U623/Y (AND2X1)                                   0.03       2.95 r
+  ALU_i/U624/Y (INVX1)                                    0.02       2.97 f
+  ALU_i/U455/Y (OAI21X1)                                  0.02       2.99 r
+  ALU_i/U565/Y (AND2X1)                                   0.03       3.02 r
+  ALU_i/U567/Y (INVX1)                                    0.02       3.04 f
+  ALU_i/U453/Y (OAI21X1)                                  0.02       3.06 r
+  ALU_i/branch (ALU)                                      0.00       3.06 r
+  fetch_i/take_branch (fetch)                             0.00       3.06 r
+  fetch_i/U554/Y (AND2X1)                                 0.04       3.10 r
+  fetch_i/U336/Y (OAI21X1)                                0.04       3.14 f
+  fetch_i/U128/Y (OR2X1)                                  0.04       3.18 f
+  fetch_i/U545/Y (INVX1)                                  0.29       3.47 r
+  fetch_i/U329/Y (AOI22X1)                                0.12       3.59 f
+  fetch_i/U328/Y (OAI21X1)                                0.08       3.67 r
+  fetch_i/rca[0].full_adder_i/a (full_adder_0)            0.00       3.67 r
+  fetch_i/rca[0].full_adder_i/U1/Y (AND2X1)               0.03       3.69 r
+  fetch_i/rca[0].full_adder_i/U4/Y (INVX1)                0.02       3.71 f
+  fetch_i/rca[0].full_adder_i/U3/Y (OAI21X1)              0.02       3.73 r
+  fetch_i/rca[0].full_adder_i/cout (full_adder_0)         0.00       3.73 r
+  fetch_i/rca[1].full_adder_i/cin (full_adder_63)         0.00       3.73 r
+  fetch_i/rca[1].full_adder_i/U6/Y (INVX1)                0.03       3.76 f
+  fetch_i/rca[1].full_adder_i/U3/Y (OAI21X1)              0.04       3.80 r
+  fetch_i/rca[1].full_adder_i/cout (full_adder_63)        0.00       3.80 r
+  fetch_i/rca[2].full_adder_i/cin (full_adder_62)         0.00       3.80 r
+  fetch_i/rca[2].full_adder_i/U1/Y (INVX1)                0.03       3.84 f
+  fetch_i/rca[2].full_adder_i/U3/Y (OAI21X1)              0.04       3.88 r
+  fetch_i/rca[2].full_adder_i/cout (full_adder_62)        0.00       3.88 r
+  fetch_i/rca[3].full_adder_i/cin (full_adder_61)         0.00       3.88 r
+  fetch_i/rca[3].full_adder_i/U1/Y (INVX1)                0.03       3.91 f
+  fetch_i/rca[3].full_adder_i/U3/Y (OAI21X1)              0.04       3.95 r
+  fetch_i/rca[3].full_adder_i/cout (full_adder_61)        0.00       3.95 r
+  fetch_i/rca[4].full_adder_i/cin (full_adder_60)         0.00       3.95 r
+  fetch_i/rca[4].full_adder_i/U1/Y (INVX1)                0.03       3.99 f
+  fetch_i/rca[4].full_adder_i/U3/Y (OAI21X1)              0.04       4.03 r
+  fetch_i/rca[4].full_adder_i/cout (full_adder_60)        0.00       4.03 r
+  fetch_i/rca[5].full_adder_i/cin (full_adder_59)         0.00       4.03 r
+  fetch_i/rca[5].full_adder_i/U1/Y (INVX1)                0.03       4.06 f
+  fetch_i/rca[5].full_adder_i/U3/Y (OAI21X1)              0.04       4.10 r
+  fetch_i/rca[5].full_adder_i/cout (full_adder_59)        0.00       4.10 r
+  fetch_i/rca[6].full_adder_i/cin (full_adder_58)         0.00       4.10 r
+  fetch_i/rca[6].full_adder_i/U1/Y (INVX1)                0.03       4.14 f
+  fetch_i/rca[6].full_adder_i/U3/Y (OAI21X1)              0.04       4.18 r
+  fetch_i/rca[6].full_adder_i/cout (full_adder_58)        0.00       4.18 r
+  fetch_i/rca[7].full_adder_i/cin (full_adder_57)         0.00       4.18 r
+  fetch_i/rca[7].full_adder_i/U1/Y (INVX1)                0.03       4.21 f
+  fetch_i/rca[7].full_adder_i/U3/Y (OAI21X1)              0.04       4.25 r
+  fetch_i/rca[7].full_adder_i/cout (full_adder_57)        0.00       4.25 r
+  fetch_i/rca[8].full_adder_i/cin (full_adder_56)         0.00       4.25 r
+  fetch_i/rca[8].full_adder_i/U1/Y (INVX1)                0.03       4.29 f
+  fetch_i/rca[8].full_adder_i/U3/Y (OAI21X1)              0.04       4.33 r
+  fetch_i/rca[8].full_adder_i/cout (full_adder_56)        0.00       4.33 r
+  fetch_i/rca[9].full_adder_i/cin (full_adder_55)         0.00       4.33 r
+  fetch_i/rca[9].full_adder_i/U1/Y (INVX1)                0.03       4.36 f
+  fetch_i/rca[9].full_adder_i/U3/Y (OAI21X1)              0.04       4.40 r
+  fetch_i/rca[9].full_adder_i/cout (full_adder_55)        0.00       4.40 r
+  fetch_i/rca[10].full_adder_i/cin (full_adder_54)        0.00       4.40 r
+  fetch_i/rca[10].full_adder_i/U6/Y (INVX1)               0.03       4.44 f
+  fetch_i/rca[10].full_adder_i/U3/Y (OAI21X1)             0.04       4.48 r
+  fetch_i/rca[10].full_adder_i/cout (full_adder_54)       0.00       4.48 r
+  fetch_i/rca[11].full_adder_i/cin (full_adder_53)        0.00       4.48 r
+  fetch_i/rca[11].full_adder_i/U6/Y (INVX1)               0.03       4.51 f
+  fetch_i/rca[11].full_adder_i/U3/Y (OAI21X1)             0.04       4.56 r
+  fetch_i/rca[11].full_adder_i/cout (full_adder_53)       0.00       4.56 r
+  fetch_i/rca[12].full_adder_i/cin (full_adder_52)        0.00       4.56 r
+  fetch_i/rca[12].full_adder_i/U6/Y (INVX1)               0.03       4.59 f
+  fetch_i/rca[12].full_adder_i/U3/Y (OAI21X1)             0.04       4.63 r
+  fetch_i/rca[12].full_adder_i/cout (full_adder_52)       0.00       4.63 r
+  fetch_i/rca[13].full_adder_i/cin (full_adder_51)        0.00       4.63 r
+  fetch_i/rca[13].full_adder_i/U6/Y (INVX1)               0.03       4.66 f
+  fetch_i/rca[13].full_adder_i/U3/Y (OAI21X1)             0.04       4.71 r
+  fetch_i/rca[13].full_adder_i/cout (full_adder_51)       0.00       4.71 r
+  fetch_i/rca[14].full_adder_i/cin (full_adder_50)        0.00       4.71 r
+  fetch_i/rca[14].full_adder_i/U1/Y (INVX1)               0.03       4.74 f
+  fetch_i/rca[14].full_adder_i/U3/Y (OAI21X1)             0.04       4.78 r
+  fetch_i/rca[14].full_adder_i/cout (full_adder_50)       0.00       4.78 r
+  fetch_i/rca[15].full_adder_i/cin (full_adder_49)        0.00       4.78 r
+  fetch_i/rca[15].full_adder_i/U1/Y (INVX1)               0.03       4.82 f
+  fetch_i/rca[15].full_adder_i/U3/Y (OAI21X1)             0.04       4.86 r
+  fetch_i/rca[15].full_adder_i/cout (full_adder_49)       0.00       4.86 r
+  fetch_i/rca[16].full_adder_i/cin (full_adder_48)        0.00       4.86 r
+  fetch_i/rca[16].full_adder_i/U1/Y (INVX1)               0.03       4.89 f
+  fetch_i/rca[16].full_adder_i/U3/Y (OAI21X1)             0.04       4.93 r
+  fetch_i/rca[16].full_adder_i/cout (full_adder_48)       0.00       4.93 r
+  fetch_i/rca[17].full_adder_i/cin (full_adder_47)        0.00       4.93 r
+  fetch_i/rca[17].full_adder_i/U1/Y (INVX1)               0.03       4.97 f
+  fetch_i/rca[17].full_adder_i/U3/Y (OAI21X1)             0.04       5.01 r
+  fetch_i/rca[17].full_adder_i/cout (full_adder_47)       0.00       5.01 r
+  fetch_i/rca[18].full_adder_i/cin (full_adder_46)        0.00       5.01 r
+  fetch_i/rca[18].full_adder_i/U1/Y (INVX1)               0.03       5.04 f
+  fetch_i/rca[18].full_adder_i/U3/Y (OAI21X1)             0.04       5.08 r
+  fetch_i/rca[18].full_adder_i/cout (full_adder_46)       0.00       5.08 r
+  fetch_i/rca[19].full_adder_i/cin (full_adder_45)        0.00       5.08 r
+  fetch_i/rca[19].full_adder_i/U1/Y (INVX1)               0.03       5.12 f
+  fetch_i/rca[19].full_adder_i/U3/Y (OAI21X1)             0.04       5.16 r
+  fetch_i/rca[19].full_adder_i/cout (full_adder_45)       0.00       5.16 r
+  fetch_i/rca[20].full_adder_i/cin (full_adder_44)        0.00       5.16 r
+  fetch_i/rca[20].full_adder_i/U1/Y (INVX1)               0.03       5.19 f
+  fetch_i/rca[20].full_adder_i/U3/Y (OAI21X1)             0.04       5.23 r
+  fetch_i/rca[20].full_adder_i/cout (full_adder_44)       0.00       5.23 r
+  fetch_i/rca[21].full_adder_i/cin (full_adder_43)        0.00       5.23 r
+  fetch_i/rca[21].full_adder_i/U1/Y (INVX1)               0.03       5.27 f
+  fetch_i/rca[21].full_adder_i/U3/Y (OAI21X1)             0.04       5.31 r
+  fetch_i/rca[21].full_adder_i/cout (full_adder_43)       0.00       5.31 r
+  fetch_i/rca[22].full_adder_i/cin (full_adder_42)        0.00       5.31 r
+  fetch_i/rca[22].full_adder_i/U1/Y (INVX1)               0.03       5.34 f
+  fetch_i/rca[22].full_adder_i/U3/Y (OAI21X1)             0.04       5.38 r
+  fetch_i/rca[22].full_adder_i/cout (full_adder_42)       0.00       5.38 r
+  fetch_i/rca[23].full_adder_i/cin (full_adder_41)        0.00       5.38 r
+  fetch_i/rca[23].full_adder_i/U1/Y (INVX1)               0.03       5.42 f
+  fetch_i/rca[23].full_adder_i/U3/Y (OAI21X1)             0.04       5.46 r
+  fetch_i/rca[23].full_adder_i/cout (full_adder_41)       0.00       5.46 r
+  fetch_i/rca[24].full_adder_i/cin (full_adder_40)        0.00       5.46 r
+  fetch_i/rca[24].full_adder_i/U1/Y (INVX1)               0.03       5.49 f
+  fetch_i/rca[24].full_adder_i/U3/Y (OAI21X1)             0.04       5.54 r
+  fetch_i/rca[24].full_adder_i/cout (full_adder_40)       0.00       5.54 r
+  fetch_i/rca[25].full_adder_i/cin (full_adder_39)        0.00       5.54 r
+  fetch_i/rca[25].full_adder_i/U1/Y (INVX1)               0.03       5.57 f
+  fetch_i/rca[25].full_adder_i/U3/Y (OAI21X1)             0.04       5.61 r
+  fetch_i/rca[25].full_adder_i/cout (full_adder_39)       0.00       5.61 r
+  fetch_i/rca[26].full_adder_i/cin (full_adder_38)        0.00       5.61 r
+  fetch_i/rca[26].full_adder_i/U1/Y (INVX1)               0.03       5.64 f
+  fetch_i/rca[26].full_adder_i/U3/Y (OAI21X1)             0.04       5.69 r
+  fetch_i/rca[26].full_adder_i/cout (full_adder_38)       0.00       5.69 r
+  fetch_i/rca[27].full_adder_i/cin (full_adder_37)        0.00       5.69 r
+  fetch_i/rca[27].full_adder_i/U1/Y (INVX1)               0.03       5.72 f
+  fetch_i/rca[27].full_adder_i/U3/Y (OAI21X1)             0.04       5.76 r
+  fetch_i/rca[27].full_adder_i/cout (full_adder_37)       0.00       5.76 r
+  fetch_i/rca[28].full_adder_i/cin (full_adder_36)        0.00       5.76 r
+  fetch_i/rca[28].full_adder_i/U1/Y (INVX1)               0.03       5.80 f
+  fetch_i/rca[28].full_adder_i/U3/Y (OAI21X1)             0.04       5.84 r
+  fetch_i/rca[28].full_adder_i/cout (full_adder_36)       0.00       5.84 r
+  fetch_i/rca[29].full_adder_i/cin (full_adder_35)        0.00       5.84 r
+  fetch_i/rca[29].full_adder_i/U6/Y (INVX1)               0.03       5.87 f
+  fetch_i/rca[29].full_adder_i/U3/Y (OAI21X1)             0.04       5.91 r
+  fetch_i/rca[29].full_adder_i/cout (full_adder_35)       0.00       5.91 r
+  fetch_i/rca[30].full_adder_i/cin (full_adder_34)        0.00       5.91 r
+  fetch_i/rca[30].full_adder_i/U6/Y (INVX1)               0.03       5.95 f
+  fetch_i/rca[30].full_adder_i/U3/Y (OAI21X1)             0.04       5.99 r
+  fetch_i/rca[30].full_adder_i/cout (full_adder_34)       0.00       5.99 r
+  fetch_i/rca[31].full_adder_i/cin (full_adder_33)        0.00       5.99 r
+  fetch_i/rca[31].full_adder_i/U6/Y (INVX1)               0.03       6.02 f
+  fetch_i/rca[31].full_adder_i/U2/Y (XOR2X1)              0.04       6.06 r
+  fetch_i/rca[31].full_adder_i/sum (full_adder_33)        0.00       6.06 r
+  fetch_i/U217/Y (AND2X1)                                 0.03       6.08 r
+  fetch_i/U219/Y (INVX1)                                  0.02       6.10 f
+  fetch_i/U65/Y (OAI21X1)                                 0.02       6.12 r
+  fetch_i/PC_f_reg[31]/D (DFFSR)                          0.00       6.12 r
+  data arrival time                                                  6.12
+
+  clock clk (rise edge)                                2000.00    2000.00
+  clock network delay (ideal)                             0.00    2000.00
+  fetch_i/PC_f_reg[31]/CLK (DFFSR)                        0.00    2000.00 r
+  library setup time                                     -0.08    1999.92
+  data required time                                              1999.92
+  --------------------------------------------------------------------------
+  data required time                                              1999.92
+  data arrival time                                                 -6.12
+  --------------------------------------------------------------------------
+  slack (MET)                                                     1993.80
+
+
