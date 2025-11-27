@@ -2,21 +2,32 @@
 A minimum-area RV32E implementation
 
 
-# TODO:
-
-* get better benchmarks
-* verify functionality
-* benchmark serv
-* write report
-
-
 ## Results:
+
+#### Area
+| Design    | Post-synthesis (µm²) | Post-APR (µm²) |
+| --------- | -------------------- | -------------- |
+| Tiny-RISC | 5523.191700          | 5082           |
+| SERV      | 2658.584500          | 999999         |
+
+#### Timing 
+| Design    | Pre-APR | Post-APR |
+| --------- | ------- | -------- |
+| Tiny-RISC | 2.4748  | 2.5097   |
+| SERV      | 999999  | 999999   |
+
+#### Performance
+| Design    | IPC | Fmax | Normalized Perf
+| --------- | ------- | -------- | -------- |
+| Tiny-RISC | 999999  | 999999   | 999999 |
+| SERV      | 999999  | 999999   | 999999 |
+
 
 Compare to:
 * [SweRV Core EL2](https://github.com/chipsalliance/Cores-VeeR-EL2)
-* [PicoRV32](https://github.com/YosysHQ/picorv32)
+* ~~[PicoRV32](https://github.com/YosysHQ/picorv32)~~
 
-## Dependencies:
+## Tools / Dependencies:
 #### RTL simulation:
 * [python3](https://www.python.org/downloads/)
 * [cocotb](https://www.cocotb.org/)
@@ -31,10 +42,9 @@ Compare to:
     - riscv32-unknown-elf-objdump
 #### Area/Timing modeling:
 * [Yosys](https://github.com/YosysHQ/yosys)
-* [OpenROAD](https://github.com/The-OpenROAD-Project/OpenROAD)
-* [OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA)
+* [Synopsis Design Compiler](https://www.synopsys.com/implementation-and-signoff/rtl-synthesis-test/design-compiler.html)
+* [Cadence Innovus](https://www.cadence.com/en_US/home/tools/digital-design-and-signoff/soc-implementation-and-floorplanning/innovus-implementation-system.html)
 * [FreePDK45 StdCells](https://vlsiarch.ecen.okstate.edu/flows/FreePDK_SRC/osu_freepdk_1.0/lib/files/)
-
 
 ## Verification Procedure
 
@@ -63,3 +73,4 @@ https://github.com/ucb-bar/riscv-benchmarks
 4. The resulting netlist can be found at `synthesis/output/synth_netlist.v`
 
 ## PnR
+

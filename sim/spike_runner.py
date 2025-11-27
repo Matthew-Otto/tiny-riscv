@@ -10,7 +10,7 @@ class SpikeRunner:
         self.first_run = True
         self.master_fd, slave_fd = pty.openpty()
         self.process = subprocess.Popen(
-            ["spike", "-d", "--isa=RV32I", elf_file],           # the command
+            ["spike", "-d", "--isa=RV32I", elf_file],
             stdin=slave_fd,
             stdout=slave_fd,
             stderr=slave_fd,
