@@ -38,26 +38,28 @@ Compare to:
 
 ## Verification Procedure
 
-TODO:\
-run test programs in benchmarks in `benchmarks/bin`with spike:
-`spike -d --isa=RV32I bin/towers.elf`
-run the whole program:
-`r`
-record last PC
-rerun spike and execute program with:
-`untiln pc 0 <lastPC>`
-then dump all registers
-`reg 0`
+Test programs are written in C and compiled for RV32i.\
+The programs are loaded into a Python testbench.\
+Cocotb and Verilator are used to simulate the RTL.\
+The programs are also simulated using Spike.\
+After every instruction the architectural state is compared between the two to verify correctness.
+
+To run simulation, cd to the `sim` directory and run `make verify`
+
+
+## Benchmarks
+
+https://github.com/ucb-bar/riscv-benchmarks
 
 
 ## Synthesis
 1. Install Yosys
 2. Download `gscl45nm.lib` from https://vlsiarch.ecen.okstate.edu/flows/FreePDK_SRC/osu_freepdk_1.0/lib/files/ and place it in synthesis/lib
 3. Run Yosys in the synthesis directory:
-    - ``` 
-      $ cd synthesis
-      $ yosys synth.ys
-      ```
+    ``` 
+    $ cd synthesis
+    $ yosys synth.ys
+    ```
 4. The resulting netlist can be found at `synthesis/output/synth_netlist.v`
 
 ## PnR

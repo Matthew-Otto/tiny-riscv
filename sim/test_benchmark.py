@@ -11,7 +11,7 @@ from cocotb.clock import Clock
 TEST_DIR = "../benchmarks/bin"
 test_files = [os.path.join(TEST_DIR,f) for f in os.listdir(TEST_DIR) if f.endswith(".hex") and os.path.isfile(os.path.join(TEST_DIR, f))]
 
-max_run_cycles = 2000
+max_run_cycles = 10000
 
 @cocotb.test()
 async def benchmark_core(dut):
@@ -32,13 +32,17 @@ async def benchmark_core(dut):
                 dut._log.info("Program halted (_tohost contains nonzero value)")
                 print(f"Program halted after {cycle} cycles")
                 break
-            if dut.i_rd_data.value == EBREAK:
-                dut._log.info("Program halted (EBREAK detected)")
-                print(f"Program halted after {cycle} cycles")
-                break
         else:
             dut._log.error(f"Error: program did not terminate within {max_run_cycles} cycles.")
 
         imem.cancel()
         dmem.cancel()
+
+        cycles = int(dut.cycle_count.value)
+        instr = int(dut.exec_count.value)
+
+        print(f"Performance results for {app}")
+        print(f"Total instructions: {instr}")
+        print(f"Total cycles: {cycles}")
+        print(f"IPC : {instr / cycles}")
 

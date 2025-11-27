@@ -19,10 +19,10 @@ include $(shell cocotb-config --makefiles)/Makefile.sim
 
 verify:
 	$(MAKE) COCOTB_TEST_MODULES=test_verify -j10
+	surfer -s state.surf.ron dump.fst
 
 benchmark:
 	$(MAKE) COCOTB_TEST_MODULES=test_benchmark -j10
-	surfer -s state.surf.ron dump.fst
 
 
 verify_adder:

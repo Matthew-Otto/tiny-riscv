@@ -1,0 +1,35 @@
+
+28. Printing statistics.
+
+=== serv_top ===
+
+   Number of wires:                639
+   Number of wire bits:            931
+   Number of public wires:          59
+   Number of public wire bits:     351
+   Number of ports:                 33
+   Number of port bits:            302
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                738
+     AND2X1                         30
+     AOI21X1                        25
+     AOI22X1                        45
+     DFFPOSX1                      149
+     INVX1                         102
+     MUX2X1                         81
+     NAND2X1                        98
+     NAND3X1                        94
+     NOR2X1                         23
+     NOR3X1                         10
+     OAI21X1                        56
+     OR2X1                          12
+     XNOR2X1                         6
+     XOR2X1                          7
+
+   Chip area for module '\serv_top': 2658.584500
+     of which used for sequential elements: 1188.736900 (44.71%)
+
+
+   NAND2 area equivalent: 1416.25 GE

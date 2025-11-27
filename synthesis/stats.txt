@@ -3,8 +3,8 @@
 
 === core ===
 
-   Number of wires:               1638
-   Number of wire bits:           1969
+   Number of wires:               1748
+   Number of wire bits:           2079
    Number of public wires:          22
    Number of public wire bits:     353
    Number of ports:                 15
@@ -12,26 +12,26 @@
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
-   Number of cells:               1795
-     AND2X1                         64
-     AOI21X1                       117
-     AOI22X1                        62
+   Number of cells:               1905
+     AND2X1                         81
+     AOI21X1                       114
+     AOI22X1                        59
      DFFPOSX1                        8
      DFFSR                          66
-     INVX1                         220
-     MUX2X1                        283
-     NAND2X1                       328
-     NAND3X1                       104
-     NOR2X1                         75
-     NOR3X1                         29
-     OAI21X1                       227
-     OR2X1                         106
-     XNOR2X1                        83
-     XOR2X1                         23
+     INVX1                         219
+     MUX2X1                        267
+     NAND2X1                       395
+     NAND3X1                       156
+     NOR2X1                         53
+     NOR3X1                         30
+     OAI21X1                       251
+     OR2X1                          97
+     XNOR2X1                        79
+     XOR2X1                         30
 
-   Chip area for module '\core': 5303.559300
-     of which used for sequential elements: 745.248400 (14.05%)
+   Chip area for module '\core': 5523.191700
+     of which used for sequential elements: 745.248400 (13.49%)
 
 
-   NAND2 area equivalent: 2825.25 GE
+   NAND2 area equivalent: 2942.25 GE
 
