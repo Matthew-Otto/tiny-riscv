@@ -8,19 +8,19 @@ A minimum-area RV32E implementation
 | Design    | Post-synthesis (µm²) | Post-APR (µm²) |
 | --------- | -------------------- | -------------- |
 | Tiny-RISC | 5523.191700          | 5082           |
-| SERV      | 2658.584500          | 999999         |
+| [SERV](https://github.com/chipsalliance/Cores-VeeR-EL2) | 2658.584500          | 999999         |
 
 #### Timing 
 | Design    | Pre-APR | Post-APR |
 | --------- | ------- | -------- |
 | Tiny-RISC | 2.4748  | 2.5097   |
-| SERV      | 999999  | 999999   |
+| [SERV](https://github.com/chipsalliance/Cores-VeeR-EL2) | 999999  | 999999   |
 
 #### Performance
 | Design    | IPC | Fmax | Normalized Perf
 | --------- | ------- | -------- | -------- |
 | Tiny-RISC | 999999  | 999999   | 999999 |
-| SERV      | 999999  | 999999   | 999999 |
+| [SERV](https://github.com/chipsalliance/Cores-VeeR-EL2) | 999999  | 999999   | 999999 |
 
 
 Compare to:
@@ -66,13 +66,12 @@ TODO: make a plot of results for all apps
 
 ## Synthesis
 1. Install Yosys
-2. Download `gscl45nm.lib` from https://vlsiarch.ecen.okstate.edu/flows/FreePDK_SRC/osu_freepdk_1.0/lib/files/ and place it in synthesis/lib
-3. Run Yosys in the synthesis directory:
+2. Run Yosys in the synthesis directory:
     ``` 
     $ cd synthesis
     $ yosys synth.ys
     ```
-4. The resulting netlist can be found at `synthesis/output/synth_netlist.v`
+3. The resulting netlist can be found at `synthesis/output/synth_netlist.v`
 
 ## PnR
 
