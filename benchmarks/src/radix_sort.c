@@ -1,17 +1,3 @@
-// See LICENSE for license details.
-
-//**************************************************************************
-// Quicksort benchmark
-//--------------------------------------------------------------------------
-//
-// This benchmark uses quicksort to sort an array of integers. The
-// implementation is largely adapted from Numerical Recipes for C. The
-// input data (and reference data) should be generated using the
-// qsort_gendata.pl perl script and dumped to a file named
-// dataset1.h The smips-gcc toolchain does not support system calls
-// so printf's can only be used on a host system, not on the smips
-// processor simulator itself. You should not change anything except
-// the HOST_DEBUG and PREALLOCATE macros for your timing run.
 
 #include <string.h>
 #include <stdint.h>
@@ -62,22 +48,27 @@ void sort(size_t n, type* arrIn, type* scratchIn)
       type a1 = p[1];
       type a2 = p[2];
       type a3 = p[3];
-      __sync_fetch_and_add(&bucket[(a0 >> log_exp) % BASE], 1);
-      __sync_fetch_and_add(&bucket[(a1 >> log_exp) % BASE], 1);
-      __sync_fetch_and_add(&bucket[(a2 >> log_exp) % BASE], 1);
-      __sync_fetch_and_add(&bucket[(a3 >> log_exp) % BASE], 1);
+      bucket[(a0 >> log_exp) % BASE]++;
+      bucket[(a1 >> log_exp) % BASE]++;
+      bucket[(a2 >> log_exp) % BASE]++;
+      bucket[(a3 >> log_exp) % BASE]++;
     }
     for ( ; p < &arr[n]; p++)
       bucket[(*p >> log_exp) % BASE]++;
 
     size_t prev = bucket[0];
-    prev += __sync_fetch_and_add(&bucket[1], prev);
+    size_t old = bucket[1];
+    bucket[1] += prev;
+    prev += old;
     for (b = &bucket[2]; b < bucket + BASE; b += 2)
     {
-      prev += __sync_fetch_and_add(&b[0], prev);
-      prev += __sync_fetch_and_add(&b[1], prev);
+      size_t old_b = b[0];
+      b[0] += prev;
+      prev += old_b;
+      old_b = b[1];
+      b[1] += prev;
+      prev += old_b;
     }
-    static_assert(BASE % 2 == 0);
 
     for (p = &arr[n-1]; p >= &arr[3]; p -= 4)
     {
@@ -89,10 +80,10 @@ void sort(size_t n, type* arrIn, type* scratchIn)
       size_t* pb1 = &bucket[(a1 >> log_exp) % BASE];
       size_t* pb2 = &bucket[(a2 >> log_exp) % BASE];
       size_t* pb3 = &bucket[(a3 >> log_exp) % BASE];
-      type* s0 = scratch + __sync_fetch_and_add(pb0, -1);
-      type* s1 = scratch + __sync_fetch_and_add(pb1, -1);
-      type* s2 = scratch + __sync_fetch_and_add(pb2, -1);
-      type* s3 = scratch + __sync_fetch_and_add(pb3, -1);
+      type* s0 = scratch + (*pb0)--;
+      type* s1 = scratch + (*pb1)--;
+      type* s2 = scratch + (*pb2)--;
+      type* s3 = scratch + (*pb3)--;
       s0[-1] = a0;
       s1[-1] = a1;
       s2[-1] = a2;
@@ -134,13 +125,6 @@ int main( int argc, char* argv[] )
 {
   static type scratch[DATA_SIZE];
   // Output the input array
-
-#if PREALLOCATE
-  // If needed we preallocate everything in the caches
-  sort(DATA_SIZE, verify_data, scratch);
-  if (verify(DATA_SIZE, input_data, input_data))
-    return 1;
-#endif
 
   // Do the sort
   sort(DATA_SIZE, input_data, scratch);

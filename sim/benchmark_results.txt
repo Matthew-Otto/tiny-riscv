@@ -1,0 +1,25 @@
+Results for ../benchmarks/bin/towers.hex
+Total instructions: 3726
+Total cycles: 4469
+IPC : 0.8337435667934661
+
+Results for ../benchmarks/bin/dhrystone.hex
+Total instructions: 28
+Total cycles: 33
+IPC : 0.8484848484848485
+
+Results for ../benchmarks/bin/rsort.hex
+Total instructions: 182404
+Total cycles: 216197
+IPC : 0.8436934832583246
+
+Results for ../benchmarks/bin/multiply.hex
+Total instructions: 27020
+Total cycles: 30472
+IPC : 0.8867156734050932
+
+Results for ../benchmarks/bin/qsort.hex
+Total instructions: 134481
+Total cycles: 185949
+IPC : 0.7232144297629995
+

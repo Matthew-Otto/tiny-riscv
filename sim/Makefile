@@ -13,23 +13,16 @@ EXTRA_ARGS += -I../RTL
 COMPILE_ARGS += -Wno-SELRANGE -Wno-WIDTH
 # waveforms
 EXTRA_ARGS += --trace --trace-fst --trace-threads 2 --trace-structs
-EXTRA_ARGS += --threads 2
+EXTRA_ARGS += --threads 8
 
 include $(shell cocotb-config --makefiles)/Makefile.sim
 
 verify:
 	$(MAKE) COCOTB_TEST_MODULES=test_verify -j10
-	surfer -s state.surf.ron dump.fst
+	#surfer -s state.surf.ron dump.fst
 
 benchmark:
 	$(MAKE) COCOTB_TEST_MODULES=test_benchmark -j10
-
-
-verify_adder:
-	$(MAKE) DUT=ripple_carry_adder COCOTB_TEST_MODULES=test_verify_adder -j10
-
-verify_shifter:
-	$(MAKE) DUT=shifter COCOTB_TEST_MODULES=test_verify_shifter -j10
 
 waves:
 	@test -f dump.fst || (echo "Error: dump.fst not found. Simulate a target first." && exit 1)
@@ -38,3 +31,4 @@ waves:
 clean::
 	rm -rf __pycache__
 	rm -f results.xml
+	rm -f benchmark_results.txt

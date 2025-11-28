@@ -1,8 +1,10 @@
 # tiny-riscv
-A minimum-area RV32E implementation
+A minimum-area RV32I implementation
 
 
 ## Results:
+
+Compare to [SweRV Core EL2](https://github.com/chipsalliance/)
 
 #### Area
 | Design    | Post-synthesis (µm²) | Post-APR (µm²) |
@@ -22,10 +24,6 @@ A minimum-area RV32E implementation
 | Tiny-RISC | 999999  | 999999   | 999999 |
 | [SERV](https://github.com/chipsalliance/Cores-VeeR-EL2) | 999999  | 999999   | 999999 |
 
-
-Compare to:
-* [SweRV Core EL2](https://github.com/chipsalliance/Cores-VeeR-EL2)
-* ~~[PicoRV32](https://github.com/YosysHQ/picorv32)~~
 
 ## Tools / Dependencies:
 #### RTL simulation:

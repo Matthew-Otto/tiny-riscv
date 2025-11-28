@@ -19,6 +19,9 @@ class SpikeRunner:
         os.close(slave_fd)
         self.read_until(": ") # clear initial prompt
 
+    def kill(self):
+        self.process.kill()
+
     def read_until(self, delimiter):
         buf = ""
         while True:
@@ -60,13 +63,3 @@ class SpikeRunner:
 
     def regs(self):
         return self.regfile
-
-
-
-if __name__ == "__main__":
-    spike = SpikeRunner("../benchmarks/bin/towers.elf")
-    while True:
-        input()
-        print([hex(v) for v in spike.step()])
-        print(spike.regs())
-

@@ -9,7 +9,7 @@ OBJDUMP = $(RISCV_PREFIX)objdump
 ARCH = rv32i
 ABI  = ilp32
 
-SRC_DIR = .
+SRC_DIR = ./src
 BIN_DIR = bin
 
 LINKER_SCRIPT = spike.ld

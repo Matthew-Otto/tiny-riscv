@@ -13,11 +13,12 @@ TEST_DIR = "../benchmarks/bin"
 test_files = [os.path.join(TEST_DIR,f) for f in os.listdir(TEST_DIR) if f.endswith(".hex") and os.path.isfile(os.path.join(TEST_DIR, f))]
 elf_files = [e.replace(".hex", ".elf") for e in test_files]
 
-max_run_cycles = 10000
+tohost = 0x90000000
+max_run_cycles = 1000000
 
 @cocotb.test()
 async def test_core_regression(dut):
-    dut._log.setLevel("DEBUG")
+    #dut._log.setLevel("DEBUG")
 
     assert test_files, "Error: compile a test program before running simulation"
     for e in elf_files:
@@ -25,11 +26,10 @@ async def test_core_regression(dut):
             assert 0, f"Error: elf file {e} does not exist"
 
     for hex_f, elf_f in zip(test_files, elf_files):
-        print(f"hex path: {hex}")
-        print(f"elf path: {elf_f}")
-        print("\n\n\n\n\n")
+        dut._log.info(f"Running test: {elf_f}")
+
         ref_sim = SpikeRunner(elf_f)
-        mem, tohost = parse_verilog_hex(hex_f)
+        mem = parse_verilog_hex(hex_f)
 
         cocotb.start_soon(Clock(dut.clk, 32, unit="ps").start())
         await reset(dut)
@@ -68,12 +68,13 @@ async def test_core_regression(dut):
             
             if read_word(mem, tohost):
                 dut._log.info("Program halted (_tohost contains nonzero value)")
-                print(f"Program halted after {cycle} cycles")
+                dut._log.info(f"Program halted after {cycle} cycles\n\n\n")
                 break
             
         else:
-            dut._log.error(f"Error: program did not terminate within {max_run_cycles} cycles.")
+            dut._log.error(f"Error: program did not terminate within {max_run_cycles} cycles.\n\n\n")
 
         imem.cancel()
         dmem.cancel()
+        ref_sim.kill()
 

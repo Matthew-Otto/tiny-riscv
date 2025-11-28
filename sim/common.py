@@ -9,8 +9,6 @@ EBREAK = 0x00100073  # EBREAK encoding
 def parse_verilog_hex(filename):
     memory = {}
     address = 0
-    section_idx = 0
-    tohost = 0
 
     with open(filename, 'r') as f:
         for line in f:
@@ -18,17 +16,14 @@ def parse_verilog_hex(filename):
             if not line or line.startswith('//'):
                 continue
             if line.startswith('@'):
-                section_idx += 1
                 address = int(line[1:], 16)
-                if section_idx == 2:
-                    tohost = address
             else:
                 line_bytes = bytes.fromhex(line)
                 for byte in line_bytes:
                     memory[address] = int(byte)
                     address += 1
 
-    return (memory,tohost)
+    return memory
 
 
 async def reset(dut):
@@ -85,12 +80,12 @@ async def sim_data_mem(dut, memory):
             data |= int(dut.d_wr_data.value[31:24]) << 24
             width = 32
         if dut.d_we.value:
-            dut._log.info(f"{int(dut.cycle_count.value)}: WRITE mem: {width} bits: addr=0x{wr_addr:08X} data=0x{data:08X}")
+            dut._log.debug(f"{int(dut.cycle_count.value)}: WRITE mem: {width} bits: addr=0x{wr_addr:08X} data=0x{data:08X}")
         
         # read
         if dut.core.LSU_i.is_load_op.value:
             rd_addr = int(dut.d_addr.value)
             data = read_word(memory, rd_addr)
             dut.d_rd_data.value = data
-            dut._log.info(f"{int(dut.cycle_count.value)}: READ mem: addr=0x{rd_addr:08X} data=0x{data:08X}")
+            dut._log.debug(f"{int(dut.cycle_count.value)}: READ mem: addr=0x{rd_addr:08X} data=0x{data:08X}")
         
