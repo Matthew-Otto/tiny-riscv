@@ -21,8 +21,6 @@ module core (
     input  logic [31:0] rs2_data
 );
 
-    logic [3:0] rd_mux;
-
     // control
     logic [31:0] PC;     // current PC
     logic [31:0] PC_p4;  // next PC

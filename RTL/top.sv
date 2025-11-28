@@ -27,7 +27,7 @@ module top (
             cycle_count <= cycle_count + 1;
         
         if (rst)
-            exec_count <= 6; // For spike alignment
+            exec_count <= 0;
         else if (~stall_execution) 
             exec_count <= exec_count + 1;
     end
@@ -60,6 +60,7 @@ module top (
 
     regfile regfile_i (
         .clk,
+        .rst,
         .we,
         .rd,
         .rd_data,

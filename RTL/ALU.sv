@@ -73,7 +73,7 @@ module ALU (
     shifter shifter_i (
         .sr(shift_right),
         .arith(shift_arith),
-        .shamt(rs2_data[4:0]),
+        .shamt(b_mux[4:0]),
         .data_in(rs1_data),
         .data_out(shifter_out)
     );
