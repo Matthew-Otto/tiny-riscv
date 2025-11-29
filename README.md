@@ -4,25 +4,25 @@ A minimum-area RV32I implementation
 
 ## Results:
 
-Compared to [SERV](https://github.com/olofk/serv) "the world's smallest RISC-V CPU".
+Compared to [SERV](https://github.com/olofk/serv) - "the world's smallest RISC-V CPU."
 
 #### Area
 | Design    | Post-synthesis (µm²) | Post-APR (µm²) |
 | --------- | -------------------- | -------------- |
-| Tiny-RISC | 5373.954300          | 5082           |
-| [SERV](https://github.com/olofk/serv) | 2658.584500          | 2387.7984         |
+| tiny-riscv | 5373.954300          | 5082           |
+| SERV | 2658.584500          | 2387.7984         |
 
 #### Timing 
 | Design    | Pre-APR | Post-APR |
 | --------- | ------- | -------- |
-| Tiny-RISC | 2.4748  | 2.5097   |
-| [SERV](https://github.com/olofk/serv) | 999999  | 999999   |
+| tiny-riscv | 2.4748  | 2.5097   |
+| SERV | 999999  | 999999   |
 
 #### Performance
 | Design    | IPC | Fmax | Normalized Perf
 | --------- | ------- | -------- | -------- |
-| Tiny-RISC | 0.8355  | 999999   | 999999 |
-| [SERV](https://github.com/olofk/serv) | 999999  | 999999   | 999999 |
+| tiny-riscv | 0.8355  | 999999   | 999999 |
+| SERV | 999999*  | 999999   | 999999 |
 
 
 ## Tools / Dependencies:
@@ -57,10 +57,17 @@ To run simulation, cd to the `sim` directory and run `make verify`
 
 
 ## Benchmarks
-
-https://github.com/ucb-bar/riscv-benchmarks
-
-TODO: make a plot of results for all apps
+1. Compile benchmarks
+    ```
+    $ cd benchmarks
+    $ make
+    ```
+2. Run cocotb/verilator in sim directory
+    ```
+    $ cd sim
+    $ make benchmark
+    ```
+3. Results can be found in `sim/benchmark_results.txt`
 
 
 ## Synthesis
