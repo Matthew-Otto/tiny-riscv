@@ -1,0 +1,352 @@
+
+Cadence Innovus(TM) Implementation System.
+Copyright 2017 Cadence Design Systems, Inc. All rights reserved worldwide.
+
+Version:	v17.11-s080_1, built Fri Aug 4 11:13:11 PDT 2017
+Options:	
+Date:		Sat Nov 29 00:33:13 2025
+Host:		mario.ece.utexas.edu (x86_64 w/Linux 4.18.0-553.82.1.el8_10.x86_64) (16cores*64cpus*Intel(R) Xeon(R) Gold 5218 CPU @ 2.30GHz 22528KB)
+OS:		Red Hat Enterprise Linux release 8.10 (Ootpa)
+
+License:
+		invs	Innovus Implementation System	17.1	checkout succeeded
+		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+**ERROR: (IMPOAX-142):	Could not open shared library libinnovusoax22.so : /usr/local/packages/cadence_2017/innovus171/tools.lnx86/lib/64bit/libstdc++.so.6: version `CXXABI_1.3.8' not found (required by /usr/local/packages/cadence_2022/INNOVUS211/oa_v22.60.087/lib/linux_rhel60_64/opt/liboaDesign.so)
+
+**ERROR: (IMPOAX-142):	Could not open shared library libcdsSkillPcell.so : /usr/local/packages/cadence_2017/innovus171/tools.lnx86/lib/64bit/libcdsSkillPcell.so: undefined symbol: _ZTIN12OpenAccess_413oaFSComponentE
+
+**ERROR: (IMPOAX-142):	OA features will be disabled in this session.
+
+Change the soft stacksize limit to 0.2%RAM (771 mbytes). Set global soft_stack_size_limit to change the value.
+
+**INFO:  MMMC transition support version v31-84 
+
+<CMD> set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+<CMD> suppressMessage ENCEXT-2799
+<CMD> getVersion
+<CMD> getDrawView
+<CMD> loadWorkspace -name Physical
+<CMD> win
+<CMD> encMessage warning 0
+Suppress "**WARN ..." messages.
+<CMD> encMessage debug 0
+<CMD> encMessage info 0
+**WARN: (GLOBAL-100):	Global 'timing_enable_default_delay_arc' has become obsolete. It will be removed in the next release.
+**ERROR: (IMPOAX-820):	The OA features are disabled in the current session of Innovus because the oax shared library could not be loaded properly. This could be because your installation was not properly configured. To enable OA features, exit the current session and re-launch Innovus either after fixing your installation by running the Configure Installation phase, or after setting the OA_HOME variable to point to a proper OA installation. Check the "OpenAccess Installation and Configuration Guide" manual for more information.
+
+**ERROR: (IMPOAX-850):	oaxCreateCdsLibArray command cannot be run as OA features are disabled in this session.
+**WARN: (IMPLF-155):	ViaRule only supports routing/cut layer, but poly layer found for viaRule 'M1_POLY', 
+*** End library_loading (cpu=0.00min, real=0.00min, mem=0.0M, fe_cpu=0.17min, fe_real=0.67min, fe_mem=517.9M) ***
+*** Netlist is unique.
+Loading preference file /home/ecelrc/students/cc75925/tiny-riscv/baseline/apr_run1/serv_top.dat/gui.pref.tcl ...
+**WARN: (IMPTCM-77):	Option "-modulePlan" for command setPlaceMode is obsolete and will be removed in a future release. The obsolete option still works in this release but to avoid this warning and to ensure compatibility with future releases, remove the obsolete option from your script.
+**WARN: (IMPOPT-6036):	-useCells list is empty.
+**WARN: (GLOBAL-100):	Global 'timing_enable_default_delay_arc' has become obsolete. It will be removed in the next release.
+**WARN: (IMPSYT-709):	The next major release of EDI will use the
+Multi-Mode/Multi-Corner (MMMC) architecture exclusively for configuration and
+control of some software features. The current configuration will continue to
+work in this release. But for compatibility with the future releases you
+should migrate your design to an MMMC style configuration. You can refer to
+the What's New document for this release for additional information on the
+11.1 migration to MMMC. In addition, you can run restoreDesign with the
+-showEolWarnings option to identify specific command and configuration
+options that will no longer be supported.
+
+
+INFO : The design has been initialized into physical-only mode. In this mode,
+       you will not have access to any functionality requiring the activation of
+       the timing or extraction systems. For additional functionality, you will need
+       to either restart the software, or issue a freeDesign command to reset the software.
+
+**WARN: (IMPTCM-77):	Option "-drouteStartIteration" for command getNanoRouteMode is obsolete and will be removed in a future release. The obsolete option still works in this release but to avoid this warning and to ensure compatibility with future releases, remove the obsolete option from your script.
+**WARN: (IMPTCM-77):	Option "-drouteStartIteration" for command getNanoRouteMode is obsolete and will be removed in a future release. The obsolete option still works in this release but to avoid this warning and to ensure compatibility with future releases, remove the obsolete option from your script.
+<CMD> setNanoRouteMode -quiet -drouteStartIteration default
+**WARN: (IMPTCM-77):	Option "-drouteStartIteration" for command setNanoRouteMode is obsolete and will be removed in a future release. The obsolete option still works in this release but to avoid this warning and to ensure compatibility with future releases, remove the obsolete option from your script.
+<CMD> setNanoRouteMode -quiet -routeTopRoutingLayer default
+<CMD> setNanoRouteMode -quiet -routeBottomRoutingLayer default
+<CMD> setNanoRouteMode -quiet -drouteEndIteration default
+**WARN: (IMPTCM-77):	Option "-routeEcoOnlyInLayers" for command getNanoRouteMode is obsolete and will be removed in a future release. The obsolete option still works in this release but to avoid this warning and to ensure compatibility with future releases, remove the obsolete option from your script.
+<CMD> setNanoRouteMode -quiet -routeWithTimingDriven false
+<CMD> setNanoRouteMode -quiet -routeWithSiDriven false
+Running Native NanoRoute ...
+<CMD> routeDesign -globalDetail
+#routeDesign: cpu time = 00:00:00, elapsed time = 00:00:00, memory = 753.09 (MB), peak = 753.09 (MB)
+#WARNING (NRIG-96) Selected single pass global detail route "-globalDetail". Clock eco and post optimizations will not be run. See "man NRIG-96" for more details.
+#**INFO: setDesignMode -flowEffort standard
+#**INFO: mulit-cut via swapping is disabled by user.
+#**INFO: All auto set options tuned by routeDesign will be restored to their original settings on command completion.
+#**INFO: auto set of routeReserveSpaceForMultiCut to true
+#**INFO: auto set of routeConcurrentMinimizeViaCountEffort to high
+**Info: (IMPSP-307): Design contains fractional 20 cells.
+Estimated cell power/ground rail width = 0.540 um
+Begin checking placement ... (start mem=756.9M, init mem=756.9M)
+*info: Placed = 738           
+*info: Unplaced = 0           
+Placement Density:64.96%(2388/3676)
+Placement Density (including fixed std cells):64.96%(2388/3676)
+Finished checkPlace (cpu: total=0:00:00.0, vio checks=0:00:00.0; mem=756.9M)
+#**INFO: honoring user setting for routeWithTimingDriven set to false
+#**INFO: honoring user setting for routeWithSiDriven set to false
+**WARN: (IMPCK-8086):	The command changeUseClockNetStatus is obsolete and will be removed in the next release. This command still works in this release, but by the next release you must transition to the CCOpt-based CTS flow.
+
+changeUseClockNetStatus Option :  -noFixedNetWires 
+*** Changed status on (0) nets in Clock.
+*** End changeUseClockNetStatus (cpu=0:00:00.0, real=0:00:00.0, mem=756.9M) ***
+
+globalDetailRoute
+
+#setNanoRouteMode -droutePostRouteSpreadWire "1"
+#setNanoRouteMode -routeConcurrentMinimizeViaCountEffort "high"
+#setNanoRouteMode -routeReserveSpaceForMultiCut true
+#setNanoRouteMode -routeWithSiDriven false
+#setNanoRouteMode -routeWithTimingDriven false
+#Start globalDetailRoute on Sat Nov 29 00:34:07 2025
+#
+#Warning: design is detail-routed. Trial route is skipped!
+#WARNING (NRDB-2005) SPECIAL_NET 1'b1 has special wires but no definitions for instance pins or top level pins. This will cause routability problems later.
+#WARNING (NRDB-2005) SPECIAL_NET 1'b0 has special wires but no definitions for instance pins or top level pins. This will cause routability problems later.
+#WARNING (NRDB-976) The TRACK STEP 0.2800 for preferred direction tracks is smaller than the PITCH 0.2850 for LAYER metal4. This will cause routability problems for NanoRoute.
+#WARNING (NRDB-976) The TRACK STEP 0.2800 for preferred direction tracks is smaller than the PITCH 0.2850 for LAYER metal6. This will cause routability problems for NanoRoute.
+#WARNING (NRDB-976) The TRACK STEP 0.8400 for preferred direction tracks is smaller than the PITCH 0.8550 for LAYER metal8. This will cause routability problems for NanoRoute.
+#WARNING (NRDB-976) The TRACK STEP 1.6800 for preferred direction tracks is smaller than the PITCH 1.7100 for LAYER metal10. This will cause routability problems for NanoRoute.
+#NanoRoute Version 17.11-s080_1 NR170721-2155/17_11-UB
+#Start routing data preparation on Sat Nov 29 00:34:07 2025
+#
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal1 is not specified for width 0.0650.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal2 is not specified for width 0.0700.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal1 is not specified for width 0.0650.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal2 is not specified for width 0.0700.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal2 is not specified for width 0.0700.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal3 is not specified for width 0.0700.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal2 is not specified for width 0.0700.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal3 is not specified for width 0.0700.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal3 is not specified for width 0.0700.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal4 is not specified for width 0.1400.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal3 is not specified for width 0.0700.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal4 is not specified for width 0.1400.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal4 is not specified for width 0.1400.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal5 is not specified for width 0.1400.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal4 is not specified for width 0.1400.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal5 is not specified for width 0.1400.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal5 is not specified for width 0.1400.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal6 is not specified for width 0.1400.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal5 is not specified for width 0.1400.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal6 is not specified for width 0.1400.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal6 is not specified for width 0.1400.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal7 is not specified for width 0.4000.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal6 is not specified for width 0.1400.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal7 is not specified for width 0.4000.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal7 is not specified for width 0.4000.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal8 is not specified for width 0.4000.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal7 is not specified for width 0.4000.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal8 is not specified for width 0.4000.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal8 is not specified for width 0.4000.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal9 is not specified for width 0.8000.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal8 is not specified for width 0.4000.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal9 is not specified for width 0.8000.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal9 is not specified for width 0.8000.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal10 is not specified for width 0.8000.
+#WARNING (NRDB-2077) The below via enclosure for LAYER metal9 is not specified for width 0.8000.
+#WARNING (NRDB-2078) The above via enclosure for LAYER metal10 is not specified for width 0.8000.
+# metal1       H   Track-Pitch = 0.1900    Line-2-Via Pitch = 0.1300
+# metal2       V   Track-Pitch = 0.1900    Line-2-Via Pitch = 0.1450
+# metal3       H   Track-Pitch = 0.1900    Line-2-Via Pitch = 0.1400
+# metal4       V   Track-Pitch = 0.2800    Line-2-Via Pitch = 0.2800
+# metal5       H   Track-Pitch = 0.2850    Line-2-Via Pitch = 0.2800
+# metal6       V   Track-Pitch = 0.2800    Line-2-Via Pitch = 0.2800
+# metal7       H   Track-Pitch = 0.9500    Line-2-Via Pitch = 0.8000
+# metal8       V   Track-Pitch = 0.8400    Line-2-Via Pitch = 0.8000
+# metal9       H   Track-Pitch = 1.7100    Line-2-Via Pitch = 1.6000
+# metal10      V   Track-Pitch = 1.6800    Line-2-Via Pitch = 1.6000
+#Regenerating Ggrids automatically.
+#Auto generating G-grids with size=15 tracks, using layer metal3's pitch = 0.1900.
+#Using automatically generated G-grids.
+#Done routing data preparation.
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 770.14 (MB), peak = 802.86 (MB)
+#Merging special wires...
+#
+#Finished routing data preparation on Sat Nov 29 00:34:07 2025
+#
+#Cpu time = 00:00:00
+#Elapsed time = 00:00:00
+#Increased memory = 7.89 (MB)
+#Total memory = 770.48 (MB)
+#Peak memory = 802.86 (MB)
+#
+#
+#Start global routing on Sat Nov 29 00:34:07 2025
+#
+#WARNING (NRGR-22) Design is already detail routed.
+#Routing data preparation, pin analysis, global routing and track assignment statistics:
+#Cpu time = 00:00:00
+#Elapsed time = 00:00:00
+#Increased memory = 7.89 (MB)
+#Total memory = 770.48 (MB)
+#Peak memory = 802.86 (MB)
+#
+#Start Detail Routing..
+#start 1st optimization iteration ...
+#   number of violations = 0
+#cpu time = 00:00:00, elapsed time = 00:00:00, memory = 773.11 (MB), peak = 802.86 (MB)
+#Complete Detail Routing.
+#Total wire length = 18636 um.
+#Total half perimeter of net bounding box = 16035 um.
+#Total wire length on LAYER metal1 = 872 um.
+#Total wire length on LAYER metal2 = 8944 um.
+#Total wire length on LAYER metal3 = 7737 um.
+#Total wire length on LAYER metal4 = 516 um.
+#Total wire length on LAYER metal5 = 508 um.
+#Total wire length on LAYER metal6 = 25 um.
+#Total wire length on LAYER metal7 = 28 um.
+#Total wire length on LAYER metal8 = 2 um.
+#Total wire length on LAYER metal9 = 5 um.
+#Total wire length on LAYER metal10 = 0 um.
+#Total number of vias = 4938
+#Up-Via Summary (total 4938):
+#           
+#-----------------------
+# metal1           2581
+# metal2           2198
+# metal3             94
+# metal4             32
+# metal5             14
+# metal6             13
+# metal7              3
+# metal8              3
+#-----------------------
+#                  4938 
+#
+#Total number of DRC violations = 0
+#Cpu time = 00:00:00
+#Elapsed time = 00:00:00
+#Increased memory = 0.75 (MB)
+#Total memory = 771.24 (MB)
+#Peak memory = 802.86 (MB)
+#
+#Start Post Route wire spreading..
+#
+#Start DRC checking..
+#   number of violations = 0
+#cpu time = 00:00:01, elapsed time = 00:00:01, memory = 804.46 (MB), peak = 807.08 (MB)
+#CELL_VIEW serv_top,init has no DRC violation.
+#Total number of DRC violations = 0
+#
+#Start data preparation for wire spreading...
+#
+#Data preparation is done on Sat Nov 29 00:34:07 2025
+#
+#
+#Start Post Route Wire Spread.
+#Done with 195 horizontal wires in 1 hboxes and 26 vertical wires in 1 hboxes.
+#Complete Post Route Wire Spread.
+#
+#Total wire length = 18695 um.
+#Total half perimeter of net bounding box = 16035 um.
+#Total wire length on LAYER metal1 = 872 um.
+#Total wire length on LAYER metal2 = 8945 um.
+#Total wire length on LAYER metal3 = 7793 um.
+#Total wire length on LAYER metal4 = 516 um.
+#Total wire length on LAYER metal5 = 508 um.
+#Total wire length on LAYER metal6 = 25 um.
+#Total wire length on LAYER metal7 = 28 um.
+#Total wire length on LAYER metal8 = 2 um.
+#Total wire length on LAYER metal9 = 5 um.
+#Total wire length on LAYER metal10 = 0 um.
+#Total number of vias = 4938
+#Up-Via Summary (total 4938):
+#           
+#-----------------------
+# metal1           2581
+# metal2           2198
+# metal3             94
+# metal4             32
+# metal5             14
+# metal6             13
+# metal7              3
+# metal8              3
+#-----------------------
+#                  4938 
+#
+#
+#Start DRC checking..
+#   number of violations = 0
+#cpu time = 00:00:01, elapsed time = 00:00:01, memory = 804.61 (MB), peak = 807.08 (MB)
+#CELL_VIEW serv_top,init has no DRC violation.
+#Total number of DRC violations = 0
+#   number of violations = 0
+#cpu time = 00:00:01, elapsed time = 00:00:01, memory = 774.51 (MB), peak = 807.08 (MB)
+#CELL_VIEW serv_top,init has no DRC violation.
+#Total number of DRC violations = 0
+#Post Route wire spread is done.
+#Total wire length = 18695 um.
+#Total half perimeter of net bounding box = 16035 um.
+#Total wire length on LAYER metal1 = 872 um.
+#Total wire length on LAYER metal2 = 8945 um.
+#Total wire length on LAYER metal3 = 7793 um.
+#Total wire length on LAYER metal4 = 516 um.
+#Total wire length on LAYER metal5 = 508 um.
+#Total wire length on LAYER metal6 = 25 um.
+#Total wire length on LAYER metal7 = 28 um.
+#Total wire length on LAYER metal8 = 2 um.
+#Total wire length on LAYER metal9 = 5 um.
+#Total wire length on LAYER metal10 = 0 um.
+#Total number of vias = 4938
+#Up-Via Summary (total 4938):
+#           
+#-----------------------
+# metal1           2581
+# metal2           2198
+# metal3             94
+# metal4             32
+# metal5             14
+# metal6             13
+# metal7              3
+# metal8              3
+#-----------------------
+#                  4938 
+#
+#detailRoute Statistics:
+#Cpu time = 00:00:01
+#Elapsed time = 00:00:01
+#Increased memory = 1.91 (MB)
+#Total memory = 772.39 (MB)
+#Peak memory = 807.08 (MB)
+#
+#globalDetailRoute statistics:
+#Cpu time = 00:00:01
+#Elapsed time = 00:00:01
+#Increased memory = 25.41 (MB)
+#Total memory = 782.03 (MB)
+#Peak memory = 807.08 (MB)
+#Number of warnings = 43
+#Total number of warnings = 44
+#Number of fails = 0
+#Total number of fails = 0
+#Complete globalDetailRoute on Sat Nov 29 00:34:08 2025
+#
+#routeDesign: cpu time = 00:00:01, elapsed time = 00:00:01, memory = 782.03 (MB), peak = 807.08 (MB)
+
+*** Summary of all messages that are not suppressed in this session:
+Severity  ID               Count  Summary                                  
+WARNING   IMPCK-8086           1  The command %s is obsolete and will be r...
+*** Message Summary: 1 warning(s), 0 error(s)
+
+invalid command name "report_rea"
+<CMD> report_area
+invalid command name "getReportArea"
+**INFO (INTERRUPT): One more Ctrl-C to exit Innovus ...
+<CMD> report_area
+<CMD> report_area area_report.txt
+
+Usage: report_area [-help] [-depth <integer>] [-hierarchy_instance <string>]
+                   [-min_area <float>] [-min_count <integer>]
+                   [-out_file <string>]
+
+**ERROR: (IMPTCM-48):	"area_report.txt" is not a legal option for command "report_area". Either the current option or an option prior to it is not specified correctly.
+  
+<CMD> report_area -out_file area_report
+
+*** Memory Usage v#1 (Current mem = 782.707M, initial mem = 186.469M) ***
+*** Message Summary: 11 warning(s), 6 error(s)
+
+--- Ending "Innovus" (totcpu=0:00:24.0, real=0:03:34, mem=782.7M) ---
