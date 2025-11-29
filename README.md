@@ -4,7 +4,7 @@ A minimum-area RV32I implementation
 
 ## Results:
 
-Compare to [SERV](https://github.com/olofk/serv)
+Compared to [SERV](https://github.com/olofk/serv) "the world's smallest RISC-V CPU".
 
 #### Area
 | Design    | Post-synthesis (µm²) | Post-APR (µm²) |
