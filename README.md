@@ -7,23 +7,28 @@ A minimum-area RV32I implementation
 Compared to [SERV](https://github.com/olofk/serv) - "the world's smallest RISC-V CPU."
 
 #### Area
-| Design    | Post-synthesis (µm²) | Post-APR (µm²) |
+| Design    | Post-synthesis | Post-APR |
 | --------- | -------------------- | -------------- |
-| tiny-riscv | 5373.954300          | 5082           |
-| SERV | 2658.584500          | 2387.7984         |
+| tiny-riscv | 5373.9543 µm² | 5166.0544 µm² |
+| SERV | 2658.5845 µm² | 2387.7984 µm² |
+
+2.16 times larger
 
 #### Timing 
-| Design    | Pre-APR | Post-APR |
-| --------- | ------- | -------- |
-| tiny-riscv | 2.4748  | 2.5097   |
-| SERV | 999999  | 999999   |
+| Design    | Pre-APR | Post-APR | Fmax |
+| --------- | ------- | -------- | ---- |
+| tiny-riscv | 2.4748 ns | 2.5097 ns | 398.5 MHz |
+| SERV | 0.7163 ns | 0.7377 ns | 1355 MHz |
+
+3.40 times lower Fmax
 
 #### Performance
 | Design    | IPC | Fmax | Normalized Perf
 | --------- | ------- | -------- | -------- |
-| tiny-riscv | 0.8355  | 999999   | 999999 |
-| SERV | 999999*  | 999999   | 999999 |
+| tiny-riscv | 0.8355  | 398.5 MHz | 332.9 MIPS |
+| SERV | 0.0261*  | 1355 MHz | 35.38 MIPS |
 
+\* This value is an estimate produced by dividing tiny-riscv IPC by 32. This is a very conservative estimate. SERV IPC is lower in practice.
 
 ## Tools / Dependencies:
 #### RTL simulation:
