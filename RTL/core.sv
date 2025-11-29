@@ -168,8 +168,12 @@ module core (
 
     assign rd = ld_valid ? ld_rd : dec_rd;
 
-    assign rd_data = ld_valid ? ld_rd_data
-                   : is_jump_op ? PC_p4
-                   : alu_rd_data;
+    always_comb begin
+        casez ({ld_valid,is_jump_op})
+            2'b1? : rd_data = ld_rd_data;
+            2'b01 : rd_data = PC_p4;
+            default: rd_data = alu_rd_data;
+        endcase
+    end
 
 endmodule : core

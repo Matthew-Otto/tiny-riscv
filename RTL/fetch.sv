@@ -21,14 +21,14 @@ module fetch (
     output logic        flush
 );
 
-    logic [31:0] next_PC;
+    logic [31:2] next_PC;
     logic        branch;
     logic [31:0] PC_addend1, PC_addend2;
-    logic [32:0] carry;
+    logic [32:2] carry;
 
     always_ff @(posedge clk, posedge rst) begin
         if (rst)               PC_f <= 32'h80000000;
-        else if (~fetch_stall) PC_f <= next_PC;
+        else if (~fetch_stall) PC_f <= {next_PC,2'b0};
     end        
     always_ff @(posedge clk, posedge rst) begin
         if (rst)               PC_e <= '0;
@@ -66,10 +66,10 @@ module fetch (
 
     
 
-    assign carry[0] = 1'b0;
+    assign carry[2] = 1'b0;
     genvar i;
     generate
-    for (i = 0; i < 32; i++) begin : rca
+    for (i = 2; i < 32; i++) begin : rca
         full_adder full_adder_i (
             .a(PC_addend1[i]),
             .b(PC_addend2[i]),

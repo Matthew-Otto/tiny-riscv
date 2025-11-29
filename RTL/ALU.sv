@@ -87,11 +87,10 @@ module ALU (
     always_comb begin : out_mux
         case (alu_op)
             ADDER_OP   : rd_data = adder_out;
-            //COMP_OP    : rd_data = {31'b0,comp_out};
-            SHIFTER_OP : rd_data = shifter_out;
             XOR_OP     : rd_data = xor_out;
             OR_OP      : rd_data = or_out;
             AND_OP     : rd_data = and_out;
+            SHIFTER_OP : rd_data = shifter_out;
             LUI_OP     : rd_data = imm_u;
             default    : rd_data = adder_out;
         endcase

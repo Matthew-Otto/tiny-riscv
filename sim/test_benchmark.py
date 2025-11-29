@@ -13,6 +13,7 @@ test_files = [os.path.join(TEST_DIR,f) for f in os.listdir(TEST_DIR) if f.endswi
 
 tohost = 0x90000000
 max_run_cycles = 1000000
+ipc_results = []
 
 @cocotb.test()
 async def benchmark_core(dut):
@@ -47,6 +48,11 @@ async def benchmark_core(dut):
             f.write(f"Results for {app}\n")
             f.write(f"Total instructions: {instr}\n")
             f.write(f"Total cycles: {cycles}\n")
-            f.write(f"IPC : {instr / cycles}\n")
+            f.write(f"IPC: {instr / cycles}\n")
             f.write("\n")
+            ipc_results.append(instr / cycles)
+        
+        ipc_avg = sum(ipc_results) / len(ipc_results)
+        f.write(f"Average:\n")
+        f.write(f"IPC: {ipc_avg}\n")
 

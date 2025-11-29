@@ -1,25 +1,32 @@
-Results for ../benchmarks/bin/towers.hex
-Total instructions: 3726
-Total cycles: 4469
-IPC : 0.8337435667934661
-
-Results for ../benchmarks/bin/dhrystone.hex
-Total instructions: 28
-Total cycles: 33
-IPC : 0.8484848484848485
-
-Results for ../benchmarks/bin/rsort.hex
-Total instructions: 182404
-Total cycles: 216197
-IPC : 0.8436934832583246
-
 Results for ../benchmarks/bin/multiply.hex
 Total instructions: 27020
 Total cycles: 30472
-IPC : 0.8867156734050932
+IPC: 0.8867156734050932
 
-Results for ../benchmarks/bin/qsort.hex
+Results for ../benchmarks/bin/quick_sort.hex
 Total instructions: 134481
 Total cycles: 185949
-IPC : 0.7232144297629995
+IPC: 0.7232144297629995
 
+Results for ../benchmarks/bin/radix_sort.hex
+Total instructions: 182404
+Total cycles: 216197
+IPC: 0.8436934832583246
+
+Results for ../benchmarks/bin/sha256.hex
+Total instructions: 43085
+Total cycles: 47134
+IPC: 0.9140959816692833
+
+Results for ../benchmarks/bin/aes.hex
+Total instructions: 33322
+Total cycles: 41052
+IPC: 0.8117022313163792
+
+Results for ../benchmarks/bin/towers_of_hanoi.hex
+Total instructions: 3726
+Total cycles: 4469
+IPC: 0.8337435667934661
+
+Average:
+IPC: 0.8355275610342576

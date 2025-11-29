@@ -15,7 +15,7 @@ BIN_DIR = bin
 LINKER_SCRIPT = spike.ld
 CRT0 = crt0.S
 
-CFLAGS = -march=$(ARCH) -mabi=$(ABI) -Wall -O2 -nostdlib -ffreestanding
+CFLAGS = -march=$(ARCH) -mabi=$(ABI) -Wall -O2 -nostdlib -ffreestanding -lgcc
 ASFLAGS = -march=$(ARCH) -mabi=$(ABI)
 LDFLAGS = -T $(LINKER_SCRIPT) -nostdlib -nostartfiles
 

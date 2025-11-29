@@ -1,0 +1,286 @@
+
+21. Printing statistics.
+
+=== ALU ===
+
+   Number of wires:                555
+   Number of wire bits:            872
+   Number of public wires:          23
+   Number of public wire bits:     340
+   Number of ports:                 16
+   Number of port bits:            240
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                572
+     AND2X1                         46
+     AOI21X1                        32
+     AOI22X1                        77
+     INVX1                          96
+     MUX2X1                         65
+     NAND2X1                        96
+     NAND3X1                        39
+     NOR2X1                         35
+     NOR3X1                          9
+     OAI21X1                        35
+     OR2X1                          30
+     XNOR2X1                         9
+     XOR2X1                          1
+     ripple_carry_adder              1
+     shifter                         1
+
+   Area for cell type \ripple_carry_adder is unknown!
+   Area for cell type \shifter is unknown!
+
+   Chip area for module '\ALU': 1425.264100
+     of which used for sequential elements: 0.000000 (0.00%)
+
+=== LSU ===
+
+   Number of wires:                 56
+   Number of wire bits:            259
+   Number of public wires:          20
+   Number of public wire bits:     223
+   Number of ports:                 18
+   Number of port bits:            219
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 72
+     AND2X1                          1
+     AOI21X1                         1
+     DFFPOSX1                        8
+     DFFSR                           1
+     INVX1                           4
+     MUX2X1                          1
+     NAND2X1                        48
+     NAND3X1                         2
+     NOR2X1                          3
+     OR2X1                           3
+
+   Chip area for module '\LSU': 197.575300
+     of which used for sequential elements: 74.149400 (37.53%)
+
+=== control ===
+
+   Number of wires:                 37
+   Number of wire bits:             49
+   Number of public wires:          10
+   Number of public wire bits:      22
+   Number of ports:                 10
+   Number of port bits:             22
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 30
+     AND2X1                          3
+     AOI21X1                         2
+     AOI22X1                         4
+     INVX1                           9
+     NAND2X1                         2
+     NAND3X1                         3
+     OR2X1                           1
+     XNOR2X1                         6
+
+   Chip area for module '\control': 79.781000
+     of which used for sequential elements: 0.000000 (0.00%)
+
+=== core ===
+
+   Number of wires:                119
+   Number of wire bits:            681
+   Number of public wires:          47
+   Number of public wire bits:     609
+   Number of ports:                 15
+   Number of port bits:            278
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                114
+     ALU                             1
+     AOI22X1                        31
+     INVX1                           6
+     LSU                             1
+     MUX2X1                          5
+     NAND2X1                        33
+     NAND3X1                        33
+     NOR2X1                          1
+     control                         1
+     decode                          1
+     fetch                           1
+
+   Area for cell type \ALU is unknown!
+   Area for cell type \LSU is unknown!
+   Area for cell type \control is unknown!
+   Area for cell type \fetch is unknown!
+   Area for cell type \decode is unknown!
+
+   Chip area for module '\core': 270.786100
+     of which used for sequential elements: 0.000000 (0.00%)
+
+=== decode ===
+
+   Number of wires:                 50
+   Number of wire bits:            260
+   Number of public wires:          24
+   Number of public wire bits:     234
+   Number of ports:                 24
+   Number of port bits:            234
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 40
+     AND2X1                          6
+     INVX1                           7
+     NAND2X1                         7
+     NAND3X1                         4
+     NOR2X1                          6
+     NOR3X1                          7
+     OAI21X1                         1
+     OR2X1                           2
+
+   Chip area for module '\decode': 87.759100
+     of which used for sequential elements: 0.000000 (0.00%)
+
+=== fetch ===
+
+   Number of wires:                306
+   Number of wire bits:            645
+   Number of public wires:          18
+   Number of public wire bits:     357
+   Number of ports:                 14
+   Number of port bits:            232
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                473
+     AND2X1                          3
+     AOI21X1                         1
+     AOI22X1                        60
+     DFFSR                          63
+     INVX1                         156
+     MUX2X1                         60
+     NAND2X1                        60
+     NAND3X1                         4
+     NOR2X1                          3
+     NOR3X1                          1
+     OAI21X1                        31
+     OR2X1                           1
+     full_adder                     30
+
+   Area for cell type \full_adder is unknown!
+
+   Chip area for module '\fetch': 1523.817100
+     of which used for sequential elements: 650.449800 (42.69%)
+
+=== full_adder ===
+
+   Number of wires:                  8
+   Number of wire bits:              8
+   Number of public wires:           5
+   Number of public wire bits:       5
+   Number of ports:                  5
+   Number of port bits:              5
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  5
+     NAND2X1                         2
+     OAI21X1                         1
+     XNOR2X1                         2
+
+   Chip area for module '\full_adder': 15.956200
+     of which used for sequential elements: 0.000000 (0.00%)
+
+=== ripple_carry_adder ===
+
+   Number of wires:                 29
+   Number of wire bits:            185
+   Number of public wires:          10
+   Number of public wire bits:     166
+   Number of ports:                  8
+   Number of port bits:            101
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 85
+     AND2X1                          1
+     NAND2X1                         2
+     NAND3X1                         2
+     NOR2X1                          3
+     NOR3X1                          9
+     OR2X1                           3
+     XOR2X1                         33
+     full_adder                     32
+
+   Area for cell type \full_adder is unknown!
+
+   Chip area for module '\ripple_carry_adder': 205.084100
+     of which used for sequential elements: 0.000000 (0.00%)
+
+=== shifter ===
+
+   Number of wires:                237
+   Number of wire bits:            303
+   Number of public wires:           5
+   Number of public wire bits:      71
+   Number of ports:                  5
+   Number of port bits:             71
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                264
+     AND2X1                          1
+     AOI21X1                         2
+     AOI22X1                         1
+     INVX1                          32
+     MUX2X1                        207
+     NAND2X1                         6
+     NAND3X1                         1
+     OAI21X1                        14
+
+   Chip area for module '\shifter': 886.507700
+     of which used for sequential elements: 0.000000 (0.00%)
+
+=== design hierarchy ===
+
+   core                              1
+     ALU                             1
+       ripple_carry_adder            1
+         full_adder                 32
+       shifter                       1
+     LSU                             1
+     control                         1
+     decode                          1
+     fetch                           1
+       full_adder                   30
+
+   Number of wires:               1885
+   Number of wire bits:           3750
+   Number of public wires:         467
+   Number of public wire bits:    2332
+   Number of ports:                420
+   Number of port bits:           1707
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               1891
+     AND2X1                         61
+     AOI21X1                        38
+     AOI22X1                       173
+     DFFPOSX1                        8
+     DFFSR                          64
+     INVX1                         310
+     MUX2X1                        338
+     NAND2X1                       378
+     NAND3X1                        88
+     NOR2X1                         51
+     NOR3X1                         26
+     OAI21X1                       143
+     OR2X1                          40
+     XNOR2X1                       139
+     XOR2X1                         34
+
+   Chip area for top module '\core': 5665.858900
+     of which used for sequential elements: 724.599200 (12.79%)
+

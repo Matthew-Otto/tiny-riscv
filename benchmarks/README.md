@@ -13,3 +13,4 @@ Requires riscv32-unknown-elf
 | multiply.c | Software based multiply | https://github.com/ucb-bar/riscv-benchmarks |
 | towers_of_hanoi.c | Solution to towers of Hanoi puzzle | https://github.com/ucb-bar/riscv-benchmarks |
 | sha256.c | SHA256 algorithm | https://github.com/ilvn/SHA256/blob/main/sha256.h |
+| aes.c | Basic aes128 implementation |  |
