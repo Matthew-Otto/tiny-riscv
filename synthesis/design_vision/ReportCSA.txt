@@ -1,0 +1,538 @@
+ 
+****************************************
+Report : area
+Design : core
+Version: T-2022.03-SP2
+Date   : Sat Nov 29 13:01:56 2025
+****************************************
+
+Information: Updating design information... (UID-85)
+Library(s) Used:
+
+    gscl45nm (File: /home/ecelrc/students/hy7557/vlsi1_25/lab3/gscl45nm.db)
+
+Number of ports:                         1881
+Number of nets:                          4430
+Number of cells:                         2822
+Number of combinational cells:           2558
+Number of sequential cells:                74
+Number of macros/black boxes:               0
+Number of buf/inv:                        857
+Number of references:                      11
+
+Combinational area:               6357.137672
+Buf/Inv area:                     1407.430667
+Noncombinational area:             745.248413
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                  7102.386085
+Total area:                 undefined
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+        -sort_by group
+Design : core
+Version: T-2022.03-SP2
+Date   : Sat Nov 29 13:02:07 2025
+****************************************
+
+Operating Conditions: typical   Library: gscl45nm
+Wire Load Model Mode: top
+
+  Startpoint: fetch_i/PC_e_reg[0]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: fetch_i/PC_f_reg[31]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  fetch_i/PC_e_reg[0]/CLK (DFFSR)                         0.00       0.00 r
+  fetch_i/PC_e_reg[0]/Q (DFFSR)                           0.11       0.11 r
+  fetch_i/U532/Y (BUFX2)                                  0.04       0.15 r
+  fetch_i/PC_e[0] (fetch)                                 0.00       0.15 r
+  ALU_i/PC[0] (ALU)                                       0.00       0.15 r
+  ALU_i/U143/Y (AND2X1)                                   0.03       0.18 r
+  ALU_i/U144/Y (INVX1)                                    0.02       0.19 f
+  ALU_i/U566/Y (OAI21X1)                                  0.05       0.25 r
+  ALU_i/adder_i/a[0] (carry_skip_adder)                   0.00       0.25 r
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/a[0] (csa_ripple_carry_adder_0)
+                                                          0.00       0.25 r
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[0].fa/a (full_adder_32)
+                                                          0.00       0.25 r
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[0].fa/U5/Y (XNOR2X1)
+                                                          0.05       0.29 f
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[0].fa/U3/Y (OAI21X1)
+                                                          0.04       0.34 r
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[0].fa/cout (full_adder_32)
+                                                          0.00       0.34 r
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[1].fa/cin (full_adder_31)
+                                                          0.00       0.34 r
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[1].fa/U6/Y (INVX1)
+                                                          0.03       0.37 f
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[1].fa/U3/Y (OAI21X1)
+                                                          0.04       0.41 r
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[1].fa/cout (full_adder_31)
+                                                          0.00       0.41 r
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[2].fa/cin (full_adder_30)
+                                                          0.00       0.41 r
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[2].fa/U6/Y (INVX1)
+                                                          0.03       0.45 f
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[2].fa/U3/Y (OAI21X1)
+                                                          0.04       0.49 r
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[2].fa/cout (full_adder_30)
+                                                          0.00       0.49 r
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[3].fa/cin (full_adder_29)
+                                                          0.00       0.49 r
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[3].fa/U6/Y (INVX1)
+                                                          0.03       0.52 f
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[3].fa/U3/Y (OAI21X1)
+                                                          0.04       0.57 r
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/RCA_BLOCK[3].fa/cout (full_adder_29)
+                                                          0.00       0.57 r
+  ALU_i/adder_i/CSKA_BLOCK[0].rca/cout (csa_ripple_carry_adder_0)
+                                                          0.00       0.57 r
+  ALU_i/adder_i/U1/Y (AND2X1)                             0.03       0.60 r
+  ALU_i/adder_i/U25/Y (INVX1)                             0.02       0.62 f
+  ALU_i/adder_i/U79/Y (OAI21X1)                           0.02       0.64 r
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/cin (csa_ripple_carry_adder_7)
+                                                          0.00       0.64 r
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[0].fa/cin (full_adder_28)
+                                                          0.00       0.64 r
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[0].fa/U6/Y (INVX1)
+                                                          0.04       0.68 f
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[0].fa/U3/Y (OAI21X1)
+                                                          0.04       0.72 r
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[0].fa/cout (full_adder_28)
+                                                          0.00       0.72 r
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[1].fa/cin (full_adder_27)
+                                                          0.00       0.72 r
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[1].fa/U6/Y (INVX1)
+                                                          0.03       0.76 f
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[1].fa/U3/Y (OAI21X1)
+                                                          0.04       0.80 r
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[1].fa/cout (full_adder_27)
+                                                          0.00       0.80 r
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[2].fa/cin (full_adder_26)
+                                                          0.00       0.80 r
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[2].fa/U6/Y (INVX1)
+                                                          0.03       0.83 f
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[2].fa/U3/Y (OAI21X1)
+                                                          0.04       0.87 r
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[2].fa/cout (full_adder_26)
+                                                          0.00       0.87 r
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[3].fa/cin (full_adder_25)
+                                                          0.00       0.87 r
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[3].fa/U6/Y (INVX1)
+                                                          0.03       0.91 f
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[3].fa/U3/Y (OAI21X1)
+                                                          0.04       0.95 r
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/RCA_BLOCK[3].fa/cout (full_adder_25)
+                                                          0.00       0.95 r
+  ALU_i/adder_i/CSKA_BLOCK[1].rca/cout (csa_ripple_carry_adder_7)
+                                                          0.00       0.95 r
+  ALU_i/adder_i/U78/Y (OAI21X1)                           0.03       0.98 f
+  ALU_i/adder_i/U49/Y (INVX1)                             0.00       0.98 r
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/cin (csa_ripple_carry_adder_6)
+                                                          0.00       0.98 r
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[0].fa/cin (full_adder_24)
+                                                          0.00       0.98 r
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[0].fa/U6/Y (INVX1)
+                                                          0.02       1.00 f
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[0].fa/U3/Y (OAI21X1)
+                                                          0.04       1.04 r
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[0].fa/cout (full_adder_24)
+                                                          0.00       1.04 r
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[1].fa/cin (full_adder_23)
+                                                          0.00       1.04 r
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[1].fa/U6/Y (INVX1)
+                                                          0.03       1.08 f
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[1].fa/U3/Y (OAI21X1)
+                                                          0.04       1.12 r
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[1].fa/cout (full_adder_23)
+                                                          0.00       1.12 r
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[2].fa/cin (full_adder_22)
+                                                          0.00       1.12 r
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[2].fa/U6/Y (INVX1)
+                                                          0.03       1.15 f
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[2].fa/U3/Y (OAI21X1)
+                                                          0.04       1.19 r
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[2].fa/cout (full_adder_22)
+                                                          0.00       1.19 r
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[3].fa/cin (full_adder_21)
+                                                          0.00       1.19 r
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[3].fa/U6/Y (INVX1)
+                                                          0.03       1.23 f
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[3].fa/U3/Y (OAI21X1)
+                                                          0.04       1.27 r
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/RCA_BLOCK[3].fa/cout (full_adder_21)
+                                                          0.00       1.27 r
+  ALU_i/adder_i/CSKA_BLOCK[2].rca/cout (csa_ripple_carry_adder_6)
+                                                          0.00       1.27 r
+  ALU_i/adder_i/U3/Y (AND2X1)                             0.03       1.30 r
+  ALU_i/adder_i/U16/Y (INVX1)                             0.02       1.32 f
+  ALU_i/adder_i/U76/Y (OAI21X1)                           0.02       1.34 r
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/cin (csa_ripple_carry_adder_5)
+                                                          0.00       1.34 r
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[0].fa/cin (full_adder_20)
+                                                          0.00       1.34 r
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[0].fa/U6/Y (INVX1)
+                                                          0.04       1.38 f
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[0].fa/U3/Y (OAI21X1)
+                                                          0.04       1.42 r
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[0].fa/cout (full_adder_20)
+                                                          0.00       1.42 r
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[1].fa/cin (full_adder_19)
+                                                          0.00       1.42 r
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[1].fa/U6/Y (INVX1)
+                                                          0.03       1.45 f
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[1].fa/U3/Y (OAI21X1)
+                                                          0.04       1.49 r
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[1].fa/cout (full_adder_19)
+                                                          0.00       1.49 r
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[2].fa/cin (full_adder_18)
+                                                          0.00       1.49 r
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[2].fa/U6/Y (INVX1)
+                                                          0.03       1.53 f
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[2].fa/U3/Y (OAI21X1)
+                                                          0.04       1.57 r
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[2].fa/cout (full_adder_18)
+                                                          0.00       1.57 r
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[3].fa/cin (full_adder_17)
+                                                          0.00       1.57 r
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[3].fa/U6/Y (INVX1)
+                                                          0.03       1.60 f
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[3].fa/U3/Y (OAI21X1)
+                                                          0.04       1.65 r
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/RCA_BLOCK[3].fa/cout (full_adder_17)
+                                                          0.00       1.65 r
+  ALU_i/adder_i/CSKA_BLOCK[3].rca/cout (csa_ripple_carry_adder_5)
+                                                          0.00       1.65 r
+  ALU_i/adder_i/U4/Y (AND2X1)                             0.03       1.68 r
+  ALU_i/adder_i/U28/Y (INVX1)                             0.02       1.70 f
+  ALU_i/adder_i/U69/Y (OAI21X1)                           0.02       1.72 r
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/cin (csa_ripple_carry_adder_4)
+                                                          0.00       1.72 r
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[0].fa/cin (full_adder_16)
+                                                          0.00       1.72 r
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[0].fa/U6/Y (INVX1)
+                                                          0.04       1.75 f
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[0].fa/U3/Y (OAI21X1)
+                                                          0.04       1.80 r
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[0].fa/cout (full_adder_16)
+                                                          0.00       1.80 r
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[1].fa/cin (full_adder_15)
+                                                          0.00       1.80 r
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[1].fa/U6/Y (INVX1)
+                                                          0.03       1.83 f
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[1].fa/U3/Y (OAI21X1)
+                                                          0.04       1.87 r
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[1].fa/cout (full_adder_15)
+                                                          0.00       1.87 r
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[2].fa/cin (full_adder_14)
+                                                          0.00       1.87 r
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[2].fa/U6/Y (INVX1)
+                                                          0.03       1.90 f
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[2].fa/U3/Y (OAI21X1)
+                                                          0.04       1.95 r
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[2].fa/cout (full_adder_14)
+                                                          0.00       1.95 r
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[3].fa/cin (full_adder_13)
+                                                          0.00       1.95 r
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[3].fa/U6/Y (INVX1)
+                                                          0.03       1.98 f
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[3].fa/U3/Y (OAI21X1)
+                                                          0.04       2.02 r
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/RCA_BLOCK[3].fa/cout (full_adder_13)
+                                                          0.00       2.02 r
+  ALU_i/adder_i/CSKA_BLOCK[4].rca/cout (csa_ripple_carry_adder_4)
+                                                          0.00       2.02 r
+  ALU_i/adder_i/U5/Y (AND2X1)                             0.03       2.05 r
+  ALU_i/adder_i/U23/Y (INVX1)                             0.02       2.07 f
+  ALU_i/adder_i/U62/Y (OAI21X1)                           0.02       2.09 r
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/cin (csa_ripple_carry_adder_3)
+                                                          0.00       2.09 r
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[0].fa/cin (full_adder_12)
+                                                          0.00       2.09 r
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[0].fa/U6/Y (INVX1)
+                                                          0.04       2.13 f
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[0].fa/U3/Y (OAI21X1)
+                                                          0.04       2.17 r
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[0].fa/cout (full_adder_12)
+                                                          0.00       2.17 r
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[1].fa/cin (full_adder_11)
+                                                          0.00       2.17 r
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[1].fa/U6/Y (INVX1)
+                                                          0.03       2.21 f
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[1].fa/U3/Y (OAI21X1)
+                                                          0.04       2.25 r
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[1].fa/cout (full_adder_11)
+                                                          0.00       2.25 r
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[2].fa/cin (full_adder_10)
+                                                          0.00       2.25 r
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[2].fa/U6/Y (INVX1)
+                                                          0.03       2.28 f
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[2].fa/U3/Y (OAI21X1)
+                                                          0.04       2.32 r
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[2].fa/cout (full_adder_10)
+                                                          0.00       2.32 r
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[3].fa/cin (full_adder_9)
+                                                          0.00       2.32 r
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[3].fa/U6/Y (INVX1)
+                                                          0.03       2.36 f
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[3].fa/U3/Y (OAI21X1)
+                                                          0.04       2.40 r
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/RCA_BLOCK[3].fa/cout (full_adder_9)
+                                                          0.00       2.40 r
+  ALU_i/adder_i/CSKA_BLOCK[5].rca/cout (csa_ripple_carry_adder_3)
+                                                          0.00       2.40 r
+  ALU_i/adder_i/U6/Y (AND2X1)                             0.03       2.43 r
+  ALU_i/adder_i/U10/Y (INVX1)                             0.02       2.45 f
+  ALU_i/adder_i/U55/Y (OAI21X1)                           0.02       2.47 r
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/cin (csa_ripple_carry_adder_2)
+                                                          0.00       2.47 r
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[0].fa/cin (full_adder_8)
+                                                          0.00       2.47 r
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[0].fa/U6/Y (INVX1)
+                                                          0.04       2.51 f
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[0].fa/U3/Y (OAI21X1)
+                                                          0.04       2.55 r
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[0].fa/cout (full_adder_8)
+                                                          0.00       2.55 r
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[1].fa/cin (full_adder_7)
+                                                          0.00       2.55 r
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[1].fa/U6/Y (INVX1)
+                                                          0.03       2.58 f
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[1].fa/U3/Y (OAI21X1)
+                                                          0.04       2.62 r
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[1].fa/cout (full_adder_7)
+                                                          0.00       2.62 r
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[2].fa/cin (full_adder_6)
+                                                          0.00       2.62 r
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[2].fa/U6/Y (INVX1)
+                                                          0.03       2.66 f
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[2].fa/U3/Y (OAI21X1)
+                                                          0.04       2.70 r
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[2].fa/cout (full_adder_6)
+                                                          0.00       2.70 r
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[3].fa/cin (full_adder_5)
+                                                          0.00       2.70 r
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[3].fa/U6/Y (INVX1)
+                                                          0.03       2.73 f
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[3].fa/U3/Y (OAI21X1)
+                                                          0.04       2.78 r
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/RCA_BLOCK[3].fa/cout (full_adder_5)
+                                                          0.00       2.78 r
+  ALU_i/adder_i/CSKA_BLOCK[6].rca/cout (csa_ripple_carry_adder_2)
+                                                          0.00       2.78 r
+  ALU_i/adder_i/U7/Y (AND2X1)                             0.03       2.80 r
+  ALU_i/adder_i/U18/Y (INVX1)                             0.02       2.82 f
+  ALU_i/adder_i/U48/Y (OAI21X1)                           0.02       2.84 r
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/cin (csa_ripple_carry_adder_1)
+                                                          0.00       2.84 r
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[0].fa/cin (full_adder_4)
+                                                          0.00       2.84 r
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[0].fa/U6/Y (INVX1)
+                                                          0.04       2.88 f
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[0].fa/U3/Y (OAI21X1)
+                                                          0.04       2.92 r
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[0].fa/cout (full_adder_4)
+                                                          0.00       2.92 r
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[1].fa/cin (full_adder_3)
+                                                          0.00       2.92 r
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[1].fa/U6/Y (INVX1)
+                                                          0.03       2.96 f
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[1].fa/U3/Y (OAI21X1)
+                                                          0.04       3.00 r
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[1].fa/cout (full_adder_3)
+                                                          0.00       3.00 r
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[2].fa/cin (full_adder_2)
+                                                          0.00       3.00 r
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[2].fa/U6/Y (INVX1)
+                                                          0.03       3.03 f
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[2].fa/U3/Y (OAI21X1)
+                                                          0.04       3.07 r
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[2].fa/cout (full_adder_2)
+                                                          0.00       3.07 r
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[3].fa/cin (full_adder_1)
+                                                          0.00       3.07 r
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[3].fa/U6/Y (INVX1)
+                                                          0.03       3.11 f
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[3].fa/U2/Y (XOR2X1)
+                                                          0.08       3.19 r
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/RCA_BLOCK[3].fa/sum (full_adder_1)
+                                                          0.00       3.19 r
+  ALU_i/adder_i/CSKA_BLOCK[7].rca/s[3] (csa_ripple_carry_adder_1)
+                                                          0.00       3.19 r
+  ALU_i/adder_i/U40/Y (XNOR2X1)                           0.06       3.25 r
+  ALU_i/adder_i/U20/Y (OR2X1)                             0.04       3.29 r
+  ALU_i/adder_i/U21/Y (INVX1)                             0.02       3.31 f
+  ALU_i/adder_i/v (carry_skip_adder)                      0.00       3.31 f
+  ALU_i/U406/Y (XOR2X1)                                   0.05       3.37 r
+  ALU_i/U402/Y (AOI22X1)                                  0.04       3.41 f
+  ALU_i/U293/Y (BUFX2)                                    0.04       3.45 f
+  ALU_i/U399/Y (OAI21X1)                                  0.04       3.49 r
+  ALU_i/U178/Y (AND2X1)                                   0.03       3.52 r
+  ALU_i/U181/Y (INVX1)                                    0.02       3.54 f
+  ALU_i/U397/Y (OAI21X1)                                  0.02       3.56 r
+  ALU_i/branch (ALU)                                      0.00       3.56 r
+  fetch_i/take_branch (fetch)                             0.00       3.56 r
+  fetch_i/U552/Y (AND2X1)                                 0.04       3.60 r
+  fetch_i/U339/Y (OAI21X1)                                0.04       3.63 f
+  fetch_i/U28/Y (OR2X1)                                   0.04       3.67 f
+  fetch_i/U542/Y (INVX1)                                  0.29       3.96 r
+  fetch_i/U336/Y (AOI22X1)                                0.12       4.09 f
+  fetch_i/U335/Y (OAI21X1)                                0.06       4.14 r
+  fetch_i/rca[0].full_adder_i/a (full_adder_0)            0.00       4.14 r
+  fetch_i/rca[0].full_adder_i/U4/Y (NAND2X1)              0.02       4.16 f
+  fetch_i/rca[0].full_adder_i/U3/Y (OAI21X1)              0.02       4.18 r
+  fetch_i/rca[0].full_adder_i/cout (full_adder_0)         0.00       4.18 r
+  fetch_i/rca[1].full_adder_i/cin (full_adder_63)         0.00       4.18 r
+  fetch_i/rca[1].full_adder_i/U6/Y (INVX1)                0.03       4.21 f
+  fetch_i/rca[1].full_adder_i/U3/Y (OAI21X1)              0.04       4.25 r
+  fetch_i/rca[1].full_adder_i/cout (full_adder_63)        0.00       4.25 r
+  fetch_i/rca[2].full_adder_i/cin (full_adder_62)         0.00       4.25 r
+  fetch_i/rca[2].full_adder_i/U1/Y (INVX1)                0.03       4.29 f
+  fetch_i/rca[2].full_adder_i/U3/Y (OAI21X1)              0.04       4.33 r
+  fetch_i/rca[2].full_adder_i/cout (full_adder_62)        0.00       4.33 r
+  fetch_i/rca[3].full_adder_i/cin (full_adder_61)         0.00       4.33 r
+  fetch_i/rca[3].full_adder_i/U1/Y (INVX1)                0.03       4.36 f
+  fetch_i/rca[3].full_adder_i/U3/Y (OAI21X1)              0.04       4.40 r
+  fetch_i/rca[3].full_adder_i/cout (full_adder_61)        0.00       4.40 r
+  fetch_i/rca[4].full_adder_i/cin (full_adder_60)         0.00       4.40 r
+  fetch_i/rca[4].full_adder_i/U1/Y (INVX1)                0.03       4.44 f
+  fetch_i/rca[4].full_adder_i/U3/Y (OAI21X1)              0.04       4.48 r
+  fetch_i/rca[4].full_adder_i/cout (full_adder_60)        0.00       4.48 r
+  fetch_i/rca[5].full_adder_i/cin (full_adder_59)         0.00       4.48 r
+  fetch_i/rca[5].full_adder_i/U1/Y (INVX1)                0.03       4.51 f
+  fetch_i/rca[5].full_adder_i/U3/Y (OAI21X1)              0.04       4.55 r
+  fetch_i/rca[5].full_adder_i/cout (full_adder_59)        0.00       4.55 r
+  fetch_i/rca[6].full_adder_i/cin (full_adder_58)         0.00       4.55 r
+  fetch_i/rca[6].full_adder_i/U1/Y (INVX1)                0.03       4.59 f
+  fetch_i/rca[6].full_adder_i/U3/Y (OAI21X1)              0.04       4.63 r
+  fetch_i/rca[6].full_adder_i/cout (full_adder_58)        0.00       4.63 r
+  fetch_i/rca[7].full_adder_i/cin (full_adder_57)         0.00       4.63 r
+  fetch_i/rca[7].full_adder_i/U1/Y (INVX1)                0.03       4.66 f
+  fetch_i/rca[7].full_adder_i/U3/Y (OAI21X1)              0.04       4.70 r
+  fetch_i/rca[7].full_adder_i/cout (full_adder_57)        0.00       4.70 r
+  fetch_i/rca[8].full_adder_i/cin (full_adder_56)         0.00       4.70 r
+  fetch_i/rca[8].full_adder_i/U1/Y (INVX1)                0.03       4.74 f
+  fetch_i/rca[8].full_adder_i/U3/Y (OAI21X1)              0.04       4.78 r
+  fetch_i/rca[8].full_adder_i/cout (full_adder_56)        0.00       4.78 r
+  fetch_i/rca[9].full_adder_i/cin (full_adder_55)         0.00       4.78 r
+  fetch_i/rca[9].full_adder_i/U1/Y (INVX1)                0.03       4.81 f
+  fetch_i/rca[9].full_adder_i/U3/Y (OAI21X1)              0.04       4.85 r
+  fetch_i/rca[9].full_adder_i/cout (full_adder_55)        0.00       4.85 r
+  fetch_i/rca[10].full_adder_i/cin (full_adder_54)        0.00       4.85 r
+  fetch_i/rca[10].full_adder_i/U1/Y (INVX1)               0.03       4.89 f
+  fetch_i/rca[10].full_adder_i/U3/Y (OAI21X1)             0.04       4.93 r
+  fetch_i/rca[10].full_adder_i/cout (full_adder_54)       0.00       4.93 r
+  fetch_i/rca[11].full_adder_i/cin (full_adder_53)        0.00       4.93 r
+  fetch_i/rca[11].full_adder_i/U1/Y (INVX1)               0.03       4.96 f
+  fetch_i/rca[11].full_adder_i/U3/Y (OAI21X1)             0.04       5.01 r
+  fetch_i/rca[11].full_adder_i/cout (full_adder_53)       0.00       5.01 r
+  fetch_i/rca[12].full_adder_i/cin (full_adder_52)        0.00       5.01 r
+  fetch_i/rca[12].full_adder_i/U6/Y (INVX1)               0.03       5.04 f
+  fetch_i/rca[12].full_adder_i/U3/Y (OAI21X1)             0.04       5.08 r
+  fetch_i/rca[12].full_adder_i/cout (full_adder_52)       0.00       5.08 r
+  fetch_i/rca[13].full_adder_i/cin (full_adder_51)        0.00       5.08 r
+  fetch_i/rca[13].full_adder_i/U6/Y (INVX1)               0.03       5.12 f
+  fetch_i/rca[13].full_adder_i/U3/Y (OAI21X1)             0.04       5.16 r
+  fetch_i/rca[13].full_adder_i/cout (full_adder_51)       0.00       5.16 r
+  fetch_i/rca[14].full_adder_i/cin (full_adder_50)        0.00       5.16 r
+  fetch_i/rca[14].full_adder_i/U6/Y (INVX1)               0.03       5.19 f
+  fetch_i/rca[14].full_adder_i/U3/Y (OAI21X1)             0.04       5.23 r
+  fetch_i/rca[14].full_adder_i/cout (full_adder_50)       0.00       5.23 r
+  fetch_i/rca[15].full_adder_i/cin (full_adder_49)        0.00       5.23 r
+  fetch_i/rca[15].full_adder_i/U1/Y (INVX1)               0.03       5.27 f
+  fetch_i/rca[15].full_adder_i/U3/Y (OAI21X1)             0.04       5.31 r
+  fetch_i/rca[15].full_adder_i/cout (full_adder_49)       0.00       5.31 r
+  fetch_i/rca[16].full_adder_i/cin (full_adder_48)        0.00       5.31 r
+  fetch_i/rca[16].full_adder_i/U1/Y (INVX1)               0.03       5.34 f
+  fetch_i/rca[16].full_adder_i/U3/Y (OAI21X1)             0.04       5.38 r
+  fetch_i/rca[16].full_adder_i/cout (full_adder_48)       0.00       5.38 r
+  fetch_i/rca[17].full_adder_i/cin (full_adder_47)        0.00       5.38 r
+  fetch_i/rca[17].full_adder_i/U1/Y (INVX1)               0.03       5.42 f
+  fetch_i/rca[17].full_adder_i/U3/Y (OAI21X1)             0.04       5.46 r
+  fetch_i/rca[17].full_adder_i/cout (full_adder_47)       0.00       5.46 r
+  fetch_i/rca[18].full_adder_i/cin (full_adder_46)        0.00       5.46 r
+  fetch_i/rca[18].full_adder_i/U1/Y (INVX1)               0.03       5.49 f
+  fetch_i/rca[18].full_adder_i/U3/Y (OAI21X1)             0.04       5.53 r
+  fetch_i/rca[18].full_adder_i/cout (full_adder_46)       0.00       5.53 r
+  fetch_i/rca[19].full_adder_i/cin (full_adder_45)        0.00       5.53 r
+  fetch_i/rca[19].full_adder_i/U1/Y (INVX1)               0.03       5.57 f
+  fetch_i/rca[19].full_adder_i/U3/Y (OAI21X1)             0.04       5.61 r
+  fetch_i/rca[19].full_adder_i/cout (full_adder_45)       0.00       5.61 r
+  fetch_i/rca[20].full_adder_i/cin (full_adder_44)        0.00       5.61 r
+  fetch_i/rca[20].full_adder_i/U1/Y (INVX1)               0.03       5.64 f
+  fetch_i/rca[20].full_adder_i/U3/Y (OAI21X1)             0.04       5.68 r
+  fetch_i/rca[20].full_adder_i/cout (full_adder_44)       0.00       5.68 r
+  fetch_i/rca[21].full_adder_i/cin (full_adder_43)        0.00       5.68 r
+  fetch_i/rca[21].full_adder_i/U1/Y (INVX1)               0.03       5.72 f
+  fetch_i/rca[21].full_adder_i/U3/Y (OAI21X1)             0.04       5.76 r
+  fetch_i/rca[21].full_adder_i/cout (full_adder_43)       0.00       5.76 r
+  fetch_i/rca[22].full_adder_i/cin (full_adder_42)        0.00       5.76 r
+  fetch_i/rca[22].full_adder_i/U1/Y (INVX1)               0.03       5.79 f
+  fetch_i/rca[22].full_adder_i/U3/Y (OAI21X1)             0.04       5.83 r
+  fetch_i/rca[22].full_adder_i/cout (full_adder_42)       0.00       5.83 r
+  fetch_i/rca[23].full_adder_i/cin (full_adder_41)        0.00       5.83 r
+  fetch_i/rca[23].full_adder_i/U1/Y (INVX1)               0.03       5.87 f
+  fetch_i/rca[23].full_adder_i/U3/Y (OAI21X1)             0.04       5.91 r
+  fetch_i/rca[23].full_adder_i/cout (full_adder_41)       0.00       5.91 r
+  fetch_i/rca[24].full_adder_i/cin (full_adder_40)        0.00       5.91 r
+  fetch_i/rca[24].full_adder_i/U1/Y (INVX1)               0.03       5.94 f
+  fetch_i/rca[24].full_adder_i/U3/Y (OAI21X1)             0.04       5.99 r
+  fetch_i/rca[24].full_adder_i/cout (full_adder_40)       0.00       5.99 r
+  fetch_i/rca[25].full_adder_i/cin (full_adder_39)        0.00       5.99 r
+  fetch_i/rca[25].full_adder_i/U1/Y (INVX1)               0.03       6.02 f
+  fetch_i/rca[25].full_adder_i/U3/Y (OAI21X1)             0.04       6.06 r
+  fetch_i/rca[25].full_adder_i/cout (full_adder_39)       0.00       6.06 r
+  fetch_i/rca[26].full_adder_i/cin (full_adder_38)        0.00       6.06 r
+  fetch_i/rca[26].full_adder_i/U1/Y (INVX1)               0.03       6.10 f
+  fetch_i/rca[26].full_adder_i/U3/Y (OAI21X1)             0.04       6.14 r
+  fetch_i/rca[26].full_adder_i/cout (full_adder_38)       0.00       6.14 r
+  fetch_i/rca[27].full_adder_i/cin (full_adder_37)        0.00       6.14 r
+  fetch_i/rca[27].full_adder_i/U1/Y (INVX1)               0.03       6.17 f
+  fetch_i/rca[27].full_adder_i/U3/Y (OAI21X1)             0.04       6.21 r
+  fetch_i/rca[27].full_adder_i/cout (full_adder_37)       0.00       6.21 r
+  fetch_i/rca[28].full_adder_i/cin (full_adder_36)        0.00       6.21 r
+  fetch_i/rca[28].full_adder_i/U1/Y (INVX1)               0.03       6.25 f
+  fetch_i/rca[28].full_adder_i/U3/Y (OAI21X1)             0.04       6.29 r
+  fetch_i/rca[28].full_adder_i/cout (full_adder_36)       0.00       6.29 r
+  fetch_i/rca[29].full_adder_i/cin (full_adder_35)        0.00       6.29 r
+  fetch_i/rca[29].full_adder_i/U6/Y (INVX1)               0.03       6.32 f
+  fetch_i/rca[29].full_adder_i/U3/Y (OAI21X1)             0.04       6.36 r
+  fetch_i/rca[29].full_adder_i/cout (full_adder_35)       0.00       6.36 r
+  fetch_i/rca[30].full_adder_i/cin (full_adder_34)        0.00       6.36 r
+  fetch_i/rca[30].full_adder_i/U6/Y (INVX1)               0.03       6.40 f
+  fetch_i/rca[30].full_adder_i/U3/Y (OAI21X1)             0.04       6.44 r
+  fetch_i/rca[30].full_adder_i/cout (full_adder_34)       0.00       6.44 r
+  fetch_i/rca[31].full_adder_i/cin (full_adder_33)        0.00       6.44 r
+  fetch_i/rca[31].full_adder_i/U6/Y (INVX1)               0.03       6.47 f
+  fetch_i/rca[31].full_adder_i/U2/Y (XOR2X1)              0.04       6.51 r
+  fetch_i/rca[31].full_adder_i/sum (full_adder_33)        0.00       6.51 r
+  fetch_i/U258/Y (AND2X1)                                 0.03       6.54 r
+  fetch_i/U262/Y (INVX1)                                  0.02       6.55 f
+  fetch_i/U142/Y (OAI21X1)                                0.02       6.57 r
+  fetch_i/PC_f_reg[31]/D (DFFSR)                          0.00       6.57 r
+  data arrival time                                                  6.57
+
+  clock clk (rise edge)                                  10.00      10.00
+  clock network delay (ideal)                             0.00      10.00
+  fetch_i/PC_f_reg[31]/CLK (DFFSR)                        0.00      10.00 r
+  library setup time                                     -0.08       9.92
+  data required time                                                 9.92
+  --------------------------------------------------------------------------
+  data required time                                                 9.92
+  data arrival time                                                 -6.57
+  --------------------------------------------------------------------------
+  slack (MET)                                                        3.35
+
+

@@ -51,6 +51,14 @@ module ALU (
         .sum(adder_out),
         .n, .z, .c, .v
     );
+    
+//	carry_skip_adder adder_i (
+//		.a(is_auipc ? PC : rs1_data),
+//		.b(is_auipc ? imm_u : s_mux),
+//		.sub(subtract),
+//		.s(adder_out),
+//		.n(n), .z(z), .c(c), .v(v)
+//	);
 
     assign eq = z;
     assign lt = n ^ v;
