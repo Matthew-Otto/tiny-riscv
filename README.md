@@ -26,9 +26,9 @@ Compared to [SERV](https://github.com/olofk/serv) - "the world's smallest RISC-V
 | Design    | IPC | Fmax | Normalized Perf
 | --------- | ------- | -------- | -------- |
 | tiny-riscv | 0.8355  | 398.5 MHz | 332.9 MIPS |
-| SERV | 0.0261*  | 1355 MHz | 35.38 MIPS |
+| SERV | .01926*  | 1355 MHz | 26.10 MIPS |
 
-~9.41x higher performance
+~12.75x higher performance with only 2.163x larger area.
 
 \* This value is an estimate produced by dividing tiny-riscv IPC by 32. This is a very conservative estimate. SERV IPC is lower in practice.
 
