@@ -7,10 +7,10 @@ A minimum-area RV32I implementation
 Compared to [SERV](https://github.com/olofk/serv) - "the world's smallest RISC-V CPU."
 
 #### Area
-| Design    | Post-synthesis | Post-APR |
-| --------- | -------------------- | -------------- |
-| tiny-riscv | 5373.9543 µm² | 5166.0544 µm² |
-| SERV | 2658.5845 µm² | 2387.7984 µm² |
+| Design    | Post-synthesis | Post-APR | NAND2 Gate Equivalent |
+| --------- | -------------------- | -------------- | --- |
+| tiny-riscv | 5373.9543 µm² | 5166.0544 µm² | 2752 GE |
+| SERV | 2658.5845 µm² | 2387.7984 µm² | 1272 GE |
 
 2.16x larger area
 
