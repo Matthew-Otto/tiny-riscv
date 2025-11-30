@@ -30,7 +30,7 @@ Compared to [SERV](https://github.com/olofk/serv) - "the world's smallest RISC-V
 
 ~12.75x higher performance with only 2.163x larger area.
 
-\* This value is an estimate produced by dividing tiny-riscv IPC by 32. This is a very conservative estimate. SERV IPC is lower in practice.
+\* This value is an estimate produced in part with 3rd party measurements of SERV performance. This is a conservative estimate. SERV IPC is lower in practice.
 
 ## Tools / Dependencies:
 #### RTL simulation:
