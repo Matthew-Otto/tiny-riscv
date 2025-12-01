@@ -1,32 +1,38 @@
-Results for ../benchmarks/bin/multiply.hex
-Total instructions: 27020
-Total cycles: 30472
-IPC: 0.8867156734050932
+Results for ../benchmarks/bin/towers_of_hanoi.hex
+Total instructions: 3726
+Total cycles: 4469
+IPC: 0.8337435667934661
+Profile: {'jump': 83, 'alu': 739, 'lui': 18, 'store': 1256, 'branch': 184, 'load': 1446, 'auipc': 1}
 
 Results for ../benchmarks/bin/quick_sort.hex
 Total instructions: 134481
 Total cycles: 185949
 IPC: 0.7232144297629995
-
-Results for ../benchmarks/bin/radix_sort.hex
-Total instructions: 182404
-Total cycles: 216197
-IPC: 0.8436934832583246
-
-Results for ../benchmarks/bin/sha256.hex
-Total instructions: 43085
-Total cycles: 47134
-IPC: 0.9140959816692833
+Profile: {'jump': 5329, 'alu': 47725, 'store': 13751, 'lui': 4, 'branch': 36639, 'load': 31033, 'auipc': 1}
 
 Results for ../benchmarks/bin/aes.hex
 Total instructions: 33322
 Total cycles: 41052
 IPC: 0.8117022313163792
+Profile: {'jump': 4, 'lui': 7, 'alu': 16579, 'load': 7323, 'store': 5064, 'branch': 4345, 'auipc': 1}
 
-Results for ../benchmarks/bin/towers_of_hanoi.hex
-Total instructions: 3726
-Total cycles: 4469
-IPC: 0.8337435667934661
+Results for ../benchmarks/bin/sha256.hex
+Total instructions: 43085
+Total cycles: 47134
+IPC: 0.9140959816692833
+Profile: {'jump': 178, 'lui': 22, 'alu': 35435, 'load': 3691, 'store': 1720, 'branch': 2039, 'auipc': 1}
+
+Results for ../benchmarks/bin/multiply.hex
+Total instructions: 27020
+Total cycles: 30472
+IPC: 0.8867156734050932
+Profile: {'jump': 4, 'lui': 1, 'alu': 23064, 'load': 400, 'branch': 3450, 'store': 101, 'auipc': 1}
+
+Results for ../benchmarks/bin/radix_sort.hex
+Total instructions: 182404
+Total cycles: 216197
+IPC: 0.8436934832583246
+Profile: {'jump': 9, 'alu': 109135, 'store': 26634, 'lui': 4, 'branch': 8721, 'load': 37901, 'auipc': 1}
 
 Average:
 IPC: 0.8355275610342576

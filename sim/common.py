@@ -89,3 +89,41 @@ async def sim_data_mem(dut, memory):
             dut.d_rd_data.value = data
             dut._log.debug(f"{int(dut.cycle_count.value)}: READ mem: addr=0x{rd_addr:08X} data=0x{data:08X}")
         
+
+
+
+
+
+
+class Profile:
+    RV32I_OPCODE_TYPE = {
+        0b0110011: "alu",      # R-type ALU (ADD, SUB, XOR, OR, AND, shifts...)
+        0b0010011: "alu",      # I-type ALU (ADDI, ORI, ANDI, shifts...)
+        0b0000011: "load",     # Loads (LB, LH, LW, LBU, LHU)
+        0b0100011: "store",    # Stores (SB, SH, SW)
+        0b1100011: "branch",   # Branches (BEQ, BNE, BLT, BGE, ...)
+        0b1101111: "jump",     # JAL
+        0b1100111: "jump",     # JALR
+        0b0110111: "lui",      # LUI
+        0b0010111: "auipc",    # AUIPC
+    }
+
+    def __init__(self):
+        self.instr_cnt = {}
+
+    def get_bits(self, value, hi, lo):
+        """Extract bits [hi:lo] from value."""
+        mask = (1 << (hi - lo + 1)) - 1
+        return (value >> lo) & mask
+
+    def rv32i_type(self, instr):
+        opcode = self.get_bits(instr, 6, 0)
+        return self.RV32I_OPCODE_TYPE.get(opcode, "unknown")
+    
+
+    def record(self, instruction):
+        instr_type = self.rv32i_type(int(instruction))
+        if instr_type in self.instr_cnt:
+            self.instr_cnt[instr_type] += 1
+        else:
+            self.instr_cnt[instr_type] = 1

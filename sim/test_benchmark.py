@@ -24,6 +24,8 @@ async def benchmark_core(dut):
     with open("benchmark_results.txt", "w") as f:
 
         for app in test_files:
+            dut._log.info(f"Running test: {app}")
+            profile = Profile()
             mem = parse_verilog_hex(app)
             cocotb.start_soon(Clock(dut.clk, 32, unit="ps").start())
             await reset(dut)
@@ -32,6 +34,10 @@ async def benchmark_core(dut):
             
             for cycle in range(max_run_cycles):
                 await FallingEdge(dut.clk)
+
+                if (not dut.stall_execution.value):
+                    profile.record(dut.core.i_rd_data.value)
+
                 if read_word(mem, tohost):
                     dut._log.info("Program halted (_tohost contains nonzero value)")
                     dut._log.info(f"Program halted after {cycle} cycles")
@@ -49,6 +55,7 @@ async def benchmark_core(dut):
             f.write(f"Total instructions: {instr}\n")
             f.write(f"Total cycles: {cycles}\n")
             f.write(f"IPC: {instr / cycles}\n")
+            f.write(f"Profile: {profile.instr_cnt}\n")
             f.write("\n")
             ipc_results.append(instr / cycles)
         
